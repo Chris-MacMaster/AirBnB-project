@@ -43,19 +43,21 @@ router.delete(
 );
 
 
+// Restore session user
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({ user: null });
+  }
+);
 
 
-
-
-//5X7jMxJN-m-ZVvwmySIq4Ft7sQrmc2qRBwNQ
-
-// fetch('/api/session', {
-//   method: 'DELETE',
-//   headers: {
-//     "Content-Type": "application/json",
-//     "XSRF-TOKEN": `5X7jMxJN-m-ZVvwmySIq4Ft7sQrmc2qRBwNQ`
-//   }
-// }).then(res => res.json()).then(data => console.log(data));
 
 
 
