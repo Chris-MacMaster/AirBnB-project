@@ -32,23 +32,30 @@ router.post('/',
     }
 );
 
-/*
-fetch('/api/session', {
-  method: 'POST',
-  headers: {
-    "Content-Type": "application/json",
-    "XSRF-TOKEN": `FlwZM0N7-JMmSUIX97BC26-zLzjn0qdqtH8w`
-  },
-  body: JSON.stringify({ credential: 'Demo-lition', password: 'password' })
-}).then(res => res.json()).then(data => console.log(data));
+
+// Log out
+router.delete(
+  '/',
+  (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+  }
+);
 
 
 
 
 
 
-*/
+//5X7jMxJN-m-ZVvwmySIq4Ft7sQrmc2qRBwNQ
 
+// fetch('/api/session', {
+//   method: 'DELETE',
+//   headers: {
+//     "Content-Type": "application/json",
+//     "XSRF-TOKEN": `5X7jMxJN-m-ZVvwmySIq4Ft7sQrmc2qRBwNQ`
+//   }
+// }).then(res => res.json()).then(data => console.log(data));
 
 
 
