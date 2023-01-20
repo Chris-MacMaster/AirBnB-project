@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Chris-MacMaster/API-project/issues"
   },
-  "homepage": "https://github.com/Chris-MacMaster/API-project#readme"
+  "homepage": "https://github.com/Chris-MacMaster/API-project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  }
 }
