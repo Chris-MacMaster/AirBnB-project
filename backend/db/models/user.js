@@ -42,9 +42,11 @@ module.exports = (sequelize, DataTypes) => {
 
 
 
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
@@ -90,8 +92,21 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
     validate: {
       len: [60, 60]
-    }}
-  }, {
+    }},
+
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+  },
+  
+  {
     sequelize,
     modelName: 'User',
     //define scopes
