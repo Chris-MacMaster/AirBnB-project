@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // defining schema in options object
 }
 
+//20230120214155-create-user.js
 
 module.exports = {
   async up(queryInterface, Sequelize) {
