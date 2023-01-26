@@ -25,7 +25,9 @@ router.put('/:spotId', requireAuth, async (req, res) => {
         // res.status(404)
         throw new Error("No spot with provided id exists")
     }
-    if (req.user.id !== target.ownerId)
+    if (req.user.id !== target.ownerId){
+        throw new Error("Each spot can only be edited by owner")
+    }
 
     await target.update({
         ...req.body
