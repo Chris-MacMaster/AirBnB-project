@@ -1,7 +1,5 @@
 // backend/routes/api/session.js
 
-
-
 const express = require('express');
 // const { UPSERT } = require('sequelize/types/query-types');
 
@@ -14,45 +12,95 @@ const { SpotImage, Review, User } = require('../../db/models');
 
 // const spotimage = require('../../db/models/spotimage');
 
-
-
-
 const router = express.Router();
 
-//returns all spots
-router.get('/', async (req, res) => {
-    const spots = await Spot.findAll()
+const {Op} = require("sequelize")//got the query validations to work 
 
-    res.status(200)
-    res.json(spots)
 
+
+//edit a spot
+router.put('/:spotId', requireAuth, async (req, res) => {
+    const target = await Spot.findByPk(req.params.spotId)
+    if (!target){
+        // res.status(404)
+        throw new Error("No spot with provided id exists")
+    }
+
+    await target.update({
+        ...req.body
+    })
+    res.json(target)
 })
 
 
 
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+//returns all spots
+router.get('/', async (req, res) => {
+
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+    const where = {
+        price: {[Op.between]: [minPrice - 1 || 0, maxPrice + 1 || 99999999]},
+        lat: { [Op.between]: [minLat - 1 || -99999, maxLat + 1 || 999999] },
+        lng: { [Op.between]: [minLng - 1 || -99999, maxLng + 1 || 999999] },
+    }
+    // function invalidChar()
+    if (
+        (page && !parseInt(page)) ||
+        (size && !parseInt(size)) ||
+        (minLat && !parseInt(minLat)) ||
+        (maxLat && !parseInt(maxLat)) ||
+        (minLng && !parseInt(minLng)) ||
+        (maxLng && !parseInt(maxLng)) ||
+        (minPrice && !parseInt(minPrice)) ||
+        (maxPrice && !parseInt(maxPrice))
+    ) {
+        res.status(400)
+        throw new Error('invalid spot search parameters')
+    }
 
 
-const validateSpot = [
-    check('address')
-        .exists({ checkFalsy: true })
-        .isEmail()
-        .withMessage('Please provide a valid address.'),
-    check('username')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-        .not()
-        .isEmail()
-        .withMessage('Username cannot be an email.'),
-    check('password')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 6 })
-        .withMessage('Password must be 6 characters or more.'),
-    handleValidationErrors
-];
+    // where.lat = { min: minLat, max: maxLat }
+    // where.lng = { min: minLng, max: maxLng }
+    // where.price = { min: minPrice, max: maxPrice }
+    
+    const pagination = {}
+
+    if (!page || parseInt(page) <= 0) {
+        pagination.page = 1
+    } else if (page && parseInt(page) >= 1) {
+        pagination.page = parseInt(page)
+    }
+
+    if (!size || parseInt(size) <= 0) {
+        pagination.size = 2
+    } else if (size && parseInt(size) >= 1) {
+        pagination.size = parseInt(size)
+    }
+    const paging = {}
+
+    paging.limit = pagination.size
+    paging.offset = pagination.size * (pagination.page - 1)
+
+    const pagifier = {}
+    pagifier.page = pagination.page
+    
+
+    const spots = await Spot.findAll({
+        include: [
+            { model: SpotImage, as: "previewImage" }
+        ],
+        where, 
+        ...paging})//STOP HERE, proper
+
+    res.status(200)
+    res.json({spots, pagifier,
+
+    })
+
+})
+
+
 
 
 //Create a new spot
@@ -75,6 +123,8 @@ router.post('/', requireAuth, async (req, res) => {
         price
     })
 
+    // await newSpot.validate()
+    
     res.status(201)
     res.json(newSpot)
 })
