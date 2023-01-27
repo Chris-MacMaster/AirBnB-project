@@ -393,19 +393,18 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     throw err
    }
 
+   let existingBooking = await Booking.findOne(
+    {
+        where: {
+            spotId: req.params.spotId,
+        }
+    }
+   )
+
    let booking = await Booking.create({
     ...req.body,
     
    })
-
-//    console.log(booking)
-   let query = await Booking.findAll({
-    where: {
-        userId: 1
-    }
-   })
-   console.log(query)
-//    await booking.save()
 
    res.json(booking)
 })

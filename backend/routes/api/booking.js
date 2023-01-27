@@ -31,7 +31,22 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     // let bookings = await Booking.findAll()
 
+    // function getDates(start, end,){
+
+    // }
+
     const { spotId, userId, startDate, endDate } = req.body
+
+
+    let bookedDays = []
+
+    let bookings = await Booking.findAll({
+        attributes: ['startDate', 'endDate']
+    })
+
+    // bookings.forEach(booking => {
+
+    // })
 
     let newBooking = await Booking.create({
         spotId,
@@ -49,7 +64,7 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:bookingId', async (req, res) => {
-    
+
 })
 
 

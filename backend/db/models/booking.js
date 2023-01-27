@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false},
     userId: {type: DataTypes.INTEGER,
     allowNull: false},
-    startDate: {type: DataTypes.STRING,
+    startDate: {type: DataTypes.DATEONLY,
     // validate: {
     //   isDate(value){
     //     let dates = value.split('-')
@@ -31,14 +31,14 @@ module.exports = (sequelize, DataTypes) => {
     //   }
     // }
     },
-    endDate: {type: DataTypes.STRING,
+    endDate: {type: DataTypes.DATEONLY,
     validate: {
-      isDate(value) {
-        let dates = value.split('-').join('')
-        if (!parseInt(dates)) {
-          throw new Error('Must be valid date')
-        }
-      },
+      // isDate(value) {
+      //   let dates = value.split('-').join('')
+      //   if (!parseInt(dates)) {
+      //     throw new Error('Must be valid date')
+      //   }
+      // },
       // afterStart(value){
       //   let afters = value.split('-').join("")
       //   let starts = this.startDate.split('-').join('')
