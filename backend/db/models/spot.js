@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
 
-
     ownerId: {type: DataTypes.INTEGER,
     allowNull: false,
     // foreignKey: true
