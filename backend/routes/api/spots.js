@@ -87,17 +87,17 @@ router.get('/', async (req, res) => {
 
     const spots = await Spot.findAll({
         include: [
-            { model: SpotImage, attributes: ['url'], },
-            { model: Review, attributes: ['stars']}
+            { model: SpotImage, attributes: ['url'], foreignKey:  "spotId"},
+            { model: Review, attributes: ['stars'], foreignKey: "spotId"}
         ],
-        where, 
-        ...paging})
+        where, ...paging
+    }) 
+    
     res.status(200)
 
     let newSpots = []
 
     spots.forEach(spot => {
-        
         spot = spot.toJSON()
         newSpots.push(spot)
     })
@@ -250,8 +250,8 @@ router.get('/:spotId', async (req, res) => {
 })
 
 
-//add image to spot 
-router.post('/:spotId', requireAuth, async(req, res) => {
+//add image to spot
+router.post('/:spotId/images', requireAuth, async(req, res) => {
 
     let spot = await Spot.findByPk(req.params.spotId)
 
