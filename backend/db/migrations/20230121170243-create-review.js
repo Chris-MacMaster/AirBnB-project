@@ -22,13 +22,13 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        references: {model: "Spots"},
+        references: {model: "Spots", foreignKey: "spotId"},
         onDelete: "CASCADE",
         allowNull: false
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: { model: "Users" },
+        references: { model: "Users", foreignKey: "userId" },
         onDelete: "CASCADE",
         allowNull: false
       },

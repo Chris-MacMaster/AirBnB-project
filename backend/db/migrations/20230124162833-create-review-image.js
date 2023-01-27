@@ -19,7 +19,7 @@ module.exports = {
       },
       reviewId: {
         type: Sequelize.INTEGER,
-        references: {model: "Reviews"},
+        references: {model: "Reviews", foreignKey: "reviewId"},
         onDelete: "CASCADE",
         allowNull: false
       },

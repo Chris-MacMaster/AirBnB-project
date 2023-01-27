@@ -402,8 +402,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
    )
 
    let booking = await Booking.create({
-    ...req.body,
-    
+    ...req.body,   
    })
 
    res.json(booking)

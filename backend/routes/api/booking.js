@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     let bookedDays = []
 
     let bookings = await Booking.findAll({
-        attributes: ['startDate', 'endDate']
+        attributes: ['startDate', 'endDate'],
     })
 
     // bookings.forEach(booking => {
