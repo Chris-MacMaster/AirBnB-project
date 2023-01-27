@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
         lat: { [Op.between]: [minLat - 1 || -99999, maxLat + 1 || 999999] },
         lng: { [Op.between]: [minLng - 1 || -99999, maxLng + 1 || 999999] },
     }
-    // function invalidChar()
+    
     if (
         (page && !parseInt(page)) ||
         (size && !parseInt(size)) ||
@@ -86,20 +86,7 @@ router.get('/', async (req, res) => {
     
 
     const spots = await Spot.findAll({
-        include: [
-            { model: SpotImage, attributes: ['url'], foreignKey:  "spotId"},
-            { model: Review, attributes: ['stars'], foreignKey: "spotId"}
-        ],
         where, ...paging
-    }) 
-    
-    res.status(200)
-
-    let newSpots = []
-
-    spots.forEach(spot => {
-        spot = spot.toJSON()
-        newSpots.push(spot)
     })
 
 
@@ -112,18 +99,45 @@ router.get('/', async (req, res) => {
         return sum
     };
 
-    newSpots.forEach(spot => {
-        let count = spot.Reviews.length
-        let sum = sumArray(spot.Reviews)
-        
-        spot.avgRating = sum/count
-        spot.previewImage = spot.SpotImages[0].url
+    let spotsArr = []
 
-        delete spot.SpotImages
-        delete spot.Reviews
-    })
+
+    for (let i = 0; i < spots.length; i++){
+        // let spot = spots[i]
+        let spotImage = await SpotImage.findAll(
+            {
+                attributes: ['url'],
+                where: {
+                    spotId: spots[i].id
+                }
+            }
+        )
+        let spotReviews = await Review.findAll(
+            {
+                attributes: ['stars'],
+                where: {
+                    spotId: spots[i].id
+                }
+            }
+        )
+
+        let count = spotReviews.length
+        let sum = sumArray(spotReviews)
+
+        let newSpot = spots[i].toJSON()
+
+        newSpot.avgRating = sum/count
+        newSpot.previewImage = spotImage[0].url
+
+        delete newSpot.SpotImages
+        delete newSpot.Reviews
+
+        spotsArr.push(newSpot)
+    }
     
-    res.json({ newSpots, ...pagifier })
+    res.status(200)
+    
+    res.json({ spotsArr, ...pagifier })
 })
 
 
