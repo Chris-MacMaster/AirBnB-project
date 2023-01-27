@@ -26,8 +26,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
 
-    
-    ownerId: DataTypes.INTEGER,
+
+    ownerId: {type: DataTypes.INTEGER,
+    allowNull: false,
+    foreignKey: true
+    },
 
 
     address: {type: DataTypes.STRING,
