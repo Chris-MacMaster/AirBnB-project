@@ -22,8 +22,9 @@ const {Op} = require("sequelize")//got the query validations to work
 router.put('/:spotId', requireAuth, async (req, res) => {
     const target = await Spot.findByPk(req.params.spotId)
     if (!target){
-        // res.status(404)
-        throw new Error("No spot with provided id exists")
+        let err = new Error("No spot with provided id exists")
+        err.status = 404
+        throw err
     }
     if (req.user.id !== target.ownerId){
         throw new Error("Each spot can only be edited by owner")
@@ -61,11 +62,6 @@ router.get('/', async (req, res) => {
         res.status(400)
         throw new Error('invalid spot search parameters')
     }
-
-
-    // where.lat = { min: minLat, max: maxLat }
-    // where.lng = { min: minLng, max: maxLng }
-    // where.price = { min: minPrice, max: maxPrice }
     
     const pagination = {}
 
@@ -91,19 +87,92 @@ router.get('/', async (req, res) => {
 
     const spots = await Spot.findAll({
         include: [
-            { model: SpotImage, as: "previewImage" }
+            { model: SpotImage, attributes: ['url'], },
+            { model: Review, attributes: ['stars']}
         ],
         where, 
-        ...paging})//STOP HERE, proper
-
+        ...paging})
     res.status(200)
-    res.json({spots, pagifier,
 
+    let newSpots = []
+
+    spots.forEach(spot => {
+        
+        spot = spot.toJSON()
+        newSpots.push(spot)
     })
 
+
+    function sumArray(arr) {
+        let sum = 0
+        for (let i = 0; i < arr.length; i++) {
+            obj = arr[i]
+            sum += obj.stars
+        }
+        return sum
+    };
+
+    newSpots.forEach(spot => {
+        let count = spot.Reviews.length
+        let sum = sumArray(spot.Reviews)
+        
+        spot.avgRating = sum/count
+        spot.previewImage = spot.SpotImages[0].url
+
+        delete spot.SpotImages
+        delete spot.Reviews
+    })
+    
+    res.json({ newSpots, ...pagifier })
 })
 
 
+//get all for current user 
+router.get('/current', requireAuth, async (req, res) => {
+
+
+    const spots = await Spot.findAll({
+        include: [
+            { model: SpotImage, attributes: ['url'], },
+            { model: Review, attributes: ['stars'] }
+        ],
+        where: {
+            ownerId: req.user.id
+        },
+    })
+    res.status(200)
+
+    let newSpots = []
+
+    spots.forEach(spot => {
+
+        spot = spot.toJSON()
+        newSpots.push(spot)
+    })
+
+
+    function sumArray(arr) {
+        let sum = 0
+        for (let i = 0; i < arr.length; i++) {
+            obj = arr[i]
+            sum += obj.stars
+        }
+        return sum
+    };
+
+    newSpots.forEach(spot => {
+        let count = spot.Reviews.length
+        let sum = sumArray(spot.Reviews)
+
+        spot.avgRating = sum / count
+        spot.previewImage = spot.SpotImages[0].url
+
+        delete spot.SpotImages
+        delete spot.Reviews
+    })
+
+    res.json( {newSpots} )
+})
 
 
 //Create a new spot
@@ -126,7 +195,7 @@ router.post('/', requireAuth, async (req, res) => {
         price
     })
 
-    // await newSpot.validate()
+    
     
     res.status(201)
     res.json(newSpot)
@@ -134,23 +203,25 @@ router.post('/', requireAuth, async (req, res) => {
 
 
 
-// router.get('/current', async (req, res) => {
-//     const spots = await Spot.findAll()
 
-//     res.status(200)
-//     res.json(spots)
 
 // })
-
+//get details from spot by id
 router.get('/:spotId', async (req, res) => {
 
-    let reviews = await Review.count({
+    let reviewCount = await Review.count({
         where: {
             spotId: req.params.spotId
         }
     })
 
-    const spot = await Spot.findAll({
+    let starSum = await Review.sum('stars', {
+        where: {
+            spotId: req.params.spotId
+        }
+    })
+
+    let spot = await Spot.findAll({
         where: {
             id: req.params.spotId
         },
@@ -159,11 +230,97 @@ router.get('/:spotId', async (req, res) => {
         as: "Owner"
         }], 
     })
+    if (!spot.length){
+        let err = new Error('Spot does not exist with the provided id')
+        err.status = 404 
+        throw err
+    }
 
-    spot.numReviews = reviews
+    // let newSpotArr = []
+
+    spot = spot[0].toJSON()
+
+    // newSpotArr.push(spot)
+
+    spot.numReviews = reviewCount
+    spot.avgStarRating = (starSum/reviewCount)
+
 
     res.json(spot)
 })
+
+
+//add image to spot 
+router.post('/:spotId', requireAuth, async(req, res) => {
+
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        let err = new Error('No spot found with that id')
+        err.status = 404
+        throw err
+    }
+
+    if (req.user.id !== spot.ownerId) {
+        throw new Error('Only spot owner may post image')
+    }
+
+    let newImg = await SpotImage.create({
+        ...req.body
+    })
+
+    let img = newImg.toJSON()
+
+    delete img.updatedAt
+    delete img.createdAt
+
+    res.json(img)
+
+})
+
+//delete a spot
+router.delete('/:spotId', requireAuth, async (req, res) => {
+
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot){
+        let err = new Error('No spot found with that id')
+        err.status = 404
+        throw err
+    }
+
+    if (req.user.id !== spot.ownerId) {
+        throw new Error('Only spot owner may delete')
+    }
+
+    await spot.destroy()
+    
+    res.json('Spot deleted')
+
+})
+
+
+// //delete an image via spot id
+// router.delete('/:spotId', requireAuth, async (req, res) => {
+
+//     let spot = await Spot.findByPk(req.params.spotId)
+
+//     if (!spot) {
+//         let err = new Error('No spot found with that id')
+//         err.status = 404
+//         throw err
+//     }
+
+//     if (req.user.id !== spot.ownerId) {
+//         throw new Error('Only spot owner may delete')
+//     }
+
+//     await spot.destroy()
+
+//     res.json('Spot deleted')
+
+// })
+
 
 
 
