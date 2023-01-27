@@ -11,15 +11,15 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Spots', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
+      // id: {
+      //   allowNull: false,
+      //   autoIncrement: true,
+      //   primaryKey: true,
+      //   type: Sequelize.INTEGER
+      // },
       ownerId: {
         type: Sequelize.INTEGER,
-        references: { model: "Users", foreignKey: "ownerId"},
+        references: { model: "Users"},
         onDelete: "CASCADE",
         allowNull: false
       },

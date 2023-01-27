@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 
     ownerId: {type: DataTypes.INTEGER,
     allowNull: false,
-    foreignKey: true
+    // foreignKey: true
     },
 
 

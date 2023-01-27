@@ -24,38 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     spotId: {type: DataTypes.INTEGER,
     allowNull: false},
+
+
     userId: {type: DataTypes.INTEGER,
-    allowNull: false},
+    allowNull: false,
+    // foreignKey: true
+    },
     startDate: {type: DataTypes.DATEONLY,
-    // validate: {
-    //   isDate(value){
-    //     let dates = value.split('-')
-    //     if (isNan(value)){
-    //       throw new Error('Must be valid date')
-    //     }
-    //   }
-    // }
+
     },
     endDate: {type: DataTypes.DATEONLY,
-    validate: {
-      // isDate(value) {
-      //   let dates = value.split('-').join('')
-      //   if (!parseInt(dates)) {
-      //     throw new Error('Must be valid date')
-      //   }
-      // },
-      // afterStart(value){
-      //   let afters = value.split('-').join("")
-      //   let starts = this.startDate.split('-').join('')
-
-      //   afterNumber = parseInt(afters)
-      //   startNumber = parseInt(starts)
-
-      //   if (afterNumber <= startNumber){
-      //     throw new Error('endDate cannot be on or before startDate')
-      //   }
-      // }
-    }
+  
     
     },
   }, {
