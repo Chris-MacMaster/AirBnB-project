@@ -48,12 +48,9 @@ router.post('/', async (req, res) => {
     // res.json(bookings)
 })
 
-
-
-
-
-
-
+router.put('/:bookingId', async (req, res) => {
+    
+})
 
 
 // router.get('/current', async (req, res) => {
@@ -63,8 +60,6 @@ router.post('/', async (req, res) => {
 // })
 
 //fetch returns a promise that resolves to a response object 
-
-
 
 module.exports = router;
 

@@ -8,7 +8,7 @@ const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
 
 
 const { Spot, sequelize } = require('../../db/models');
-const { SpotImage, Review, User } = require('../../db/models');
+const { SpotImage, Review, User, ReviewImage, Booking } = require('../../db/models');
 
 // const spotimage = require('../../db/models/spotimage');
 
@@ -143,9 +143,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.status(200)
 
     let newSpots = []
-
     spots.forEach(spot => {
-
         spot = spot.toJSON()
         newSpots.push(spot)
     })
@@ -321,17 +319,95 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
 // })
 
-
-
-
+//get a review by spot id
 router.get('/:spotId/reviews', async (req, res) => {
 
     let reviews = await Review.findAll({
         where: {
             spotId: req.params.spotId
+        },
+        include:[ { model:User, attributes: ['id', 'firstName', 'lastName'] },
+        { model: ReviewImage, attributes: ['id', 'url'] }]
+    })
+
+    if (!reviews.length){
+        let err = new Error('No spots with that id exist')
+        err.status = 404
+        throw err
+    }
+    res.json(reviews)
+})
+
+//create a review based on spot id
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        let err = new Error('No spot found with that id')
+        err.status = 404
+        throw err
+    }
+
+    if (req.user.id !== spot.ownerId) {
+        throw new Error('Only spot owner may post review')
+    }
+
+    let ifReview = await Review.findAll({
+        where: {
+            spotId: req.params.spotId,
+            userId: req.user.id
         }
     })
-    res.json(reviews)
+    
+    if (ifReview.length){
+        let err = new Error('You already have a review for that spot')
+        err.status = 403
+        throw err
+    }
+
+    let newReview = await Review.create({
+        ...req.body
+    })
+
+    let review = newReview.toJSON()
+
+    review.userId = req.user.id
+    review.spotId = req.params.spotId
+
+    res.json(review)
+})
+
+
+router.post('/:spotId/bookings', requireAuth, async(req, res) => {
+    if (req.params.spotId === req.user.id) {
+        let err = new Error('You cannot create a booking at a spot you already own')
+        throw err
+    }
+
+   let spot = await Spot.findByPk(req.params.spotId)
+
+   if (!spot){
+    let err = new Error('Spot does not exist with provided id')
+    err.status = 404
+    throw err
+   }
+
+   let booking = await Booking.create({
+    ...req.body,
+    
+   })
+
+//    console.log(booking)
+   let query = await Booking.findAll({
+    where: {
+        userId: 1
+    }
+   })
+   console.log(query)
+//    await booking.save()
+
+   res.json(booking)
 })
 
 module.exports = router;
