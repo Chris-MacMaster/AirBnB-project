@@ -133,8 +133,13 @@ router.get('/current', requireAuth, async (req, res) => {
 
     const spots = await Spot.findAll({
         include: [
-            { model: SpotImage, attributes: ['url'], },
-            { model: Review, attributes: ['stars'] }
+            { model: SpotImage, attributes: ['url'],
+            foreignKey: "spotId"
+            },
+            { model: Review, attributes: ['stars'],
+                foreignKey: "spotId"
+            },
+            
         ],
         where: {
             ownerId: req.user.id
@@ -328,8 +333,12 @@ router.get('/:spotId/reviews', async (req, res) => {
         where: {
             spotId: req.params.spotId
         },
-        include:[ { model:User, attributes: ['id', 'firstName', 'lastName'] },
-        { model: ReviewImage, attributes: ['id', 'url'] }]
+        include:[ { model:User, attributes: ['id', 'firstName', 'lastName'],
+        foreignKey: "userId"
+    },
+        { model: ReviewImage, attributes: ['id', 'url'],
+        foreignKey: "reviewId"
+    }]
     })
 
     if (!reviews.length){

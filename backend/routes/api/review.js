@@ -14,18 +14,19 @@ const router = express.Router();
 router.get('/current', requireAuth, async (req, res) => {
     const userReviews = await Review.findAll({
         where:  {userId: req.user.id},
-        include: [ { model: User ,
-        attributes: 
-            ['firstName', 'lastName']
+        include: [ 
+            { model: User ,
+            attributes: ['firstName', 'lastName'],
+            foreignKey: "userId"
         },
-        { model: Spot,
-            attributes: { exclude: ['createdAt', 'updatedAt', 'description']}
+        {   model: Spot,
+            attributes: { exclude: ['createdAt', 'updatedAt', 'description']},
+            foreignKey: "spotId"
+        },
         
-        },
-        // { model: SpotImage,
-        // attributes: ['url'] },
         { model: ReviewImage,
-            attributes: { exclude: ['createdAt', 'updatedAt', 'reviewId'] }
+            attributes: { exclude: ['createdAt', 'updatedAt', 'reviewId'] },
+            foreignKey: "reviewId"
         }
     ],
     })
