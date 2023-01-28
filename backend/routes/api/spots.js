@@ -206,7 +206,9 @@ router.get('/current', requireAuth, async (req, res) => {
 
     res.status(200)
 
-    res.json({ spotsArr })
+    let Spots = spotsArr
+
+    res.json({ Spots })
 })
 
 
@@ -280,7 +282,11 @@ router.get('/:spotId', async (req, res) => {
     // newSpotArr.push(spot)
 
     spot.numReviews = reviewCount
-    spot.avgStarRating = (starSum/reviewCount)
+    if (starSum){
+        spot.avgStarRating = (starSum / reviewCount)
+    } else {
+        spot.avgStarRating = "No reviews found"
+    }
 
 
     res.json(spot)
