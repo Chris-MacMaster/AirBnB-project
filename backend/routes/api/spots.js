@@ -289,6 +289,12 @@ router.get('/:spotId', async (req, res) => {
     }
 
 
+    delete spot.SpotImages[0].createdAt
+    delete spot.SpotImages[0].updatedAt
+    delete spot.SpotImages[0].spotId
+
+    delete spot.Owner.username
+    
     res.json(spot)
 })
 
