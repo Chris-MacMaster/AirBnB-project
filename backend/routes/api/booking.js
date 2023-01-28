@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:bookingId', async (req, res) => {
-
+    
 })
 
 

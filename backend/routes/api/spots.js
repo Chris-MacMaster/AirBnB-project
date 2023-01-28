@@ -202,7 +202,6 @@ router.get('/current', requireAuth, async (req, res) => {
             newSpot.previewImage = spotImage[0].url
         } else { newSpot.previewImage = "no preview image exists for this spot yet" }
 
-
         spotsArr.push(newSpot)
     }
 
@@ -277,11 +276,7 @@ router.get('/:spotId', async (req, res) => {
         throw err
     }
 
-    // let newSpotArr = []
-
-    spot = spot[0].toJSON()
-
-    // newSpotArr.push(spot)
+    spot = spot[0].toJSON() 
 
     spot.numReviews = reviewCount
     if (starSum){
@@ -289,7 +284,6 @@ router.get('/:spotId', async (req, res) => {
     } else {
         spot.avgStarRating = "No reviews found"
     }
-
 
     delete spot.SpotImages[0].createdAt
     delete spot.SpotImages[0].updatedAt
@@ -426,6 +420,8 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     }
 
     let newReview = await Review.create({
+        userId: req.user.id,
+        spotId: req.params.spotId,
         ...req.body
     })
 
