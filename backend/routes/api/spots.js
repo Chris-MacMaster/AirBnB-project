@@ -150,27 +150,11 @@ router.get('/current', requireAuth, async (req, res) => {
 
 
     const spots = await Spot.findAll({
-        include: [
-            { model: SpotImage, attributes: ['url'],
-            foreignKey: "spotId"
-            },
-            { model: Review, attributes: ['stars'],
-                foreignKey: "spotId"
-            },
-            
-        ],
         where: {
             ownerId: req.user.id
         },
     })
     res.status(200)
-
-    let newSpots = []
-    spots.forEach(spot => {
-        spot = spot.toJSON()
-        newSpots.push(spot)
-    })
-
 
     function sumArray(arr) {
         let sum = 0
@@ -181,18 +165,48 @@ router.get('/current', requireAuth, async (req, res) => {
         return sum
     };
 
-    newSpots.forEach(spot => {
-        let count = spot.Reviews.length
-        let sum = sumArray(spot.Reviews)
+    let spotsArr = []
 
-        spot.avgRating = sum / count
-        spot.previewImage = spot.SpotImages[0].url
+    for (let i = 0; i < spots.length; i++) {
+        
+        let spotImage = await SpotImage.findAll(
+            {
+                attributes: ['url'],
+                where: {
+                    spotId: spots[i].id
+                }
+            }
+        )
+        let spotReviews = await Review.findAll(
+            {
+                attributes: ['stars'],
+                where: {
+                    spotId: spots[i].id
+                }
+            }
+        )
+        let newSpot = spots[i].toJSON()
 
-        delete spot.SpotImages
-        delete spot.Reviews
-    })
+        let count = 0;
+        let sum = 0;
 
-    res.json( {newSpots} )
+        if (spotReviews.length) {
+            count = spotReviews.length
+            sum = sumArray(spotReviews)
+            newSpot.avgRating = sum / count
+        } else { newSpot.avgRating = "no reviews exist for this spot yet" }
+
+        if (spotImage.length) {
+            newSpot.previewImage = spotImage[0].url
+        } else { newSpot.previewImage = "no preview image exists for this spot yet" }
+
+
+        spotsArr.push(newSpot)
+    }
+
+    res.status(200)
+
+    res.json({ spotsArr })
 })
 
 
@@ -289,7 +303,8 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
     }
 
     let newImg = await SpotImage.create({
-        ...req.body
+        ...req.body,
+        spotId: req.params.spotId
     })
 
     let img = newImg.toJSON()
