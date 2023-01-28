@@ -421,7 +421,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     let newReview = await Review.create({
         userId: req.user.id,
-        spotId: req.params.spotId,
+        spotId: parseInt(req.params.spotId),
         ...req.body
     })
 

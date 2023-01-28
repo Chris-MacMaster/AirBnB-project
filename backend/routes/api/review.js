@@ -16,21 +16,6 @@ const router = express.Router();
 router.get('/current', requireAuth, async (req, res) => {
     const userReviews = await Review.findAll({
         where:  {userId: req.user.id},
-        // include: [ 
-        //     { model: User ,
-        //     attributes: ['firstName', 'lastName'],
-        //     foreignKey: "userId"
-        // },
-        // {   model: Spot,
-        //     attributes: { exclude: ['createdAt', 'updatedAt', 'description']},
-        //     foreignKey: "spotId"
-        // },
-        
-        // { model: ReviewImage,
-        //     attributes: { exclude: ['createdAt', 'updatedAt', 'reviewId'] },
-        //     foreignKey: "reviewId"
-        // }
-    // ],
     })
 
         let newReviews = []
@@ -79,12 +64,12 @@ router.get('/current', requireAuth, async (req, res) => {
 
         let previewImage = await SpotImage.findOne({
             where: {
-            preview: 1,
+            preview: true,
             spotId: spot.id
             }
 
         })
-        console.log(previewImage)
+        // console.log(previewImage)
 
 
         // previewImage = previewImage.toJSON()
