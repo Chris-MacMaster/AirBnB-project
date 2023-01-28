@@ -69,11 +69,6 @@ router.get('/current', requireAuth, async (req, res) => {
             }
 
         })
-        // console.log(previewImage)
-
-        // previewImage = previewImage.toJSON()
-
-        // console.log(previewImage)
 
         if (previewImage){
             review.Spot.previewImage = previewImage.url
