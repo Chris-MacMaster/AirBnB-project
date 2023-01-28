@@ -465,6 +465,70 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
    res.json(booking)
 })
 
+
+
+//get all bookings for a spot
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    let spotCheck = await Spot.findByPk(req.params.spotId)
+    if (!spotCheck) {
+        let err = new Error("No spot with provided id exists")
+        err.status = 404
+        throw err
+    }
+
+    let bookings = await Booking.findAll({
+        where: {
+            id: parseInt(req.params.spotId)
+        }
+    })
+
+    if (!bookings.length) {
+        let err = new Error("No bookings exist for that spot")
+        err.status = 404
+        throw err
+    }
+
+    let newBookings = []
+    bookings.forEach(booking => {
+        booking = booking.toJSON()
+        newBookings.push(booking)
+    })
+
+    for (let i = 0; i < newBookings.length; i++){
+        let booking = newBookings[i]
+
+        let spot = await Spot.findByPk(req.params.spotId)
+        spot = spot.toJSON()
+
+        let user = await User.findByPk(req.user.id)
+        user = user.toJSON()
+        
+        if (req.user.id === spot.ownerId){
+            booking.User = {
+                ...user
+            }
+            delete booking.User.username
+        }  else {
+            delete booking.id
+            delete booking.userId
+            delete booking.createdAt
+            delete booking.updatedAt
+        }
+        // newBookings[i] = booking
+    }
+
+    let Bookings = newBookings
+
+    // Bookings[0].url = "agaf"
+
+    res.json( {Bookings} )
+
+
+})
+
+
+
+
 module.exports = router;
 
 
