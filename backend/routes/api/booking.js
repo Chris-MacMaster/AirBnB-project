@@ -26,7 +26,7 @@ router.get('/current', requireAuth, async (req, res) => {
         }
     })
 
-    if (!bookings) {
+    if (!bookings.length) {
         let err = new Error('User does not have any bookings')
         err.status = 404
         throw err
@@ -110,6 +110,34 @@ router.post('/', async (req, res) => {
 
     // res.status(200)
     // res.json(bookings)
+})
+
+
+//delete a booking
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+
+    let booking = await Booking.findByPk(req.params.bookingId)
+
+    if (!booking) {
+        let err = new Error('No booking found with that id')
+        err.status = 404
+        throw err
+    }
+
+    if (req.user.id !== booking.userId) {
+        throw new Error('Only owner may delete their booking')
+    }
+
+    await booking.destroy()
+
+    //date testing, left off here
+    
+
+    res.json({
+        message: 'Booking deleted',
+        statusCode: 200
+    })
+
 })
 
 

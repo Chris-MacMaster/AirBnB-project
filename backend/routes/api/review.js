@@ -136,6 +136,29 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
 })
 
 
+//delete a review
+router.delete('/:reviewId', requireAuth, async (req, res) => {
+
+    let review = await Review.findByPk(req.params.reviewId)
+
+    if (!review) {
+        let err = new Error('No review found with that id')
+        err.status = 404
+        throw err
+    }
+
+    if (req.user.id !== review.userId) {
+        throw new Error('Only review owner may delete their review')
+    }
+
+    await review.destroy()
+
+    res.json({message: 'Review deleted',
+    statusCode: 200})
+
+})
+
+
 //create an image for a review based on reviewId
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
     let target = await Review.findByPk(req.params.reviewId)
@@ -178,7 +201,31 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
     res.json(newImage)
 })
 
+//delete a reviewImage
+router.delete('/images/:imageId', requireAuth, async (req, res) => {
 
+    let reviewImage = await ReviewImage.findByPk(req.params.imageId)
+
+    if (!reviewImage) {
+        let err = new Error('No review image found with that id')
+        err.status = 404
+        throw err
+    }
+
+    let review = await Review.findByPk(reviewImage.reviewId)
+
+    if (req.user.id !== review.userId) {
+        throw new Error('Only review owner may delete thier review image')
+    }
+
+    reviewImage.destroy()
+
+    res.json({
+        message: "Review image deleted",
+        statusCode: 200
+    })
+
+})
 
 
 
