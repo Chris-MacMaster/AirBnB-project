@@ -71,7 +71,6 @@ router.get('/current', requireAuth, async (req, res) => {
         })
         // console.log(previewImage)
 
-
         // previewImage = previewImage.toJSON()
 
         // console.log(previewImage)
@@ -125,9 +124,19 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         throw new Error("Each review can only be edited by owner")
     }
 
-    await target.update({
-        ...req.body
-    })
+    try {
+        await target.update({
+            ...req.body
+        })
+    } catch {
+        let err = new Error("Invalid input in request body")
+        err.title = "Validation error"
+        err.status = 400
+        throw err
+    }
+
+
+
     res.json(target)
 })
 

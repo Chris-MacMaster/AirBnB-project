@@ -430,7 +430,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     review.userId = req.user.id
     review.spotId = req.params.spotId
 
-    res.json(review)
+    let Reviews = review
+
+    res.json({Review})
 })
 
 
