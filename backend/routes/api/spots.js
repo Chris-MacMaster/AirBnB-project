@@ -120,17 +120,21 @@ router.get('/', async (req, res) => {
                 }
             }
         )
-
-        let count = spotReviews.length
-        let sum = sumArray(spotReviews)
-
         let newSpot = spots[i].toJSON()
 
-        newSpot.avgRating = sum/count
-        newSpot.previewImage = spotImage[0].url
+        let count = 0;
+        let sum = 0;
 
-        delete newSpot.SpotImages
-        delete newSpot.Reviews
+        if (spotReviews.length){
+            count = spotReviews.length
+            sum = sumArray(spotReviews)
+            newSpot.avgRating = sum / count
+        } else {newSpot.avgRating = "no reviews exist for this spot yet"}
+
+        if (spotImage.length){
+            newSpot.previewImage = spotImage[0].url
+        } else { newSpot.previewImage = "no preview image exists for this spot yet" }
+        
 
         spotsArr.push(newSpot)
     }
@@ -141,7 +145,7 @@ router.get('/', async (req, res) => {
 })
 
 
-//get all for current user 
+//get allspot for current user 
 router.get('/current', requireAuth, async (req, res) => {
 
 
