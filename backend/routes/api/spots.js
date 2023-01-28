@@ -140,8 +140,10 @@ router.get('/', async (req, res) => {
     }
     
     res.status(200)
+
+    let Spots = spotsArr
     
-    res.json({ spotsArr, ...pagifier })
+    res.json({ Spots, ...pagifier })
 })
 
 
@@ -294,7 +296,7 @@ router.get('/:spotId', async (req, res) => {
     delete spot.SpotImages[0].spotId
 
     delete spot.Owner.username
-    
+
     res.json(spot)
 })
 
