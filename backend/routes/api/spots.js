@@ -311,6 +311,7 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 
     delete img.updatedAt
     delete img.createdAt
+    delete img.spotId
 
     res.json(img)
 
