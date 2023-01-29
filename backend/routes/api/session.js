@@ -78,27 +78,3 @@ router.get(
 
 module.exports = router;
 
-
-
-//vHaFfSXo-okUXV3wv8fJzICVYQOPCBd-psIw
-
-// fetch('/api/session', {
-//   method: 'POST',
-//   headers: {
-//     "Content-Type": "application/json",
-//     "XSRF-TOKEN": `FfC7HcgC-1gMESJ_gcQAwvBuQ8319HbF7cSo`
-//   },
-//   body: JSON.stringify({ credential: '', password: 'password' })
-// }).then(res => res.json()).then(data => console.log(data));
-
-
-// fetch('/api/session', {
-//   method: 'POST',
-//   headers: {
-//     "Content-Type": "application/json",
-//     "XSRF-TOKEN": `vHaFfSXo-okUXV3wv8fJzICVYQOPCBd-psIw`
-//   },
-//   body: JSON.stringify({ credential: 'Demo-lition', password: '' })
-// }).then(res => res.json()).then(data => console.log(data));
-
-

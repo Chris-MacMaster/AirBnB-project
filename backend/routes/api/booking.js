@@ -6,8 +6,8 @@ const express = require('express');
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 // const { User } = require('../../db/models');
-const { Review, User, Booking, Spot, SpotImage } = require('../../db/models');
-const spot = require('../../db/models/spot');
+const { Booking, Spot, SpotImage } = require('../../db/models');
+// const spot = require('../../db/models/spot');
 // const { User } = require('../../db/models');
 
 // const { setTokenCookie, restoreUser } = require('../../utils');

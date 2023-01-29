@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const { all } = require('../../routes');
+
 module.exports = (sequelize, DataTypes) => {
   class SpotImage extends Model {
     /**
