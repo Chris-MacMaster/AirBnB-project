@@ -26,10 +26,31 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    review: DataTypes.STRING,
-    stars: DataTypes.INTEGER
+    spotId: {type: DataTypes.INTEGER,
+    allowNull: false
+    },
+    userId: {type: DataTypes.INTEGER,
+    allowNull: false
+    },
+
+
+    review: {type: DataTypes.STRING,
+    allowNull: false
+    },
+
+    stars: {type: DataTypes.INTEGER, 
+    allowNull: false,
+    validate: {
+      oneToFive(value){
+        if (value >= 1 && value <=5 ){
+          return 
+        } else {
+          throw new Error("Stars input must be integer from 1 to 5.")
+        }
+      }
+    }
+    }
+
   }, {
     sequelize,
     modelName: 'Review',

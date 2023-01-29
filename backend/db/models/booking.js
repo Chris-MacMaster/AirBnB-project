@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     autoIncrement: true
     },
     spotId: {type: DataTypes.INTEGER,
-    allowNull: false},
+    allowNull: false
+  },
 
 
     userId: {type: DataTypes.INTEGER,
@@ -31,9 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     // foreignKey: true
     },
     startDate: {type: DataTypes.DATEONLY,
+    allowNull: false
 
     },
     endDate: {type: DataTypes.DATEONLY,
+    allowNull: false
   
     
     },

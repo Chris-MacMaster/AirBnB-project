@@ -22,8 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    reviewId: DataTypes.INTEGER,
-    url: DataTypes.STRING
+    reviewId: {type: DataTypes.INTEGER,
+    allowNull: false
+    },
+    url: {type: DataTypes.STRING,
+    allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'ReviewImage',
