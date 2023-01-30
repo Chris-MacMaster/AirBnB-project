@@ -435,9 +435,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     res.json({review})
 })
 
-
+//create a booking for a spot
 router.post('/:spotId/bookings', requireAuth, async(req, res) => {
-    if (req.params.spotId === req.user.id) {
+    if (parseInt(req.params.spotId) === req.user.id) {
         let err = new Error('You cannot create a booking at a spot you already own')
         throw err
     }
@@ -450,19 +450,47 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     throw err
    }
 
-   let existingBooking = await Booking.findOne(
-    {
-        where: {
-            spotId: req.params.spotId,
-        }
+   let bookings = await Booking.findAll({
+        where: {spotId: parseInt(req.params.spotId)},
+   })
+
+   let bookingsArr = []
+
+
+   bookings.forEach(booking => {
+    booking = booking.toJSON()
+    bookingsArr.push(booking)
+   })
+
+   for (let i = 0; i < bookingsArr.length; i++){
+    let booking = bookingsArr[i]
+
+    if (isConflict(booking.startDate, req.body.startDate, booking.endDate)) {
+        throw new Error('Start date conflicts with existing booking')
     }
-   )
+    if (isConflict(booking.startDate, req.body.endDate, booking.endDate)) {
+        throw new Error('End date conflicts with existing booking')
+    }
+   }
 
    let booking = await Booking.create({
+    userId: req.user.id,
+    spotId: parseInt(req.params.spotId),
     ...req.body,   
    })
 
    res.json(booking)
+
+    function isConflict(dateStr1, dateStr2, dateStr3) {
+        let dateObj1 = new Date(dateStr1)
+        let dateObj2 = new Date(dateStr2)
+        let dateObj3 = new Date(dateStr3)
+
+        if (dateObj1 <= dateObj2 && dateObj2 <= dateObj3) {
+            return true
+        }
+        return false
+    }
 })
 
 

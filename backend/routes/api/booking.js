@@ -113,6 +113,96 @@ router.post('/', async (req, res) => {
 })
 
 
+//            "endDate": "2021-11-20",
+
+//edit a booking
+router.put('/:bookingId', requireAuth, async (req, res) => {
+    let booking = await Booking.findByPk(req.params.bookingId)
+    let originalBooking = booking
+    if (!booking) {
+        let err = new Error("Booking couldn't be found")
+        err.status = 404
+        throw err
+    }
+    if (req.user.id !== booking.userId) {
+        throw new Error("Each booking can only be edited by owner")
+    }
+    // console.log(booking)
+
+    jsonBooking = booking.toJSON()
+
+    let now = Date.now()
+
+    if (endB4Start(jsonBooking.endDate, now)){
+        let err = new Error('May not edit past or past bookings')
+        err.status = 400
+        throw err
+    }
+
+    if (endB4Start(req.body.startDate, req.body.endDate)){
+        let err = new Error('endDate cannot come before startDate')
+        err.status = 400
+        throw err
+    }
+
+    let bookings = await Booking.findAll({
+        where: {
+            id: parseInt(req.params.bookingId)
+        }
+    })
+
+    let newBookings = []
+
+    bookings.forEach(booking => {
+        booking = booking.toJSON()
+        newBookings.push(booking)
+    })
+
+
+    for (let i = 0; i < newBookings.length; i++) {
+        let booking = newBookings[i]
+
+        if (isConflict(booking.startDate, req.body.startDate, booking.endDate)) {
+            let err = new Error('Sorry, this spot is already booked for the specified dates. Start date conflicts with an existing booking')
+            err.status = 403
+            throw err
+        }
+        if (isConflict(booking.startDate, req.body.endDate, booking.endDate)) {
+            let err = new Error('Sorry, this spot is already booked for the specified dates. End date conflicts with an existing booking')
+            err.status = 403
+            throw err
+        }
+    }
+
+    function endB4Start(startDate, endDate) {
+        let startObj = new Date(startDate)
+        let endObj = new Date(endDate)
+
+        if (endObj >= startObj) {
+            return true
+        }
+        return false
+    }
+
+    function isConflict(dateStr1, dateStr2, dateStr3) {
+        let dateObj1 = new Date(dateStr1)
+        let dateObj2 = new Date(dateStr2)
+        let dateObj3 = new Date(dateStr3)
+
+        if (dateObj1 <= dateObj2 && dateObj2 <= dateObj3) {
+            return true
+        }
+        return false
+    }
+
+    await originalBooking.update({
+        ...req.body
+    })
+    res.json(originalBooking)
+})
+
+
+
 //delete a booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
 
@@ -128,16 +218,29 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         throw new Error('Only owner may delete their booking')
     }
 
-    await booking.destroy()
+    let now = Date.now()
+    booking = booking.toJSON()
 
-    //date testing, left off here
-    
+    if (endB4Start(booking.startDate, now)){
+        throw new Error('May not delete current or past bookings')
+    }
+
+    function endB4Start(startDate, endDate) {
+        let startObj = new Date(startDate)
+        let endObj = new Date(endDate)
+
+        if (endObj >= startObj) {
+            return true
+        }
+        return false
+    }
+
+    await booking.destroy()
 
     res.json({
         message: 'Booking deleted',
         statusCode: 200
     })
-
 })
 
 
