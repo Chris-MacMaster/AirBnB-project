@@ -11,31 +11,6 @@ const { Review, User, Spot, ReviewImage, SpotImage } = require('../../db/models'
 
 const router = express.Router();
 
-//delete a reviewImage
-router.delete('/:imageId', requireAuth, async (req, res) => {
-
-    let reviewImage = await ReviewImage.findByPk(req.params.imageId)
-
-    if (!reviewImage) {
-        let err = new Error('No review image found with that id')
-        err.status = 404
-        throw err
-    }
-
-    let review = await Review.findByPk(reviewImage.reviewId)
-
-    if (req.user.id !== review.userId) {
-        throw new Error('Only review owner may delete thier review image')
-    }
-
-    reviewImage.destroy()
-
-    res.json({
-        message: "Review image deleted",
-        statusCode: 200
-    })
-
-})
 
 
 
