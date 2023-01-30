@@ -129,7 +129,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
 
     jsonBooking = booking.toJSON()
-    // console.log(jsonBooking.endDate)
 
     let now = Date.now()
 
@@ -139,7 +138,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         throw err
     }
 
-    if (endB4Start(req.body.endDate, req.body.startDate)){
+    if (endB4Start(req.body.startDate, req.body.endDate)){
         let err = new Error('endDate cannot come before startDate')
         err.status = 400
         throw err
