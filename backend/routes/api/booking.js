@@ -127,13 +127,13 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     if (req.user.id !== booking.userId) {
         throw new Error("Each booking can only be edited by owner")
     }
-    // console.log(booking)
 
     jsonBooking = booking.toJSON()
+    console.log(jsonBooking.endDate)
 
     let now = Date.now()
 
-    if (endB4Start(jsonBooking.endDate, now)){
+    if (endB4Start(now, jsonBooking.endDate)){
         let err = new Error('May not edit past or past bookings')
         err.status = 400
         throw err
@@ -179,9 +179,9 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         let endObj = new Date(endDate)
 
         if (endObj >= startObj) {
-            return true
+            return false
         }
-        return false
+        return true
     }
 
     function isConflict(dateStr1, dateStr2, dateStr3) {
@@ -219,9 +219,9 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     }
 
     let now = Date.now()
-    booking = booking.toJSON()
+    jsonBooking = booking.toJSON()
 
-    if (endB4Start(booking.startDate, now)){
+    if (endB4Start(now, jsonBooking.startDate)){
         throw new Error('May not delete current or past bookings')
     }
 
@@ -230,9 +230,9 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         let endObj = new Date(endDate)
 
         if (endObj >= startObj) {
-            return true
+            return false
         }
-        return false
+        return true
     }
 
     await booking.destroy()

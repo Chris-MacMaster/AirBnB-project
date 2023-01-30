@@ -53,6 +53,10 @@ router.use('/reviews', reviewRouter)
 
 router.use('/bookings', bookingRouter)
 
+router.use('/review-images', reviewRouter)
+
+router.use('/spot-images', spotsRouter)
+
 
 
 

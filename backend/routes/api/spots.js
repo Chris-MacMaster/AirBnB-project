@@ -17,6 +17,32 @@ const router = express.Router();
 const {Op} = require("sequelize")//got the query validations to work 
 
 
+//delete a spotImage
+router.delete('/:imageId', requireAuth, async (req, res) => {
+
+    let spotImage = await SpotImage.findByPk(req.params.imageId)
+
+    if (!spotImage) {
+        let err = new Error('No spot image found with that id')
+        err.status = 404
+        throw err
+    }
+
+    let spot = await Spot.findByPk(spotImage.spotId)
+
+    if (req.user.id !== spot.ownerId) {
+        throw new Error('Only spot owner may delete thier spot image')
+    }
+
+    spotImage.destroy()
+
+    res.json({
+        message: "Spot image deleted",
+        statusCode: 200
+    })
+
+})
+
 
 //edit a spot
 router.put('/:spotId', requireAuth, async (req, res) => {
@@ -30,9 +56,47 @@ router.put('/:spotId', requireAuth, async (req, res) => {
         throw new Error("Each spot can only be edited by owner")
     }
 
+
+    nullErr(req.body.address, "Address")
+    nullErr(req.body.city, "City")
+    nullErr(req.body.state, "State")
+    nullErr(req.body.country, "Country")
+
+    nullErr(req.body.lat, "lat")
+    isNumber(req.body.lat)
+
+    nullErr(req.body.lng, "lng")
+    isNumber(req.body.lng)
+
+    nullErr(req.body.name, "Name")
+    nullErr(req.body.description, "Description")
+
+    nullErr(req.body.price, "Price")
+    isNumber(req.body.price)
+
+
     await target.update({
         ...req.body
     })
+
+    function nullErr(property, item){
+        if (!property){
+            let err = new Error(`${item} is required`)
+            err.status = 400
+            throw err
+        }
+    }
+
+    function isNumber(property){
+        if (typeof property !== "number"){
+            let err = new Error(`${property} must be a number`)
+            err.status = 400
+            throw err
+        }
+    }
+
+
+
     res.json(target)
 })
 
@@ -88,6 +152,12 @@ router.get('/', async (req, res) => {
     const spots = await Spot.findAll({
         where, ...paging
     })
+
+    if (!spots.length) {
+        let err = new Error("No spots found matching those parameters")
+        err.status = 404
+        throw err
+    }
 
 
     function sumArray(arr) {
@@ -342,8 +412,9 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     await spot.destroy()
     
-    res.json('Spot deleted')
-
+    res.json({message: 'Spot deleted',
+    statusCode: 200
+})
 })
 
 
@@ -450,6 +521,22 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     throw err
    }
 
+   if (endB4Start(req.body.startDate, req.body.endDate)){
+    let err = new Error('endDate cannot be on or before startDate')
+    err.status = 400
+    throw err
+   }
+
+    function endB4Start(startDate, endDate) {
+        let startObj = new Date(startDate)
+        let endObj = new Date(endDate)
+
+        if (endObj >= startObj) {
+            return false
+        }
+        return true
+    }
+
    let bookings = await Booking.findAll({
         where: {spotId: parseInt(req.params.spotId)},
    })
@@ -506,7 +593,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 
     let bookings = await Booking.findAll({
         where: {
-            id: parseInt(req.params.spotId)
+            spotId: parseInt(req.params.spotId)
         }
     })
 
@@ -555,31 +642,6 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 })
 
 
-//delete a spotImage
-router.delete('/images/:imageId', requireAuth, async (req, res) => {
-
-    let spotImage = await SpotImage.findByPk(req.params.imageId)
-
-    if (!spotImage) {
-        let err = new Error('No spot image found with that id')
-        err.status = 404
-        throw err
-    }
-
-    let spot = await Spot.findByPk(spotImage.spotId)
-
-    if (req.user.id !== spot.ownerId) {
-        throw new Error('Only spot owner may delete thier spot image')
-    }
-
-    spotImage.destroy()
-
-    res.json({
-        message: "Spot image deleted",
-        statusCode: 200
-    })
-
-})
 
 
 
