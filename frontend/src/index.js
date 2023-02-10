@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { restoreCSRF, csrfFetch } from './store/csrf';
+import * as sessionActions from './store/session';
+
 
 
 import configureStore from './store';
@@ -19,12 +21,13 @@ if (process.env.NODE_ENV !== 'production') {
 
   window.csrfFetch = csrfFetch;
   window.store = store;
+  window.sessionActions = sessionActions;
 }
 
 
-if (process.env.NODE_ENV !== 'production') {
-  window.store = store;
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   window.store = store;
+// }
 
 function Root() {
   return (
