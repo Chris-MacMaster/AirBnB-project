@@ -36,7 +36,10 @@ function Navigation({ isLoaded }) {
     return (
         <ul>
             <li>
-                <NavLink exact to="/">Home</NavLink>
+                <NavLink exact to="/"><i className="fas fa-user-circle" /></NavLink> 
+                <p>
+                    CareBnB
+                </p>
             </li>
             {isLoaded && sessionLinks}
         </ul>
