@@ -75,8 +75,11 @@ router.get('/current', requireAuth, async (req, res) => {
     }
 
     res.status(200) 
+
+    let Bookings = newBookings
     // console.log('triggered get route')
-    res.json({ newBookings })
+
+    res.json({ Bookings })
 })
 
 
