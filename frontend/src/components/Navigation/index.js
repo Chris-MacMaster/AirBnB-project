@@ -34,10 +34,10 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
-            <li>
+        <ul id='nav-ul'>
+            <li className='iconWithCare'>
                 <NavLink exact to="/"><i className="fas fa-user-circle" /></NavLink> 
-                <p>
+                <p className='careBnB'>
                     CareBnB
                 </p>
             </li>
@@ -47,3 +47,6 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
+
+
+//<i class="fa-solid fa-bed-front"></i>

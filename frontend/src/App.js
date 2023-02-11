@@ -17,6 +17,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          {/* <Route path="/" exact={true}>
+            <FruitsIndex fruits={fruits} />
+          </Route> */}
         </Switch>
       )}
     </>
