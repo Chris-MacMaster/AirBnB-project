@@ -126,8 +126,8 @@ router.get('/', async (req, res) => {
     
 
     const spots = await Spot.findAll({
-        where, ...paging
-    })
+        where//, ...paging
+    })//temporaril shut off paging 
 
     if (!spots.length) {
         let err = new Error("No spots found matching those parameters")
