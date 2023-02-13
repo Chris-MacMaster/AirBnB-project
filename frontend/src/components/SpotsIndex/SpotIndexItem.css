@@ -1,0 +1,72 @@
+/* Insert SpotIndexItem styling here */
+
+.spotIndexItem :hover {
+    transform: rotate(1turn);
+    background-color: green;
+}
+
+
+.spotIndexItem {
+    color: aqua;
+    background-color: red;
+    border: 2px solid black;
+    box-sizing: border-box;
+    width: 270px;
+    min-width: 270px;
+    height: 315px;
+    min-height: 315px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    /* transition: ; */
+    /* transition: transform .7s, background-color .7s */
+
+
+    /* margin-right: 5%; */
+    /* flex: 1; */
+    /* justify-content: center; */
+    /* display: inline; */
+    
+    
+
+}
+
+
+
+.card-info{
+    display: block;
+    height: 65px;
+    /* transition: transform .7s, background-color .7s */
+}
+
+img {
+    display: block;
+    height: 250px;
+    border: 2px solid blue;
+    /* transition: transform .7s, background-color .7s */
+    /* transition: background-color .7s; */
+}
+
+.spot-card {
+    transition: transform 1.4s, background-color .7s
+}
+
+/* .spot-card {
+
+} */
+
+/* 
+img :hover {
+    transform: rotate(360deg);
+} */
+
+
+/* .img :hover {
+    transform: rotate(.5turn);
+    background-color: blueviolet;
+}
+
+.card-info :hover {
+    transform: rotate(.5turn);
+    background-color: blueviolet;
+} */

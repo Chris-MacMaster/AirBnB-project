@@ -166,6 +166,7 @@ router.get('/', async (req, res) => {
                 }
             }
         )
+        console.log(spotReviews)
         let newSpot = spots[i].toJSON()
 
         let count = 0;
@@ -449,9 +450,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         throw err
     }
 
-    if (req.user.id !== spot.ownerId) {
-        throw new Error('Only spot owner may post review')
-    }
+    // if (req.user.id !== spot.ownerId) {
+    //     throw new Error('Only spot owner may post review')
+    // }
 
     let ifReview = await Review.findAll({
         where: {
@@ -484,12 +485,18 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
 //create a booking for a spot
 router.post('/:spotId/bookings', requireAuth, async(req, res) => {
-    if (parseInt(req.params.spotId) === req.user.id) {
+    // if (parseInt(req.params.spotId) === req.user.id) {
+    //     let err = new Error('You cannot create a booking at a spot you already own')
+    //     throw err
+    // }
+
+   let spot = await Spot.findByPk(req.params.spotId)
+
+
+    if (parseInt(spot.ownerId) === req.user.id) {
         let err = new Error('You cannot create a booking at a spot you already own')
         throw err
     }
-
-   let spot = await Spot.findByPk(req.params.spotId)
 
    if (!spot){
     let err = new Error('Spot does not exist with provided id')

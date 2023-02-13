@@ -1,7 +1,7 @@
 import fruits from "../mockData/fruits.json"
 //MOCK DATA
 
-const INITIAL_SPOT = "spots/INITIAL"
+// const INITIAL_SPOT = "spots/INITIAL"
 const LOAD_SPOTS = "spots/LOAD"
 
 
@@ -9,17 +9,17 @@ const LOAD_SPOTS = "spots/LOAD"
 
 
 //**ACTIONS */
-export const initialSpots = () => {
-    return {
-        type: INITIAL_SPOT,
-        spot: fruits
-    }
-}
+// export const initialSpots = () => {
+//     return {
+//         type: INITIAL_SPOT,
+//         spot: fruits
+//     }
+// }
 
 export const loadSpots = (spots) => {
     return {//inital vs load, this error
         type: LOAD_SPOTS,
-        spots: spots
+        payload: spots
         //spots doesnt seem to be affecting outcome
     }
 }
@@ -37,17 +37,32 @@ export const normalizeArr = (arr) => {
 
 
 //MOCK DATA
-export let convertedFruits = normalizeArr(fruits)
+// export let convertedFruits = normalizeArr(fruits)
+
+
+
+//Spot initalstate
+const initialState = {
+    allSpots: {}
+}
 
 //**REDUCER AND CASES */
-export default function spotReducer(state = convertedFruits, action) {
+export default function spotReducer(state = initialState, action) {
+    //converted fruits shape is from previous practice mock data, not the right store shape
+    let newState
     switch (action.type) {
-        case INITIAL_SPOT: {
-            const newState = { ...state }
-            return newState
-        }
+        // case INITIAL_SPOT: {
+        //     newState = { ...state }
+        //     return newState
+        // }
         case LOAD_SPOTS: {
-            const newState = { ...state, ...action.spots}
+            //neccessary to render all, bug to fix
+            newState = { ...state, //...action.payload
+            }
+            newState.allSpots = action.payload
+            //creates key error, shouldnt be a problem
+
+
             return newState
         }
         default:
@@ -59,11 +74,9 @@ export default function spotReducer(state = convertedFruits, action) {
 export const fetchSpots = () => async dispatch => {
     const response = await fetch('/api/spots');
     const spots = await response.json();
-    console.log(spots)
+    // console.log(spots)
     let convertedSpots = normalizeArr(spots.Spots)
-    console.log(convertedSpots)
-
-
+    // console.log(convertedSpots)
 
     dispatch(loadSpots(convertedSpots));
 };
@@ -73,29 +86,3 @@ export const fetchSpots = () => async dispatch => {
 
 
 
-
-
-
-
-
-
-
-// export const loadArticles = (articles) => {
-//     return {
-//         type: LOAD_ARTICLES,
-//         articles
-//     };
-// };
-
-// export const addArticle = (article) => {
-//     return {
-//         type: ADD_ARTICLE,
-//         article
-//     };
-// };
-
-// export const fetchArticles = () => async (dispatch) => {
-//     const response = await fetch('/api/articles');
-//     const articles = await response.json();
-//     dispatch(loadArticles(articles));
-// };
