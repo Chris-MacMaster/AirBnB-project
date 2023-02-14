@@ -80,7 +80,7 @@ export const fetchOneSpot = (id) => async dispatch => {
     const response = await fetch(`/api/spots/${id}`);
     const spot = await response.json();
     // console.log("triggers fetchOneSpot")
-    console.log(spot)//the correct object
+    // console.log(spot)//the correct object
     
     dispatch(loadOneSpot(spot));
 };

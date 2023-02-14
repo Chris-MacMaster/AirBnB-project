@@ -29,6 +29,10 @@ function Navigation({ isLoaded }) {
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
                 />
+                {/* make react component? */}
+                <button type='button' >
+                    i dont work yet
+                </button>
             </li>
         );
     }
