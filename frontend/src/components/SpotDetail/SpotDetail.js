@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { actionDeleteReport } from '../store/report';
-import { useDispatch } from "react-redux"
-import { useHistory } from 'react-router-dom';
+// import { useDispatch } from "react-redux"
+// import { useHistory } from 'react-router-dom';
 
 
 
@@ -23,16 +23,13 @@ const SpotDetail = () => {
     // const history = useHistory()
     // const dispatch = useDispatch()
     const spotState = useSelector(state => state.spots)
-    console.log(spotState.singleSpot.SpotImages)
+    console.log("these are the spot Images", spotState.singleSpot.SpotImages)
     // console.log(spotState.singleSpot)
 
     let spot = spotState.singleSpot
 
 
-
-
-
-    let spotImages = spot.SpotImages
+    // let spotImages = spot.SpotImages
 
 
 

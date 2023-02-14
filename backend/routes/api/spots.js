@@ -317,6 +317,8 @@ router.get('/:spotId', async (req, res) => {
         as: "Owner"
         }], 
     })
+
+
     if (!spot.length){
         let err = new Error('Spot does not exist with the provided id')
         err.status = 404 
@@ -332,9 +334,11 @@ router.get('/:spotId', async (req, res) => {
         spot.avgStarRating = "No reviews found"
     }
 
-    delete spot.SpotImages[0].createdAt
-    delete spot.SpotImages[0].updatedAt
-    delete spot.SpotImages[0].spotId
+    if (spot.SpotImages.length) {
+        delete spot.SpotImages[0].createdAt
+        delete spot.SpotImages[0].updatedAt
+        delete spot.SpotImages[0].spotId
+    }
 
     delete spot.Owner.username
 
