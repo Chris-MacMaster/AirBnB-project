@@ -1,11 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom"
-
-
+// import { Link } from "react-router-dom"
 
 import SpotIndexItem from "./SpotIndexItem";
 import { useEffect } from "react";
-import { fetchSpots, loadSpots } from "../../store/spot";
+import { fetchSpots } from "../../store/spot";
 
 
 import "./SpotIndex.css"
@@ -13,7 +11,7 @@ import "./SpotIndex.css"
 
 
 
-function SpotsIndex({ fruits }) {
+function SpotsIndex() {
     const dispatch = useDispatch()
 
     const spotState = useSelector(state => state.spots)

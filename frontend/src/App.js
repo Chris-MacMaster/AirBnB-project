@@ -6,8 +6,10 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 import SpotsIndex from "./components/SpotsIndex/SpotsIndex"
+import SpotDetail from "./components/SpotDetail/SpotDetail"
 
-import fruits from "./mockData/fruits.json"
+
+// import fruits from "./mockData/fruits.json"
 
 
 function App() {
@@ -23,7 +25,22 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/" exact={true}>
-            <SpotsIndex fruits={fruits} />
+            <SpotsIndex  />
+          </Route>
+
+
+          <Route path="/spots/:spotId" exact={true}>
+            <SpotDetail />
+          </Route>
+
+
+          <Route path="/">
+            <p >
+              Oops! We can't find anything at 
+              this url. Click the top left icon to navigate
+              back to home.
+            </p>
+            
           </Route>
 
           

@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
     return (
         <ul id='nav-ul'>
             <li className='iconWithCare'>
-                <NavLink exact to="/"><i className="fas fa-user-circle" /></NavLink> 
+                <NavLink exact to="/"><i className="fas fa-home" /></NavLink> 
                 <p className='careBnB'>
                     CareBnB
                 </p>

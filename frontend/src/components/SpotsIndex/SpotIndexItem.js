@@ -1,43 +1,60 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import { actionDeleteReport } from '../store/report';
 import { useDispatch } from "react-redux"
+import { useHistory } from 'react-router-dom';
 
+import { fetchOneSpot } from "../../store/spot"
+// import { useDispatch } from 'react-redux';
+
+// import { useSelector } from "react-redux"
 
 
 import "./SpotIndexItem.css"
 
 
 
+
 const SpotIndexItem = ({ spot }) => {
+    const history = useHistory()
+    const dispatch = useDispatch()
 
-    // const handleClick = (e) => {
-    //     e.preventDefault()
+    //toggle with the import of useSelector
+    // const spotState = useSelector(state => state.spots)
 
-    // }
+    // const singleSpot = spotState.singleSpot
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        // console.log("clicked")
+        dispatch(fetchOneSpot(spot.id))
+        history.push(`/spots/${spot.id}`)
+    
+    }
 
     return (
-        <li className='spotIndexItem'>
-            {/* {spot.name} */}
-
+        <li onClick={handleClick} className='spotIndexItem'>
+            
 
             <div className='spot-card' >
                 <div >
-                    <img Link={spot.previewImage} alt="not found" />
+                    <img scr={spot.previewImage} alt="not found" />
+                    
                 </div>
                 <div className='card-info' >
+                    <div className='card-row1'>
+                        <div className='city-state' >
+                    {spot.city}, {spot.state}
+                        </div>
+                    <div className='avg-rating' >&#9733; {spot.avgRating}</div>
 
-                    {spot.previewImage}
-                    {spot.city}
-                    {spot.state}
-                    {spot.price}
+                    </div >
+
+                    
+                    <p className='price'>${spot.price} night</p>
                 </div>
 
             </div>
-
-
-           
-            
         </li>
     );
 };
@@ -48,3 +65,19 @@ export default SpotIndexItem;
 
 // {/* <Link to={`/reports/${report.id}`}>Report #{report.id}</Link> */ }
 // {/* <Link to={`/reports/${report.id}/edit`}>Edit</Link> */ }
+
+
+
+
+
+
+
+
+
+/*
+css lecture
+
+
+
+
+*/

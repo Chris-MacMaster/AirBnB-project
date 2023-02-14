@@ -1,49 +1,37 @@
-import fruits from "../mockData/fruits.json"
-//MOCK DATA
-
-// const INITIAL_SPOT = "spots/INITIAL"
 const LOAD_SPOTS = "spots/LOAD"
-
-
-
-
-
+const LOAD_SPOT = "spots/LOAD/ONE"
 //**ACTIONS */
-// export const initialSpots = () => {
-//     return {
-//         type: INITIAL_SPOT,
-//         spot: fruits
-//     }
-// }
+
 
 export const loadSpots = (spots) => {
-    return {//inital vs load, this error
+    return {
         type: LOAD_SPOTS,
         payload: spots
-        //spots doesnt seem to be affecting outcome
+        
     }
 }
 
-
+export const loadOneSpot = (spot) => {
+    return {
+        type: LOAD_SPOT,
+        payload: spot
+    }
+}
 
 export const normalizeArr = (arr) => {
     const newState = {};
     arr.forEach(spot => {
         newState[spot.id] = spot;
     });
-    //put into a helper
+    
     return newState;
 } 
 
 
-//MOCK DATA
-// export let convertedFruits = normalizeArr(fruits)
-
-
-
 //Spot initalstate
 const initialState = {
-    allSpots: {}
+    allSpots: {},
+    singleSpot: {}
 }
 
 //**REDUCER AND CASES */
@@ -61,10 +49,15 @@ export default function spotReducer(state = initialState, action) {
             }
             newState.allSpots = action.payload
             //creates key error, shouldnt be a problem
-
-
             return newState
         }
+        case LOAD_SPOT: {
+            newState = {...state}
+            newState.singleSpot = action.payload
+            return newState
+        }
+
+
         default:
             return state
     }
@@ -79,6 +72,17 @@ export const fetchSpots = () => async dispatch => {
     // console.log(convertedSpots)
 
     dispatch(loadSpots(convertedSpots));
+};
+
+
+export const fetchOneSpot = (id) => async dispatch => {
+    // console.log(id)
+    const response = await fetch(`/api/spots/${id}`);
+    const spot = await response.json();
+    // console.log("triggers fetchOneSpot")
+    console.log(spot)//the correct object
+    
+    dispatch(loadOneSpot(spot));
 };
 //dispatch works, find where the dispatch is triggered, and load the appropriate data
 
