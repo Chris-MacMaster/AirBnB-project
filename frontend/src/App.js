@@ -6,7 +6,10 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 import SpotsIndex from "./components/SpotsIndex/SpotsIndex"
+
+import CurrentSpotsIndex from "./components/SpotsIndex/CurrentSpotsIndex";
 import SpotDetail from "./components/SpotDetail/SpotDetail"
+import SpotForm from "./components/SpotForm/CreateSpot";
 
 
 // import fruits from "./mockData/fruits.json"
@@ -29,9 +32,36 @@ function App() {
           </Route>
 
 
+
+          <Route path="/spots/current" exact={true}>
+            <CurrentSpotsIndex />
+            {/* insert the managSpots */}
+          </Route>
+
+          <Route path="/spots/current/:spotId" exact={true}>
+            <p>
+              {/* Most useful
+              <br>
+              </br>
+               window.location.href gives the current url:
+               <br>
+               </br>
+              {window.location.href} */}
+              Edit form will go here using spotId data from the url (window.location.href)
+            </p>
+            {/* <SpotForm /> */}
+            {/* insert the managSpots */}
+          </Route>
+
+
+          <Route path="/spots/new" exact={true}>
+            <SpotForm />
+          </Route>
+
           <Route path="/spots/:spotId" exact={true}>
             <SpotDetail />
           </Route>
+
 
 
           <Route path="/">

@@ -15,6 +15,10 @@ function LoginFormModal() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
+        
+        console.log(credential)
+        console.log(password)
+
         return dispatch(sessionActions.login({ credential, password }))
             .then(closeModal)
             .catch(
@@ -24,19 +28,6 @@ function LoginFormModal() {
                 }
             );
     };
-    //your messing with code here to try and make a logn with demo user function
-    // const demoLogin = (e) => {
-    //     e.preventDefault();
-    //     setErrors([]);
-    //     return dispatch(sessionActions.login({ credential, password }))
-    //         .then(closeModal)
-    //         .catch(
-    //             async (res) => {
-    //                 const data = await res.json();
-    //                 if (data && data.errors) setErrors(data.errors);
-    //             }
-    //         );
-    // }
 
     return (
         <>

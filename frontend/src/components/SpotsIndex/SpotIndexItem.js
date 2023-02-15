@@ -50,8 +50,11 @@ const SpotIndexItem = ({ spot }) => {
 
                     </div >
 
-                    
-                    <p className='price'>${spot.price} night</p>
+                    <div className='card-row2' >
+                        <p className='price'>${spot.price} night</p>
+                       
+
+                    </div>
                 </div>
 
             </div>
