@@ -24,11 +24,11 @@ const EditSpotForm = ({ report, formType }) => {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
 
-    const [previewUrl, setPreviewUrl] = useState("")
-    const [url1, setUrl1] = useState("")
-    const [url2, setUrl2] = useState("")
-    const [url3, setUrl3] = useState("")
-    const [url4, setUrl4] = useState("")
+    // const [previewUrl, setPreviewUrl] = useState("")
+    // const [url1, setUrl1] = useState("")
+    // const [url2, setUrl2] = useState("")
+    // const [url3, setUrl3] = useState("")
+    // const [url4, setUrl4] = useState("")
 
 
     const urlArr = window.location.href.split("/")

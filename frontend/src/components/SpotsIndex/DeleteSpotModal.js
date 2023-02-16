@@ -4,6 +4,9 @@ import React from 'react';
 import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
+
+import { useModal } from '../../context/Modal';
+
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
 import OpenModalButton from '../OpenModalButton';
 
@@ -32,6 +35,9 @@ const DeleteSpotModal = ({spot}) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
+    const { closeModal } = useModal()
+    
+
 
     const handleDelete = (e) => {
         e.preventDefault()
@@ -43,10 +49,10 @@ const DeleteSpotModal = ({spot}) => {
 
     const handleNoDelete = (e) => {
         e.preventDefault()
-        // closeModal()
+        closeModal()
 
 
-        history.push(`/spots/current`)
+        // history.push(`/spots/current`)
 
 
 
@@ -62,7 +68,7 @@ const DeleteSpotModal = ({spot}) => {
                 Are you sure you want to remove this spot from the listings?
             </p>
             <button onClick={handleDelete} className='yes-delete-button button' type='button' >Yes (Delete Spot)</button>
-            <button onClick={history.push("/spots/current")} className='no-delete-button button' type='button' >No (Keep Spot)</button>
+            <button onClick={handleNoDelete} className='no-delete-button button' type='button' >No (Keep Spot)</button>
         </div>
                  
 

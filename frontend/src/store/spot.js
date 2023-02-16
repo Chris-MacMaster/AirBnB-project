@@ -101,7 +101,7 @@ export const fetchCurrentSpots = () => async dispatch => {
     const spots = await response.json();
 
 
-    console.log(spots)
+    // console.log(spots)
     let convertedSpots = normalizeArr(spots.Spots)
     // console.log(convertedSpots)
 

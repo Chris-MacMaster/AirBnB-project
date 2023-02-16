@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 // import { Link } from "react-router-dom"
 
-import SpotIndexItem from "./SpotIndexItem";
+// import SpotIndexItem from "./SpotIndexItem";
 import { useEffect } from "react";
-import { fetchCurrentSpots, fetchSpots } from "../../store/spot";
+import { fetchCurrentSpots } from "../../store/spot";
 
 
 import "./SpotIndex.css"

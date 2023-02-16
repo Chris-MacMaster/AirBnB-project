@@ -9,12 +9,12 @@ import { useEffect } from 'react';
 
 import  ReviewForm  from "../SpotForm/CreateReview"
 
+// import { useModal } from '../../context/Modal';
+
 // import { Link } from 'react-router-dom';
 // import { actionDeleteReport } from '../store/report';
 // import { useDispatch } from "react-redux"
 // import { useHistory } from 'react-router-dom';
-
-
 
 import "./SpotDetail.css"
 import OpenModalButton from '../OpenModalButton';
@@ -33,39 +33,28 @@ const SpotDetail = () => {
     // const history = useHistory()
     const dispatch = useDispatch()
     const spotState = useSelector(state => state.spots)
+    
+    
+    console.log("THIS IS THE SPOT STATE", spotState)
     console.log("SPOT IMAGES", spotState.singleSpot.SpotImages)
-    // console.log(spotState.singleSpot)
-
+    
     
     let spot = spotState.singleSpot
-
-    // const reviewState = useSelector(state => state.reviews)
-
-
-
-    // let spotImages = spot.SpotImages
-
-    console.log("THIS IS THE SPOT STATE", spotState)
-
-    // const spot = spotState.singleSpot
-    // console.log(spot)
-    // console.log(spotState.name)
-
     console.log("SPOT", spot)
 
     //BUG HERE
-    let spotImages = spot.spotImages
-    console.log("SPOT IMAGES", spotImages)
-
-
+    // let spotImages = spot.SpotImages
+    // console.log("SPOT IMAGES", spotImages)
+    console.log("SPOT IMAGES", spot.SpotImages)
 
     // const reviewState = useSelector(state => state.reviews)
 
     // console.log("REVIEW STATE", reviewState)
 
 
+    //need to pass an id here?
     useEffect(() => {
-        dispatch(fetchOneSpot())
+        dispatch(fetchOneSpot(spot.id))
         // dispatch(fetchReviews())
     }, [dispatch])
 
@@ -79,12 +68,41 @@ const SpotDetail = () => {
                 {spot.name}
             </p>
             <div >
-                {spot.city}
-                {spot.state}
-                {spot.country}
+                <p >
+                {spot.city}, {spot.state}, {spot.country}, 
+
+                </p>
             </div>
 
-            <div >
+            <div className='spot-images-div'>
+                <div className='preview-image'>
+                    previewImage
+                </div>
+
+                <div className='spot-images-subdiv'>
+                    <div className='images-subdiv-row1'>
+                        <div className='spot-image-1'>
+                            spot image 1
+                        </div>
+
+                        <div className='spot-image-2'>
+                            spot image 2
+                        </div>
+                    </div>
+
+                    <div className='images-subdiv-row2'>
+                        <div className='spot-image-3'>
+                            spot image 3
+                        </div>
+
+                        <div className='spot-image-4'>
+                            spot image 4
+                        </div>
+
+                    </div>
+
+                </div>
+
                 {/* <p >
                     {spotImages[0].url}
                 </p> */}
@@ -108,7 +126,7 @@ const SpotDetail = () => {
                 <div className='reserve-box'>
                     <div className='reserve-box-row1'>
                         <p >
-                            ${spot.price}night
+                            ${spot.price} night
                         </p>
 
                         <div className='box-reviewAvg-reviewNum'>
@@ -128,25 +146,20 @@ const SpotDetail = () => {
 
                         </div>
                     </div>
-                    
+                </div>
 
 
-
+                </div>
                     <div className='reviewAvg-reviewNum'>
-                        <p >
-                            &#9733; {spot.avgStarRating}
+                        <p className='avgRating-text'>
+                            &#9733; {spot.avgStarRating!=="No reviews found" ? spot.avgStarRating : "New"}
                         </p>
                         <p >
                             # reviews
                         </p> 
-                        <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={"doesnt work yet"} />
-                        {/* <button type='button' className='post-review-button' >
-                            Post Your Review
-                        </button> */}
-
-                        {/* NEEDS MODAL FUNCTIONALITY */}
                     </div>
-
+                    {/* needs logic to only display on condition, i think ternary */}
+                    <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={"doesnt work yet"} />
 
                     {/*  */}
                     {/* <div className='review-index'>
@@ -154,29 +167,10 @@ const SpotDetail = () => {
                             <ReviewIndexItem review={review} key={review.dispatch} />
                         ))}
                     </div> */}
-
-
-
-
-
-
-
-
-                    
-
+                    <p >
+                        p
+                    </p>
                 </div>
-            </div>
-
-
-
-
-
-
-        
-        <p >
-            p
-        </p>
-    </div>
     );
 };
 

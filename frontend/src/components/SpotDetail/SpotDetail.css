@@ -5,5 +5,86 @@
 } */
 
 .hosted-row {
-    color: red
+    color: red;
+    border: 2px solid red;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.reserve-box {
+    border: 2px solid blue;
+    width: 40%
+
+}
+
+.preview-image {
+    display: inline-block;
+    background-color: chocolate;
+    width: 50%;
+    height: 410px;
+    margin: 2px;
+    box-sizing: border-box;
+}
+
+.spot-images-div {
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spot-images-subdiv {
+    display: inline-block;
+    background-color: crimson;
+    width: 50%;
+}
+
+.spot-image-1 {
+   background-color: chartreuse; 
+   /* width: 50%; */
+}
+
+.spot-image-2 {
+    background-color: violet;
+    /* width: 50%; */
+}
+
+.spot-image-3 {
+    background-color: orange;
+    /* width: 50%; */
+}
+
+.spot-image-4 {
+    background-color: green;
+    /* width: 50%; */
+}
+
+.spot-image-1, .spot-image-2, .spot-image-3, .spot-image-4 {
+    box-sizing: border-box;
+    width: 50%;
+    height: 205px;
+    margin: 2px;
+}
+
+.images-subdiv-row1, .images-subdiv-row2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewAvg-reviewNum {
+    display: flex;
+}
+
+.avgRating-text {
+    margin-right: 8px;
+    position: relative;
+    bottom: 2px;
+}
+
+
+.reserve-box-row1 {
+    display: flex;
+    justify-content: space-between;
+    /* border: 2px solid blue;
+    width: 40% */
 }
