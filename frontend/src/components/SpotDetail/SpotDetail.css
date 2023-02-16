@@ -88,3 +88,13 @@
     /* border: 2px solid blue;
     width: 40% */
 }
+
+.box-reviewAvg-reviewNum {
+    display: flex;
+}
+
+.reserve-box-row2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

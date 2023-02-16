@@ -42,19 +42,25 @@ const SpotDetail = () => {
     let spot = spotState.singleSpot
     console.log("SPOT", spot)
 
+
+
+    
     //BUG HERE
     // let spotImages = spot.SpotImages
     // console.log("SPOT IMAGES", spotImages)
     console.log("SPOT IMAGES", spot.SpotImages)
-
+    
     // const reviewState = useSelector(state => state.reviews)
-
+    
     // console.log("REVIEW STATE", reviewState)
+    
+    
+    const urlArr = window.location.href.split("/")
+    const spotId = urlArr[urlArr.length - 1]
 
-
-    //need to pass an id here?
+    console.log("SPOTID", spotId)
     useEffect(() => {
-        dispatch(fetchOneSpot(spot.id))
+        dispatch(fetchOneSpot(spotId))
         // dispatch(fetchReviews())
     }, [dispatch])
 
@@ -131,20 +137,26 @@ const SpotDetail = () => {
 
                         <div className='box-reviewAvg-reviewNum'>
                             <p >
-                                &#9733; {spot.avgStarRating}
+                                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} #reviews
                             </p>
-                            <p >
+                            {/* <p >
                                 # reviews
-                            </p>
+                            </p> */}
 
                         </div>
                         
+
+                    </div>
+                    
+
+                    <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
                             <button type='button' className='reserve-button'>
                                 reserve
                             </button>
-
                         </div>
+
+
                     </div>
                 </div>
 
@@ -159,7 +171,12 @@ const SpotDetail = () => {
                         </p> 
                     </div>
                     {/* needs logic to only display on condition, i think ternary */}
-                    <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={"doesnt work yet"} />
+                    <div className='open-modal-div'>
+                        <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={"doesnt work yet"} />
+                        <p >
+                            Be the first to post a review!
+                        </p>
+                    </div>
 
                     {/*  */}
                     {/* <div className='review-index'>
@@ -168,7 +185,7 @@ const SpotDetail = () => {
                         ))}
                     </div> */}
                     <p >
-                        p
+                        reviews should go here
                     </p>
                 </div>
     );
