@@ -261,7 +261,9 @@ router.get('/current', requireAuth, async (req, res) => {
 
 
 //Create a new spot
-router.post('/', requireAuth, async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
+
+    console.log("FROM POST ROUTE", req.body)
 
     const { address, city, state, country, lat, lng, name,
     description,

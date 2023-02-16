@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux"
-import { makeSpot } from '../../store/spot';
+import { editSpot, makeSpot } from '../../store/spot';
 
 import "./CreateSpot.css"
 
 
-const SpotForm = ({ report, formType }) => {
+const EditSpotForm = ({ report, formType }) => {
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -31,6 +31,10 @@ const SpotForm = ({ report, formType }) => {
     const [url4, setUrl4] = useState("")
 
 
+    const urlArr = window.location.href.split("/")
+    const spotId = urlArr[urlArr.length - 1]
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -40,7 +44,12 @@ const SpotForm = ({ report, formType }) => {
         let priceNum = parseInt(price)
 
 
-        const newSpot = {
+
+        // const id = window
+
+
+        const editedSpot = {
+            spotId,
             address,
             city,
             country,
@@ -51,15 +60,21 @@ const SpotForm = ({ report, formType }) => {
             description,
             price: priceNum
         }
-        console.log("FORM DATA", newSpot)
+        console.log("FORM DATA", editedSpot)
+
+        dispatch(editSpot(editedSpot))
+
+        history.push("/spots/current")
+
+        //**CHANGE TO EDIT SPOT */
         // console.log("asd")
         // history.push("/spots/current")
 
-        const spotResponse = dispatch(makeSpot(newSpot))
-        if (spotResponse) {
-                reset()
-                history.push("/spots/current")
-        }
+        // const spotResponse = dispatch(makeSpot(editedSpot))
+        // if (spotResponse) {
+        //     reset()
+        //     history.push("/spots/current")
+        // }
     };
 
     const reset = () => {
@@ -75,10 +90,13 @@ const SpotForm = ({ report, formType }) => {
     };
 
 
-    const CreateTest = (e) => {
+    const EditTest = (e) => {
         e.preventDefault();
+        // console.log(spotId)
 
-        dispatch(makeSpot("sse"))
+        dispatch(editSpot({
+            spotId
+        }))
         // history.push(`/spots`);
     };
 
@@ -90,17 +108,17 @@ const SpotForm = ({ report, formType }) => {
                     <label className='country-label' >
                         Country
                         <input className='country-input' type="text"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)} 
-                        placeholder='Country'/>
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            placeholder='Country' />
                     </label>
 
                     <label className='address-label'>
                         Address
                         <input className='address-input' type="text"
                             value={address}
-                            onChange={(e) => setAddress(e.target.value)} 
-                            placeholder='Address'/>
+                            onChange={(e) => setAddress(e.target.value)}
+                            placeholder='Address' />
                     </label>
                 </div>
 
@@ -110,16 +128,16 @@ const SpotForm = ({ report, formType }) => {
                         City
                         <input className='city-input' type="text"
                             value={city}
-                            onChange={(e) => setCity(e.target.value)} 
-                            placeholder='City'/>
+                            onChange={(e) => setCity(e.target.value)}
+                            placeholder='City' />
                     </label>
 
                     <label>
                         State
                         <input className='state-input' type="text"
                             value={state}
-                            onChange={(e) => setState(e.target.value)} 
-                            placeholder='State'/>
+                            onChange={(e) => setState(e.target.value)}
+                            placeholder='State' />
                     </label>
 
                 </div>
@@ -128,18 +146,18 @@ const SpotForm = ({ report, formType }) => {
                 <div className='lat-lng-div'>
                     <label>
                         Latitude
-                        <input className='lat-input' type="number"
+                        <input className='lat-input' type="text"
                             value={lat}
-                            onChange={(e) => setLat(e.target.value)} 
-                            placeholder='Latitude'/>
+                            onChange={(e) => setLat(e.target.value)}
+                            placeholder='Latitude' />
                     </label>
 
                     <label>
                         Longitude
-                        <input className='lng-input' type="number"
+                        <input className='lng-input' type="text"
                             value={lng}
-                            onChange={(e) => setLng(e.target.value)} 
-                            placeholder='Longitude'/>
+                            onChange={(e) => setLng(e.target.value)}
+                            placeholder='Longitude' />
                     </label>
 
                 </div>
@@ -149,18 +167,18 @@ const SpotForm = ({ report, formType }) => {
                         Describe your place to guests
                     </p>
                     <p>
-                        Mention the best features of your space, any special amenities like 
-                        fast wifi or parking, and what you love about the neighborhood. 
+                        Mention the best features of your space, any special amenities like
+                        fast wifi or parking, and what you love about the neighborhood.
                     </p>
                 </div>
 
 
                 <textarea className='description-textarea'
-                placeholder='Please write at least 30 characters'
-                value={description}
-                onChange={(e) => {
-                    setDescription(e.target.value)
-                }}>
+                    placeholder='Please write at least 30 characters'
+                    value={description}
+                    onChange={(e) => {
+                        setDescription(e.target.value)
+                    }}>
 
                 </textarea>
 
@@ -169,7 +187,7 @@ const SpotForm = ({ report, formType }) => {
                         Create a title for your spot
                     </p>
                     <p>
-                        Catch guests' attention with a spot title that 
+                        Catch guests' attention with a spot title that
                         highlights what makes your place special.
                     </p>
                 </div>
@@ -197,7 +215,7 @@ const SpotForm = ({ report, formType }) => {
                         $
                     </p>
 
-                    <input className='price-input' type="number"
+                    <input className='price-input' type="text"
                         value={price}
                         onChange={(e) => {
                             setPrice(e.target.value)
@@ -209,7 +227,7 @@ const SpotForm = ({ report, formType }) => {
 
 
 
-                <div className='urls-label'>
+                {/* <div className='urls-label'>
                     <p>
                         Liven up your spot with photos
                     </p>
@@ -219,11 +237,11 @@ const SpotForm = ({ report, formType }) => {
                 </div>
 
                 <div className='urls'>
-                    <input className='image-url' type="text" 
-                    value={previewUrl}
-                    onChange={(e) => {
-                        setPreviewUrl(e.target.value)
-                    }}
+                    <input className='image-url' type="text"
+                        value={previewUrl}
+                        onChange={(e) => {
+                            setPreviewUrl(e.target.value)
+                        }}
                         placeholder='Preview Image URL'
                     />
 
@@ -258,17 +276,17 @@ const SpotForm = ({ report, formType }) => {
                         }}
                         placeholder='Image URL'
                     />
-                </div>
+                </div> */}
 
 
-                <input className='submit-button' type="submit" value="Create Spot" />
+                <input className='submit-button' type="submit" value="Edit Spot" />
             </form>
-            <button onClick={CreateTest} type='button'>
-                CreateSpotTest
+            <button onClick={EditTest} type='button'>
+                EditSpotTest
             </button>
 
         </div>
     );
 }
 
-export default SpotForm;
+export default EditSpotForm;

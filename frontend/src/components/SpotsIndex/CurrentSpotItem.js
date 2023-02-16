@@ -5,11 +5,13 @@ import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
+import OpenModalButton from '../OpenModalButton';
 import "./CurrentSpotItem.css"
 // import { useDispatch } from 'react-redux';
 
 // import { useSelector } from "react-redux"
-
+import DeleteSpotModal from "./DeleteSpotModal.js"
+// import 
 
 // import "./SpotIndexItem.css"
 
@@ -23,6 +25,10 @@ const CurrentSpotItem = ({ spot }) => {
     
     const handleDelete = (e) => {
         e.preventDefault()
+
+        
+
+        // <OpenModalButton />
         // console.log("delete button test")
         dispatch(deleteSpot(spot.id))
         // history.push(`/spots/${spot.id}`)
@@ -34,8 +40,6 @@ const CurrentSpotItem = ({ spot }) => {
         console.log("update button test")
         history.push(`/spots/current/${spot.id}`)
     }
-    
-
 
     return (
         <li className='CurrentspotIndexItem'>
@@ -57,7 +61,8 @@ const CurrentSpotItem = ({ spot }) => {
                         <p className='current-price'>${spot.price} night</p>
                         <div className='div-buttons'>
                             <button onClick={handleUpdate} className='update-button button' type='button' >Update</button>
-                            <button onClick={handleDelete} className='delete-button button' type='button' >Delete</button>
+                            {/* <button onClick={handleDelete} className='delete-button button' type='button' >Delete</button> */}
+                            <OpenModalButton buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
                         </div>
                     </div>
                 </div>

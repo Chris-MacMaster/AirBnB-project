@@ -96,16 +96,18 @@ img {
     font-weight: bold;
 }
 
-.delete-button {
+/* .delete-button {
     background-color: red;
     font-weight: bold;
     margin-left: 4px;
-}
+} */
 
 .button:hover {
     /* border: 2px solid orange; */
     color: white;
 }
+
+
 
 .button {
     box-shadow: 4px 5px black;
@@ -113,7 +115,10 @@ img {
     height: 30px;
 }
 
-
+.current-city-state {
+    width: 50%;
+    min-width: 50%;
+}
 
 
 

@@ -3,6 +3,7 @@ import React from 'react';
 // import { actionDeleteReport } from '../store/report';
 import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { fetchOneSpot } from "../../store/spot"
 // import { useDispatch } from 'react-redux';
@@ -31,6 +32,10 @@ const SpotIndexItem = ({ spot }) => {
         history.push(`/spots/${spot.id}`)
     
     }
+
+    useEffect(() => {
+        dispatch(fetchOneSpot(spot.id))
+    }, [dispatch])
 
     return (
         <li onClick={handleClick} className='spotIndexItem'>

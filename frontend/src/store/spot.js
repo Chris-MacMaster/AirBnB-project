@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf"
 
 
-
+const INITIAL_SPOT = "spot/LOAD"
 const LOAD_SPOTS = "spots/LOAD"
 const LOAD_SPOT = "spots/LOAD/ONE"
 const DELETE_SPOT = "spots/DELETE"
@@ -12,7 +12,6 @@ export const loadSpots = (spots) => {
     return {
         type: LOAD_SPOTS,
         payload: spots
-        
     }
 }
 
@@ -50,10 +49,10 @@ export default function spotReducer(state = initialState, action) {
     //converted fruits shape is from previous practice mock data, not the right store shape
     let newState
     switch (action.type) {
-        // case INITIAL_SPOT: {
-        //     newState = { ...state }
-        //     return newState
-        // }
+        case INITIAL_SPOT: {
+            newState = { ...state }
+            return newState
+        }
         case LOAD_SPOTS: {
             //neccessary to render all, bug to fix
             newState = { ...state, //...action.payload
@@ -116,8 +115,10 @@ export const fetchOneSpot = (id) => async dispatch => {
     const spot = await response.json();
     // console.log("triggers fetchOneSpot")
     // console.log(spot)//the correct object
-    
-    dispatch(loadOneSpot(spot));
+    if (response.ok){
+        dispatch(loadOneSpot(spot));
+        return spot
+    }
 };
 //dispatch works, find where the dispatch is triggered, and load the appropriate data
 
@@ -125,37 +126,52 @@ export const fetchOneSpot = (id) => async dispatch => {
 
 //CREATE NEW SPOT
 export const makeSpot = (spotBody) => async dispatch => {
-    // console.log(id)
+    // console.log("SPOT BODY", spotBody)
+
+
     const { address, city, state, country, lat, lng, name, description, price} = spotBody
     const method = "POST"
     const headers = { "Content-Type": "application/json"}
+
     const body = JSON.stringify({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
         //...formdata placeholder
-        "address": "123 Disney Lane",
-        "city": "San Francisco",
-        "state": "California",
-        "country": "United States of America",
-        "lat": 37.7645358,
-        "lng": -122.4730327,
-        "name": "App Academy",
-        "description": "Place where web developers are created",
-        "price": 123
+        // "address": "123 Disney Lane",
+        // "city": "San Francisco",
+        // "state": "California",
+        // "country": "United States of America",
+        // "lat": 37.7645358,
+        // "lng": -122.4730327,
+        // "name": "App Academy",
+        // "description": "Place where web developers are created",
+        // "price": 123
         
     })
     const options = {method, headers, body}
+    // console.log("POST STRINGIFIED SPOT BODY", body)
+    // console.log("address", address)
 
-    const response = await csrfFetch(`/api/spots/`, options);
-    const spot = await response.json();
+    //fails here
+    const response = await csrfFetch(`/api/spots`, options);
+    
     //testing logs
-    console.log("POST RESPONSE DATA OBJ",spot)
-
+    const spot = await response.json();
+    // console.log("POST RESPONSE DATA OBJ",spot)
+    
     if (response.ok){
         dispatch(loadSpots(spot));
         return spot
     }
 
 };
-
 
 
 //DELETE SPOT 
@@ -190,35 +206,54 @@ export const deleteSpot = (id) => async dispatch => {
 //EDIT SPOT
 export const editSpot = (spotBody) => async dispatch => {
     // console.log(id)
-    const { address, city, state, country, lat, lng, name, description, price } = spotBody
+    const { address, city, state, country, lat, lng, name, description, price, spotId } = spotBody
+
+    // const spotId = {spotBody}
     const method = "PUT"
     const headers = { "Content-Type": "application/json" }
     const body = JSON.stringify({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
         //...formdata placeholder
-        "address": "edited",
-        "city": "edited",
-        "state": "edited",
-        "country": "United States of America",
-        "lat": 37.7645358,
-        "lng": -122.4730327,
-        "name": "App Academy",
-        "description": "Place where web developers are created",
-        "price": 123
-
+        // "address": "edited",
+        // "city": "edited",
+        // "state": "edited",
+        // "country": "United States of America",
+        // "lat": 37.7645358,
+        // "lng": -122.4730327,
+        // "name": "App Academy",
+        // "description": "Place where web developers are created",
+        // "price": 321
     })
     const options = { method, headers, body }
 
-
-    let spotId;//We need to get the spotId in there 
+    // let spotId;//We need to get the spotId in there 
     //
+    // const response = await csrfFetch(`/api/spots/${spotId}`, options);
     const response = await csrfFetch(`/api/spots/${spotId}`, options);
-    const spots = await response.json();
+    const spot = await response.json();
     //testing logs
-    console.log("PUT RESPONSE DATA OBJ", spots)
+    console.log("PUT RESPONSE DATA OBJ", spot)
+
+    // if (response.ok) {
+    //     dispatch(loadSpots(spots));
+    //     return spots
+    // }
+
+    //loadupdated list of spots
+    const getRes = await fetch('/api/spots/current');
+    const spots = await getRes.json();
+    let convertedSpots = normalizeArr(spots.Spots)
 
     if (response.ok) {
-        dispatch(loadSpots(spots));
-        return spots
+        dispatch(loadSpots(convertedSpots))
     }
 
 };

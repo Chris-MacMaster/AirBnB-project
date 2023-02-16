@@ -10,6 +10,7 @@ import SpotsIndex from "./components/SpotsIndex/SpotsIndex"
 import CurrentSpotsIndex from "./components/SpotsIndex/CurrentSpotsIndex";
 import SpotDetail from "./components/SpotDetail/SpotDetail"
 import SpotForm from "./components/SpotForm/CreateSpot";
+import EditSpotForm from "./components/SpotForm/EditSpot";
 
 
 // import fruits from "./mockData/fruits.json"
@@ -39,6 +40,8 @@ function App() {
           </Route>
 
           <Route path="/spots/current/:spotId" exact={true}>
+            <EditSpotForm />
+
             <p>
               {/* Most useful
               <br>

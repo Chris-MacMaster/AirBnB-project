@@ -1,0 +1,94 @@
+import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { actionDeleteReport } from '../store/report';
+import { useDispatch } from "react-redux"
+import { useHistory } from 'react-router-dom';
+
+import { deleteSpot, fetchOneSpot } from "../../store/spot"
+import OpenModalButton from '../OpenModalButton';
+
+
+// import { closeModal } from "../OpenModalButton/index"
+
+// import closeModal from "./"
+
+
+import "./CurrentSpotItem.css"
+
+// import {useHre}
+
+
+// import { useDispatch } from 'react-redux';
+
+// import { useSelector } from "react-redux"
+
+
+// import "./SpotIndexItem.css"
+
+import "./DeleteSpotModal.css"
+
+
+const DeleteSpotModal = ({spot}) => {
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+
+        dispatch(deleteSpot(spot.id))
+        // history.push(`/spots/${spot.id}`)
+        history.push(`/spots/current`)
+    }
+
+    const handleNoDelete = (e) => {
+        e.preventDefault()
+        // closeModal()
+
+
+        history.push(`/spots/current`)
+
+
+
+    }
+
+    return (
+
+        <div className='delete-modal-div'>
+            <p className='confirm-delete-title'>
+                Confirm Delete
+            </p>
+            <p className='confirm-delete-text'>
+                Are you sure you want to remove this spot from the listings?
+            </p>
+            <button onClick={handleDelete} className='yes-delete-button button' type='button' >Yes (Delete Spot)</button>
+            <button onClick={history.push("/spots/current")} className='no-delete-button button' type='button' >No (Keep Spot)</button>
+        </div>
+                 
+
+      
+    );
+};
+
+export default DeleteSpotModal;
+
+
+
+// {/* <Link to={`/reports/${report.id}`}>Report #{report.id}</Link> */ }
+// {/* <Link to={`/reports/${report.id}/edit`}>Edit</Link> */ }
+
+
+
+
+
+
+
+
+
+/*
+css lecture
+
+
+
+
+*/
