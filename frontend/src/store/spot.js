@@ -73,7 +73,6 @@ export default function spotReducer(state = initialState, action) {
             return newState
         }
 
-
         default:
             return state
     }
@@ -85,11 +84,13 @@ export default function spotReducer(state = initialState, action) {
 
 //SPOTS HOME PAGE
 export const fetchSpots = () => async dispatch => {
-    const response = await fetch('/api/spots');
+    const response = await csrfFetch('/api/spots');
     const spots = await response.json();
     let convertedSpots = normalizeArr(spots.Spots)
     // console.log(spots)
     // console.log(convertedSpots)
+    console.log("CONVERTED SPOTS", convertedSpots)
+
 
     dispatch(loadSpots(convertedSpots));
 };
@@ -97,13 +98,13 @@ export const fetchSpots = () => async dispatch => {
 //SPOT MANAGE PAGE
 export const fetchCurrentSpots = () => async dispatch => {
     // console.log("triggers")
-    const response = await fetch('/api/spots/current');
+    const response = await csrfFetch('/api/spots/current');
     const spots = await response.json();
 
 
     // console.log(spots)
     let convertedSpots = normalizeArr(spots.Spots)
-    // console.log(convertedSpots)
+    // console.log("CONVERTED SPOTS", convertedSpots)
 
     dispatch(loadSpots(convertedSpots));
 };
@@ -111,7 +112,7 @@ export const fetchCurrentSpots = () => async dispatch => {
 //SPOT DETAIL PAGE
 export const fetchOneSpot = (id) => async dispatch => {
     // console.log(id)
-    const response = await fetch(`/api/spots/${id}`);
+    const response = await csrfFetch(`/api/spots/${id}`);
     const spot = await response.json();
     // console.log("triggers fetchOneSpot")
     // console.log(spot)//the correct object
@@ -248,7 +249,7 @@ export const editSpot = (spotBody) => async dispatch => {
     // }
 
     //loadupdated list of spots
-    const getRes = await fetch('/api/spots/current');
+    const getRes = await csrfFetch('/api/spots/current');
     const spots = await getRes.json();
     let convertedSpots = normalizeArr(spots.Spots)
 

@@ -14,11 +14,11 @@ import "./SpotIndex.css"
 function SpotsIndex() {
     const dispatch = useDispatch()
 
-    const spotState = useSelector(state => state.spots)
+    const spotState = useSelector(state => state.spots.allSpots)
     // console.log("spot State", spotState)
     // console.log(spotState["allSpots"])
     // console.log("AllSpots", spotState.allSpots)
-    const spots = Object.values(spotState.allSpots)
+    const spots = Object.values(spotState)
     // console.log(spots)
 
     //should dispatch on inital render
@@ -40,9 +40,6 @@ function SpotsIndex() {
             <div className="spotIndex">
             {spots.map(spot => (
                 <SpotIndexItem spot={spot} key={spot.id} />
-                // <Link to={`/fruits/${fruit.id}`} key={fruit.id}>
-                //     {fruit.name}
-                // </Link>
             ))}
 
             </div>

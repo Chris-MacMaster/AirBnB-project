@@ -33,9 +33,9 @@ const SpotIndexItem = ({ spot }) => {
     
     }
 
-    useEffect(() => {
-        dispatch(fetchOneSpot(spot.id))
-    }, [dispatch])
+    // useEffect(() => {
+        // dispatch(fetchOneSpot(spot.id))
+    // }, [dispatch])
 
     return (
         <li onClick={handleClick} className='spotIndexItem'>

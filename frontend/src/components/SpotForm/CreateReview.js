@@ -9,15 +9,31 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux"
-import { makeSpot } from '../../store/spot';
+// import { makeSpot } from '../../store/spot';
 
 import "./CreateSpot.css"
+import { makeReview } from '../../store/review';
+
+import { useParams } from 'react-router-dom';
 
 
-const ReviewForm = ({ report, formType }) => {
+const ReviewForm = ({spotId}) => {
     const history = useHistory();
     const dispatch = useDispatch()
 
+    const params = useParams()
+
+    // const {spotId} = params
+
+    console.log("PARAMS", params)
+    console.log("SPOTID", spotId)
+
+
+
+    // let url = window.location.href
+    // let lastInURL = url[url.length - 1]
+
+    // console.log(lastInURL)
 
   
     const [review, setReview] = useState("")
@@ -35,6 +51,9 @@ const ReviewForm = ({ report, formType }) => {
             stars: starsNum
         }
         console.log("FORM DATA", newReview)
+
+        dispatch(makeReview(newReview, spotId))
+
         // console.log("asd")
         // history.push("/spots/current")
 
@@ -56,14 +75,13 @@ const ReviewForm = ({ report, formType }) => {
     const CreateTest = (e) => {
         e.preventDefault();
 
-        dispatch(makeSpot("sse"))
+        dispatch(makeReview("sse"))
         // history.push(`/spots`);
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit} >
-                <h2>{formType}</h2>
 
                 <div className='description-label'>
                     <p>

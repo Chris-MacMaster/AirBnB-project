@@ -77,20 +77,26 @@ export default function reviewReducer(state = initialState, action) {
 // //**THUNKS */
 
 // //SPOT DETAIL PAGE
-export const fetchReviews = () => async dispatch => {
-    const response = await fetch('/api/spots');
+export const fetchReviews = (id) => async dispatch => {
+
+    const response = await fetch(`/api/spots/${id}/reviews`);
+
+    console.log("FETCH REVIEWS RESPONSE", response)
+
     const reviews = await response.json();
-    let convertedReviews = normalizeArr(reviews.spot)
+
+    // console.log(reviews)
+    let convertedReviews = normalizeArr(reviews)
     // console.log(spots)
-    // console.log(convertedSpots)
+    // console.log(convertedReviews)
 
     dispatch(loadReviews(convertedReviews));
 };
 
 
 // CREATE NEW REVIEW
-export const makeReview = (reviewBody) => async dispatch => {
-    // console.log("REVIEW BODY", reviewBody)
+export const makeReview = (reviewBody, spotId) => async dispatch => {
+    console.log("REVIEW BODY", reviewBody)
 
     const { review, stars } = reviewBody
     const method = "POST"
@@ -103,12 +109,16 @@ export const makeReview = (reviewBody) => async dispatch => {
         // "review": "This was an awesome spot!",
         // "stars": 5,
     })
+
+    console.log("BODY", body)
     const options = { method, headers, body }
     // console.log("POST STRINGIFIED REVIEW BODY", body)
     // console.log("stars", stars)
 
+    console.log("OPTIONS", options)
+
     //CHANGE/CUSTOMIZE, need to pull reviews by spot ID
-    const response = await csrfFetch(`/api/reviews/:spotID`, options);
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, options);
 
     //testing logs
     const reviewData = await response.json();

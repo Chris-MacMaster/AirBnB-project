@@ -438,6 +438,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     })
 
     if (!reviews.length){
+        // console.log("REVIEWS", reviews)
         let err = new Error('No spots with that id exist')
         err.status = 404
         throw err

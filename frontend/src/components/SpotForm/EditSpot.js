@@ -1,8 +1,9 @@
 //src/components/SpotForm/CreateSpot.js
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import { editSpot, makeSpot } from '../../store/spot';
+import { fetchOneSpot } from '../../store/spot';
 
 import "./CreateSpot.css"
 
@@ -24,15 +25,34 @@ const EditSpotForm = ({ report, formType }) => {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
 
-    // const [previewUrl, setPreviewUrl] = useState("")
-    // const [url1, setUrl1] = useState("")
-    // const [url2, setUrl2] = useState("")
-    // const [url3, setUrl3] = useState("")
-    // const [url4, setUrl4] = useState("")
-
 
     const urlArr = window.location.href.split("/")
     const spotId = urlArr[urlArr.length - 1]
+
+
+    //get spot ID
+    useEffect(() => {
+        const fillFeilds = async () => {
+            let spotInfo = await dispatch(fetchOneSpot(spotId));
+
+            console.log(spotInfo)
+            setCountry(spotInfo.country)
+            setAddress(spotInfo.address)
+            setCity(spotInfo.city)
+            setState(spotInfo.state)
+            
+            setLat(spotInfo.lat)
+            setLng(spotInfo.lng)
+
+            setName(spotInfo.name)
+            setDescription(spotInfo.description)
+            setPrice(spotInfo.price)
+
+            // setCountry(spotInfo.country)
+            // setTitle(spotInfo.name)
+        }
+        fillFeilds()
+    }, [dispatch]);
 
 
     const handleSubmit = (e) => {
