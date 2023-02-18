@@ -41,9 +41,14 @@ const SpotIndexItem = ({ spot }) => {
         <li onClick={handleClick} className='spotIndexItem'>
             
 
-            <div className='spot-card' >
+            <div className='spot-card-div' >
+                <div className='spot-name'>
+                    {spot.name}
+                </div>
                 <div >
-                    <img scr={spot.previewImage} alt="not found" />
+                    {/* <img scr={spot.previewImage} alt="not found" /> */}
+                    <img src={spot.previewImage}
+                        alt='previewImage' />
                     
                 </div>
                 <div className='card-info' >

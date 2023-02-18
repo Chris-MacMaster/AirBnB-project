@@ -58,3 +58,10 @@
     /* border: 2px solid orange; */
     color: white;
 }
+
+.button:active {
+    position: relative;
+    left: 4px;
+    top: 5px;
+    box-shadow: none;
+}

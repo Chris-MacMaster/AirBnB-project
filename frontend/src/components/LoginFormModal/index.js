@@ -12,6 +12,51 @@ function LoginFormModal() {
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+
+    const demoLogin = (e) => {
+        // e.preventDefault();
+        // setErrors([]);
+        // console.log('triggered')
+        return dispatch(sessionActions.login({
+            credential: "DemoUser",
+            password: "jjjjjj"
+        }))
+            .then(closeModal)
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                }
+            );
+    }
+
+
+    const demoSignup = (e) => {
+        e.preventDefault();
+        if (password === confirmPassword) {
+            setErrors([]);
+            return dispatch(sessionActions.signup({ email: "notFake@gmail.com", username: "DemoUser", firstName: "Demo", lastName: "Fremo", password: "jjjjjj" }))
+                .then(closeModal)
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                });
+        }
+        return setErrors(['Confirm Password field must be the same as the Password field']);
+    };
+
+    const becomeDemo = (e) => {
+        try {
+            demoLogin()
+        } catch {
+            demoSignup()
+            demoLogin()
+        }
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -42,25 +87,27 @@ function LoginFormModal() {
                     ))}
                 </ul>
                 <label>
-                    Username or Email
+                    {/* Username or Email */}
                     <input
                         type="text"
                         value={credential}
+                        placeholder="Username or Email"
                         onChange={(e) => setCredential(e.target.value)}
                         required
                     />
                 </label>
                 <label>
-                    Password
+                    {/* Password */}
                     <input
                         type="password"
                         value={password}
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </label>
-                <button type="submit">Log In</button>
-                {/* <button type="button">Demo</button> */}
+                <button className="modal-button button modal-login-button" type="submit">Log In</button>
+                <button onClick={becomeDemo} id="demo-button" className="modal-button button modal-login-button modal-login-demo-button" type="button">Demo User</button>
             </form>
         </>
     );

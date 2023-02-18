@@ -13,7 +13,7 @@ import "./CurrentSpotItem.css"
 import DeleteSpotModal from "./DeleteSpotModal.js"
 // import 
 
-// import "./SpotIndexItem.css"
+import "./SpotIndexItem.css"
 
 
 
@@ -42,26 +42,28 @@ const CurrentSpotItem = ({ spot }) => {
     }
 
     return (
-        <li className='CurrentspotIndexItem'>
+        <li className='spotIndexItem'>
 
-            <div className='current-spot-card' >
+            <div className='spot-card-div current-card-div' >
+                <div className='spot-name'>
+                    {spot.name}
+                </div>
                 <div >
                     <img scr={spot.previewImage} alt="not found" />
 
                 </div>
-                <div className='current-card-info' >
-                    <div className='current-card-row1'>
-                        <div className='current-city-state' >
+                <div className='card-info' >
+                    <div className='card-row1'>
+                        <div className='city-state' >
                             {spot.city}, {spot.state}
                         </div>
-                        <div className='current-avg-rating' >&#9733; {spot.avgRating}</div>
+                        <div className='avg-rating' >&#9733; {spot.avgRating}</div>
 
                     </div >
-                    <div className='current-card-row2'>
-                        <p className='current-price'>${spot.price} night</p>
+                    <div className='card-row2'>
+                        <p className='price'>${spot.price} night</p>
                         <div className='div-buttons'>
                             <button onClick={handleUpdate} className='update-button button' type='button' >Update</button>
-                            {/* <button onClick={handleDelete} className='delete-button button' type='button' >Delete</button> */}
                             <OpenModalButton buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
                         </div>
                     </div>

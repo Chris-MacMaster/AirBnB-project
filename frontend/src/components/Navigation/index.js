@@ -90,9 +90,9 @@ function Navigation({ isLoaded }) {
                     modalComponent={<SignupFormModal />}
                 />
                 {/* make react component? */}
-                <button onClick={becomeDemo} type='button' >
+                {/* <button onClick={becomeDemo} type='button' >
                     Demo Login
-                </button>
+                </button> */}
             </li>
         );
     }
