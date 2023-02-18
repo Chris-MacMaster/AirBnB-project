@@ -3,3 +3,29 @@
 /* body {
     background-color: aqua;
 } */
+
+
+
+#modal-content {
+    width: 30%;
+    height: 250px;
+    /* color: red; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+
+
+.login-form {
+    color: blue;
+
+}
+
+.login-p {
+    /* align-items: center; */
+    display: flex;
+    justify-content: center;
+    /* color: blue; */
+}

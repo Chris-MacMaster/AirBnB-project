@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf"
 
 
 const LOAD_REVIEWS = "reviews/LOAD"
+const RESET_REVIEWS = "reviews/LOAD"
 // const LOAD_SPOT = "spots/LOAD/ONE"
 // const DELETE_SPOT = "spots/DELETE"
 // //**ACTIONS */
@@ -13,6 +14,12 @@ export const loadReviews = (reviews) => {
         type: LOAD_REVIEWS,
         payload: reviews
 
+    }
+}
+
+export const actionResetReviews = () => {
+    return {
+        type: RESET_REVIEWS
     }
 }
 
@@ -30,6 +37,7 @@ export const loadReviews = (reviews) => {
 // }
 
 export const normalizeArr = (arr) => {
+    console.log("NORMALIZE ARRAY INPUT, FETCH REVIEWS RESPONSE OBJ", arr)
     const newState = {};
     arr.forEach(spot => {
         newState[spot.id] = spot;
@@ -61,11 +69,11 @@ export default function reviewReducer(state = initialState, action) {
             //creates key error, shouldnt be a problem
             return newState
         }
-        // case LOAD_SPOT: {
-        //     newState = { ...state }
-        //     newState.singleSpot = action.payload
-        //     return newState
-        // }
+        case RESET_REVIEWS: {
+            newState = { ...state }
+            // newState.reviews.spot = {}
+            return newState
+        }
 
         default:
             return state
@@ -81,16 +89,25 @@ export const fetchReviews = (id) => async dispatch => {
 
     const response = await fetch(`/api/spots/${id}/reviews`);
 
-    console.log("FETCH REVIEWS RESPONSE", response)
+    // console.log("FETCH REVIEWS RESPONSE", response)
 
     const reviews = await response.json();
+    console.log("FETCH REVIEWS RESPONSE", reviews)
+    //reviews can come back as an errors object
 
+    if (reviews.message === "No spots with that id exist") {
+
+    }
+    
     // console.log(reviews)
-    let convertedReviews = normalizeArr(reviews)
     // console.log(spots)
     // console.log(convertedReviews)
+    if (response.ok){
+        let convertedReviews = normalizeArr(reviews)
+        dispatch(loadReviews(convertedReviews));
+        return reviews
+    }
 
-    dispatch(loadReviews(convertedReviews));
 };
 
 

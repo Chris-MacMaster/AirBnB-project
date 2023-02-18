@@ -28,6 +28,12 @@ export const actionDeleteSpot = () => {
     }
 }
 
+// export const actionLoadSpotImages = (spotImages) => {
+//     return {
+
+//     }
+// }
+
 export const normalizeArr = (arr) => {
     const newState = {};
     arr.forEach(spot => {
@@ -58,6 +64,7 @@ export default function spotReducer(state = initialState, action) {
             newState = { ...state, //...action.payload
             }
             newState.allSpots = action.payload
+            newState.singleSpot = {}
             //creates key error, shouldnt be a problem
             return newState
         }
@@ -89,10 +96,10 @@ export const fetchSpots = () => async dispatch => {
     let convertedSpots = normalizeArr(spots.Spots)
     // console.log(spots)
     // console.log(convertedSpots)
-    console.log("CONVERTED SPOTS", convertedSpots)
-
-
-    dispatch(loadSpots(convertedSpots));
+    // console.log("CONVERTED SPOTS", convertedSpots)
+    if (response.ok) {
+        dispatch(loadSpots(convertedSpots));
+    }
 };
 
 //SPOT MANAGE PAGE
@@ -114,6 +121,7 @@ export const fetchOneSpot = (id) => async dispatch => {
     // console.log(id)
     const response = await csrfFetch(`/api/spots/${id}`);
     const spot = await response.json();
+    // console.log("FETCH RESPONSE SPOT", spot)
     // console.log("triggers fetchOneSpot")
     // console.log(spot)//the correct object
     if (response.ok){
@@ -126,7 +134,7 @@ export const fetchOneSpot = (id) => async dispatch => {
 
 
 //CREATE NEW SPOT
-export const makeSpot = (spotBody) => async dispatch => {
+export const makeSpot = (spotBody, url) => async dispatch => {
     // console.log("SPOT BODY", spotBody)
 
 
@@ -165,10 +173,29 @@ export const makeSpot = (spotBody) => async dispatch => {
     
     //testing logs
     const spot = await response.json();
+    console.log("MAKE SPOT FETCH RESPONSE", spot)
     // console.log("POST RESPONSE DATA OBJ",spot)
     
     if (response.ok){
         dispatch(loadSpots(spot));
+
+        const makeSpotImage = () => async dispatch => {
+            const method = "POST"
+            const headers = { "Content-Type": "application/json" }
+            const body = JSON.stringify({
+                url: url, 
+                preview: true
+                 //...formdata placeholder
+            })
+            const options = { method, headers, body }
+
+            //you need to get a spot id here
+            let makeImageResponse = await csrfFetch(`/api/spots/${spot.id}/images`, options);
+            console.log("MAKE IMAGE RESPONSE", makeImageResponse)
+        }
+        dispatch(makeSpotImage())
+        //add spot image as well
+        // dispatch(loadOneSpot(spot))
         return spot
     }
 

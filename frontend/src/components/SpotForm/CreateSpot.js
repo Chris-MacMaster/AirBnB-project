@@ -1,5 +1,5 @@
 //src/components/SpotForm/CreateSpot.js
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import { makeSpot } from '../../store/spot';
@@ -30,6 +30,21 @@ const SpotForm = ({ report, formType }) => {
     const [url3, setUrl3] = useState("")
     const [url4, setUrl4] = useState("")
 
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        let e = []
+        //insert if (error(s) push to error array e)
+        //get errors from back end for display
+
+
+        setErrors(e)
+
+
+    }, [address, city, country, state, lat,
+        lng, name, description, price,
+        previewUrl, url1, url2, url3, url4])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,7 +70,7 @@ const SpotForm = ({ report, formType }) => {
         // console.log("asd")
         // history.push("/spots/current")
 
-        const spotResponse = dispatch(makeSpot(newSpot))
+        const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
         if (spotResponse) {
                 reset()
                 history.push("/spots/current")
@@ -72,6 +87,7 @@ const SpotForm = ({ report, formType }) => {
         setName('');
         setDescription('');
         setPrice('');
+        setPreviewUrl('')
     };
 
 

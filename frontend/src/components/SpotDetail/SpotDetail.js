@@ -44,30 +44,29 @@ const SpotDetail = () => {
     // console.log("THIS IS THE SPOT STATE", spotState)
     // console.log("SPOT IMAGES", spotState.singleSpot.SpotImages)
     
-    
     let spot = spotState.singleSpot
     let spotImagesArr = spot.SpotImages
-    console.log(spotImagesArr)//currently an array
 
-    // console.log("SPOT IMAGES OBJ", spotImages)
-
-
-    // const spotImages = spotImagesArr
-
-
-    console.log("SPOT", spot)
-
+    
+    // console.log("SPOT IMAGES ARRAY FROM STATE", spotImagesArr)//currently an array
+    console.log("SINGLE SPOT FROM STATE", spot)
 
     const reviewState = useSelector(state => state.reviews.spot)
     const reviews = Object.values(reviewState)
 
 
     let {spotId} = useParams()
+    // console.log("SPOT")
 
     // console.log("SPOTID", spotId)
     useEffect(() => {
-        dispatch(fetchOneSpot(spotId))
-        dispatch(fetchReviews(spotId))
+        // if (spotId) {
+            console.log("SPOT ID", spotId)
+            dispatch(fetchOneSpot(spotId))
+            
+            dispatch(fetchReviews(spotId))
+            
+        // }
     }, [dispatch])
 
 
@@ -76,23 +75,14 @@ const SpotDetail = () => {
         return null
     }
 
-    if (!spot.SpotImages.length) {
-        return null
-    }
-
     const spotImages = normalizeArr(spotImagesArr)
 
-
-    console.log("SPOT IMAGES ARRAY", spotImagesArr)
-    console.log("SPOT IMAGES OBJ", spotImages)
-    // console.log(spotImages[spotId].url)
-
-    // const imgUrl = spotImages[5].url
+    //SPOT BUG, NOT POPULATING 
+    // console.log("SPOT IMAGES ARRAY", spotImagesArr)
+    // console.log("SPOT IMAGES OBJ", spotImages)
+    
 
 
-    // if (!reviews.length) {
-    //     return null
-    // }
 
     const getReviewsTest = () => {
         dispatch(fetchReviews(spotId))
@@ -181,11 +171,11 @@ const SpotDetail = () => {
 
                         <div className='box-reviewAvg-reviewNum'>
                             <p >
-                                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} #reviews
+                                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} 
                             </p>
-                            {/* <p >
-                                # reviews
-                            </p> */}
+                            <p >
+                                {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
+                            </p>
 
                         </div>
                         
@@ -208,10 +198,11 @@ const SpotDetail = () => {
                 </div>
                     <div className='reviewAvg-reviewNum'>
                         <p className='avgRating-text'>
-                            &#9733; {spot.avgStarRating!=="No reviews found" ? spot.avgStarRating : "New"}
+                    {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"}
+                    {/* &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} */}
                         </p>
                         <p >
-                            {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""}
+                            {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
                         </p> 
                     </div>
                     {/* needs logic to only display on condition, i think ternary */}

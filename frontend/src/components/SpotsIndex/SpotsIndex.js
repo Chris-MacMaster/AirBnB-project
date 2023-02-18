@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import SpotIndexItem from "./SpotIndexItem";
 import { useEffect } from "react";
 import { fetchSpots } from "../../store/spot";
+import { actionResetReviews } from "../../store/review";
 
 
 import "./SpotIndex.css"
@@ -24,6 +25,8 @@ function SpotsIndex() {
     //should dispatch on inital render
     useEffect(() => {
         dispatch(fetchSpots())
+        // dispatch(actionResetReviews())
+        
     }, [dispatch])
 
     return (

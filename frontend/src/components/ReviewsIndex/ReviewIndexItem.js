@@ -24,7 +24,18 @@ import ReviewDeleteModal from '../ReviewDeleteModal/ReviewDeleteModal';
 const ReviewIndexItem = ({ review }) => {
     const history = useHistory()
     const dispatch = useDispatch()
+
+
+    // const spotState = useSelector(state => state.spots)
+
     // console.log(review)
+
+
+    useEffect(() => {
+        // dispatch(fetchOneSpot(spotId))
+        // dispatch(fetchReviews(spotId))
+    }, [dispatch])
+
 
 
     // useEffect(() => {
@@ -55,8 +66,9 @@ const ReviewIndexItem = ({ review }) => {
     // if (!review) {
     //     return null
     // }
+    // console.log("PASSED IN REVIEW", review)
 
-    if (!review) {
+    if (!review.User) {
         return null
     }
 

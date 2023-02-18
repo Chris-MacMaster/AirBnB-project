@@ -33,6 +33,7 @@ function ProfileButton({ user }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push("/")
     };
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -49,8 +50,8 @@ function ProfileButton({ user }) {
                 <i className="fas fa-user-circle" />
             </button>
             <ul className={ulClassName} ref={ulRef}>
-                <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
+                {/* <li>{user.username}</li> */}
+                <li>Hello, {user.firstName} </li>
                 <li>{user.email}</li>
                 {/* <li>
                     <button onClick={toCreateSpot}>Create New Spot</button>

@@ -51,13 +51,18 @@ const SpotIndexItem = ({ spot }) => {
                         <div className='city-state' >
                     {spot.city}, {spot.state}
                         </div>
-                    <div className='avg-rating' >&#9733; {spot.avgRating}</div>
+                        <div className='avg-rating' >
+                            &#9733; 
+                            {/* {spot.avgRating} */}
+                            {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"}
+                            </div>
 
                     </div >
 
                     <div className='card-row2' >
                         <p className='price'>${spot.price} night</p>
                        
+                        {/* &#9733; {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"} */}
 
                     </div>
                 </div>
