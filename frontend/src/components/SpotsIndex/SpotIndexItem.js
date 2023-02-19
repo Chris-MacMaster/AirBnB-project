@@ -33,6 +33,8 @@ const SpotIndexItem = ({ spot }) => {
     
     }
 
+    // let spotRating = spot.avgRating
+
     // useEffect(() => {
         // dispatch(fetchOneSpot(spot.id))
     // }, [dispatch])
