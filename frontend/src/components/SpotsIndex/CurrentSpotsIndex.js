@@ -10,10 +10,14 @@ import "./SpotIndex.css"
 import CurrentSpotItem from "./CurrentSpotItem";
 
 
+import { useHistory } from "react-router-dom"
+
+
 
 
 function CurrentSpotsIndex() {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const spotState = useSelector(state => state.spots)
     // console.log("spot State", spotState)
@@ -27,6 +31,11 @@ function CurrentSpotsIndex() {
         dispatch(fetchCurrentSpots())
     }, [dispatch])
 
+
+    const toNewSpot = (e) => {
+        history.push("/spots/new")
+    }
+
     return (
 
 
@@ -35,8 +44,9 @@ function CurrentSpotsIndex() {
         //jsx uses camel case class names
         <div className="current-spots-index">
             <h2>
-                Current SpotsIndex
+                Manage Spots
             </h2>
+            <button id="current-spot-create-button" onClick={toNewSpot} className='update-button button' type='button' >Create New Spot</button>
 
             <div className="current-spotIndex">
                 {spots.map(spot => (

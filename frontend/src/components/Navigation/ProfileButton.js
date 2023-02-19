@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import {useHistory} from "react-router-dom"
 import {Link} from "react-router-dom"
+import "./Navigation.css"
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -46,27 +47,27 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
+            <button className="dropdown-button" onClick={openMenu}>
                 <i className="fas fa-user-circle" />
             </button>
-            <ul className={ulClassName} ref={ulRef}>
+            <ul  className={ulClassName} ref={ulRef}>
                 {/* <li>{user.username}</li> */}
-                <li>Hello, {user.firstName} </li>
-                <li>{user.email}</li>
+                <li id="hello" className="main-dropdown-li">Hello,  </li>
+                <li id="email" className="main-dropdown-li">{user.email}</li>
                 {/* <li>
                     <button onClick={toCreateSpot}>Create New Spot</button>
                 </li> */}
 
-                <li>
-                    <Link to="/spots/new">Create New Spot</Link>
+                <li className="main-dropdown-li">
+                    {/* <Link to="/spots/new">Create New Spot</Link> */}
                 </li>
 
-                <li>
+                <li id="manage-spots" className="main-dropdown-li" id="manage-spots">
                     <Link to="/spots/current">Manage Spots</Link>
                 </li>
 
-                <li>
-                    <button onClick={logout}>Log Out</button>
+                <li id="logout" className="main-dropdown-li">
+                    <button className="modal-button button main-logout" onClick={logout}>Log Out</button>
                 </li>
             </ul>
         </>

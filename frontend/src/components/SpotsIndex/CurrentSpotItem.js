@@ -22,6 +22,17 @@ const CurrentSpotItem = ({ spot }) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
+    const handleClick = (e) => {
+        e.preventDefault()
+        // console.log("clicked")
+        dispatch(fetchOneSpot(spot.id))
+        history.push(`/spots/${spot.id}`)
+
+    }
+    // to go when the tile needs to redirect
+    // onClick = { handleClick }
+
+
     
     const handleDelete = (e) => {
         e.preventDefault()
@@ -42,14 +53,15 @@ const CurrentSpotItem = ({ spot }) => {
     }
 
     return (
-        <li className='spotIndexItem'>
+        <li  className='spotIndexItem'>
 
-            <div className='spot-card-div current-card-div' >
+            <div  className='spot-card-div current-card-div' >
                 <div className='spot-name'>
                     {spot.name}
                 </div>
                 <div >
-                    <img scr={spot.previewImage} alt="not found" />
+                    <img src={spot.previewImage}
+                        alt='previewImage' />
 
                 </div>
                 <div className='card-info' >
@@ -57,7 +69,10 @@ const CurrentSpotItem = ({ spot }) => {
                         <div className='city-state' >
                             {spot.city}, {spot.state}
                         </div>
-                        <div className='avg-rating' >&#9733; {spot.avgRating}</div>
+                        <div className='avg-rating' >&#9733; 
+                            {/* {spot.avgRating} */}
+                            {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"}
+                        </div>
 
                     </div >
                     <div className='card-row2'>

@@ -75,7 +75,7 @@ const SpotDetail = () => {
         return null
     }
 
-    const spotImages = normalizeArr(spotImagesArr)
+    // const spotImages = normalizeArr(spotImagesArr)
 
     //SPOT BUG, NOT POPULATING 
     // console.log("SPOT IMAGES ARRAY", spotImagesArr)
@@ -106,36 +106,37 @@ const SpotDetail = () => {
 
             <div className='spot-images-div'>
                 <div className='preview-image'>
-                    {/* src={imgUrl} */}
-                    <img src={spotImagesArr.length && spotImagesArr[0].url}
+                    {/* src={spotImagesArr.length && spotImagesArr[0].url} */}
+                    
+                    <img className="preview-image-url" src={spotImagesArr.length && spotImagesArr[0].url}
                     alt='previewImage' />
                 </div>
 
                 <div className='spot-images-subdiv'>
                     <div className='images-subdiv-row1'>
-                        <div className='spot-image-1'>
+                        <div id='spot-image-1'>
                             {/* src={(spotImagesArr.length >= 2) && spotImagesArr[1].url} */}
-                            <img src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img1' src='https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=800'
                             alt='visual-content-1' />
                         </div>
 
-                        <div className='spot-image-2'>
+                        <div id='spot-image-2'>
                             {/* src={(spotImagesArr.length >= 3) && spotImagesArr[2].url} */}
-                            <img src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img2' src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
                                 alt='visual-content-2' />
                         </div>
                     </div>
 
                     <div className='images-subdiv-row2'>
-                        <div className='spot-image-3'>
+                        <div id='spot-image-3'>
                             {/* src={(spotImagesArr.length >= 4) && spotImagesArr[3].url} */}
-                            <img src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img3' src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
                                 alt='visual-content-3' />
                         </div>
 
                         <div className='spot-image-4'>
                             {/* src={(spotImagesArr.length >= 5) && spotImagesArr[4].url} */}
-                            <img src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img4' src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
                                 alt='visual-content-4' />
                         </div>
 
@@ -154,7 +155,7 @@ const SpotDetail = () => {
 
 
             <div className='hosted-row'>
-                <div>
+                <div className='hosted-div'>
                     <p className='hosted-title'>
                         Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
                     </p>
@@ -206,6 +207,9 @@ const SpotDetail = () => {
                         </p> 
                     </div>
                     {/* needs logic to only display on condition, i think ternary */}
+                    <div className='avg-rating' >
+                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
+                    </div>
                     <div className='open-modal-div'>
                         <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={<ReviewForm spotId={spotId}/>} />
                         <p >

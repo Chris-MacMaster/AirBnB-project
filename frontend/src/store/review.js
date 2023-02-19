@@ -99,14 +99,16 @@ export const fetchReviews = (id) => async dispatch => {
 
     }
     
-    // console.log(reviews)
+    console.log(reviews)
     // console.log(spots)
     // console.log(convertedReviews)
+    console.log(response.ok)
     if (response.ok){
         let convertedReviews = normalizeArr(reviews)
         dispatch(loadReviews(convertedReviews));
         return reviews
     }
+    dispatch(loadReviews([]))
 
 };
 

@@ -62,7 +62,7 @@ const SpotIndexItem = ({ spot }) => {
                             &#9733; 
                             {/* {spot.avgRating} */}
                             {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"}
-                            </div>
+                        </div>
 
                     </div >
 

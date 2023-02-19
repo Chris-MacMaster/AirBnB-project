@@ -14,6 +14,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useState } from "react";
+import { useHistory } from "react-router-dom"
 
 
 
@@ -22,6 +23,8 @@ function Navigation({ isLoaded }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [errors, setErrors] = useState([]);
+
+    const history = useHistory()
 
 
 
@@ -61,6 +64,7 @@ function Navigation({ isLoaded }) {
     };
 
 
+
     const becomeDemo = (e) => {
         try {
             demoLogin()
@@ -71,10 +75,15 @@ function Navigation({ isLoaded }) {
     }
 
 
+    const toNewSpot = (e) => {
+        history.push("/spots/new")
+    }
+
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
             <li>
+                <button onClick={toNewSpot} className='update-button button' type='button' >Create New Spot</button>
                 <ProfileButton user={sessionUser} />
             </li>
         );

@@ -14,6 +14,7 @@ form {
 
 .country-input {
     display: block;
+    width: 100%;
 }
 
 
@@ -23,12 +24,14 @@ form {
 
 .address-input {
     display: block;
+    width: 100%;
 }
 
 .country-address-div {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    width: 100%;
 }
 
 
@@ -38,6 +41,18 @@ form {
 
 .city-input, .state-input, .lat-input, .lng-input {
     display: block;
+}
+
+.city-input {
+    width: 95%
+}
+
+#city-input-label {
+    width: 75%;
+}
+
+.state-input {
+    width: 100%
 }
 
 .lat-lng-div {
@@ -68,22 +83,56 @@ form {
 .image-url {
     display: block;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 
 .urls {
     border-bottom: 2px solid black;
+    width: 100%;
+    /* margin: auto */
+    align-items: center;
+
 }
 
 .price-div {
     display: flex;
+    width: 100%;
 }
 
 .price-input {
     height: 20px;
+    width: 100%;
 }
 
 .dollar {
     position: relative;
     bottom: 13px;
+}
+
+.comma {
+    margin-right: 4px;
+}
+
+.description-textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.name-input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.set-base-price {
+    margin-bottom: 0px;
+}
+
+.comp-pricing {
+    margin-top: 5px;
+}
+
+.form-create-button {
+    margin-top: 15px;
 }

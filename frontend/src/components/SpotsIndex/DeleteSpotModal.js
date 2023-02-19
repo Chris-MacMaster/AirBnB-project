@@ -44,7 +44,8 @@ const DeleteSpotModal = ({spot}) => {
 
         dispatch(deleteSpot(spot.id))
         // history.push(`/spots/${spot.id}`)
-        history.push(`/spots/current`)
+        closeModal()
+        // history.push(`/spots/current`)
     }
 
     const handleNoDelete = (e) => {

@@ -72,8 +72,9 @@ const SpotForm = ({ report, formType }) => {
 
         const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
         if (spotResponse) {
+                // console.log("SPOT RESPONSE", spotResponse)
                 reset()
-                history.push("/spots/current")
+                history.push(`/spots/current`)
         }
     };
 
@@ -91,17 +92,28 @@ const SpotForm = ({ report, formType }) => {
     };
 
 
-    const CreateTest = (e) => {
-        e.preventDefault();
+    // const CreateTest = (e) => {
+    //     e.preventDefault();
 
-        dispatch(makeSpot("sse"))
-        // history.push(`/spots`);
-    };
+    //     dispatch(makeSpot("sse"))
+    //     // history.push(`/spots`);
+    // };
 
     return (
         <div>
             <form onSubmit={handleSubmit} >
                 <h2>{formType}</h2>
+                <div className='edit-intro-div'>
+                    <p id='update-your-spot'>
+                        Create your Spot
+                    </p>
+                    <p id='where-place'>
+                        Where's your place located?
+                    </p>
+                    <p id='only-booked'>
+                        Guests will only get your exact address once they booked a reservation.
+                    </p>
+                </div>
                 <div className='country-address-div'>
                     <label className='country-label' >
                         Country
@@ -161,10 +173,10 @@ const SpotForm = ({ report, formType }) => {
                 </div>
 
                 <div className='description-label'>
-                    <p>
+                    <p id='describe-to-guests'>
                         Describe your place to guests
                     </p>
-                    <p>
+                    <p className='desc-text mention-text'>
                         Mention the best features of your space, any special amenities like 
                         fast wifi or parking, and what you love about the neighborhood. 
                     </p>
@@ -184,7 +196,7 @@ const SpotForm = ({ report, formType }) => {
                     <p >
                         Create a title for your spot
                     </p>
-                    <p>
+                    <p className='desc-text'>
                         Catch guests' attention with a spot title that 
                         highlights what makes your place special.
                     </p>
@@ -198,10 +210,10 @@ const SpotForm = ({ report, formType }) => {
 
 
                 <div className='price-label'>
-                    <p>
+                    <p className='set-base-price'>
                         Set a base price for your spot
                     </p>
-                    <p>
+                    <p className='desc-text comp-pricing'>
                         Competitive pricing can help your listing stand out and rank
                         higher in search results.
                     </p>
@@ -277,12 +289,8 @@ const SpotForm = ({ report, formType }) => {
                 </div>
 
 
-                <input className='submit-button' type="submit" value="Create Spot" />
+                <input className='submit-button button modal-button form-create-button' type="submit" value="Create Spot" />
             </form>
-            <button onClick={CreateTest} type='button'>
-                CreateSpotTest
-            </button>
-
         </div>
     );
 }

@@ -6,6 +6,7 @@ import { editSpot, makeSpot } from '../../store/spot';
 import { fetchOneSpot } from '../../store/spot';
 
 import "./CreateSpot.css"
+import "./EditSpot.css"
 
 
 const EditSpotForm = ({ report, formType }) => {
@@ -124,6 +125,17 @@ const EditSpotForm = ({ report, formType }) => {
         <div>
             <form onSubmit={handleSubmit} >
                 <h2>{formType}</h2>
+                <div className='edit-intro-div'>
+                    <p id='update-your-spot'>
+                        Update your Spot
+                    </p>
+                    <p id='where-place'>
+                        Where's your place located?
+                    </p>
+                    <p id='only-booked'>
+                        Guests will only get your exact address once they booked a reservation.
+                    </p>
+                </div>
                 <div className='country-address-div'>
                     <label className='country-label' >
                         Country
@@ -134,7 +146,7 @@ const EditSpotForm = ({ report, formType }) => {
                     </label>
 
                     <label className='address-label'>
-                        Address
+                        Street Address
                         <input className='address-input' type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
@@ -144,7 +156,7 @@ const EditSpotForm = ({ report, formType }) => {
 
 
                 <div className='city-state-div'>
-                    <label>
+                    <label id='city-input-label'>
                         City
                         <input className='city-input' type="text"
                             value={city}
@@ -152,7 +164,11 @@ const EditSpotForm = ({ report, formType }) => {
                             placeholder='City' />
                     </label>
 
-                    <label>
+                    <p className='comma'>
+                        ,
+                    </p>
+
+                    <label id="state-input-label">
                         State
                         <input className='state-input' type="text"
                             value={state}
@@ -172,6 +188,12 @@ const EditSpotForm = ({ report, formType }) => {
                             placeholder='Latitude' />
                     </label>
 
+                    <p className='comma'>
+                        ,
+                    </p>
+
+
+
                     <label>
                         Longitude
                         <input className='lng-input' type="text"
@@ -183,10 +205,10 @@ const EditSpotForm = ({ report, formType }) => {
                 </div>
 
                 <div className='description-label'>
-                    <p>
+                    <p id='describe-to-guests'>
                         Describe your place to guests
                     </p>
-                    <p>
+                    <p className='desc-text mention-text'>
                         Mention the best features of your space, any special amenities like
                         fast wifi or parking, and what you love about the neighborhood.
                     </p>
@@ -206,7 +228,7 @@ const EditSpotForm = ({ report, formType }) => {
                     <p >
                         Create a title for your spot
                     </p>
-                    <p>
+                    <p className='desc-text'>
                         Catch guests' attention with a spot title that
                         highlights what makes your place special.
                     </p>
@@ -220,10 +242,10 @@ const EditSpotForm = ({ report, formType }) => {
 
 
                 <div className='price-label'>
-                    <p>
+                    <p className='set-base-price'>
                         Set a base price for your spot
                     </p>
-                    <p>
+                    <p className='desc-text comp-pricing'>
                         Competitive pricing can help your listing stand out and rank
                         higher in search results.
                     </p>
@@ -231,7 +253,7 @@ const EditSpotForm = ({ report, formType }) => {
 
 
                 <div className='price-div'>
-                    <p className='dollar'>
+                    <p className='dollar comma'>
                         $
                     </p>
 
@@ -245,65 +267,8 @@ const EditSpotForm = ({ report, formType }) => {
 
                 </div>
 
-
-
-                {/* <div className='urls-label'>
-                    <p>
-                        Liven up your spot with photos
-                    </p>
-                    <p>
-                        Submit a link to at least one photo to bublish your spot.
-                    </p>
-                </div>
-
-                <div className='urls'>
-                    <input className='image-url' type="text"
-                        value={previewUrl}
-                        onChange={(e) => {
-                            setPreviewUrl(e.target.value)
-                        }}
-                        placeholder='Preview Image URL'
-                    />
-
-                    <input className='image-url' type="text"
-                        value={url1}
-                        onChange={(e) => {
-                            setUrl1(e.target.value)
-                        }}
-                        placeholder='Image URL'
-                    />
-
-                    <input className='image-url' type="text"
-                        value={url2}
-                        onChange={(e) => {
-                            setUrl2(e.target.value)
-                        }}
-                        placeholder='Image URL'
-                    />
-
-                    <input className='image-url' type="text"
-                        value={url3}
-                        onChange={(e) => {
-                            setUrl3(e.target.value)
-                        }}
-                        placeholder='Image URL'
-                    />
-
-                    <input className='image-url url4' type="text"
-                        value={url4}
-                        onChange={(e) => {
-                            setUrl4(e.target.value)
-                        }}
-                        placeholder='Image URL'
-                    />
-                </div> */}
-
-
-                <input className='submit-button' type="submit" value="Edit Spot" />
+                <input className='submit-button modal-button button edit-button' type="submit" value="Edit Spot" />
             </form>
-            <button onClick={EditTest} type='button'>
-                EditSpotTest
-            </button>
 
         </div>
     );

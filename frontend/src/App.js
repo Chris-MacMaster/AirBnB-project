@@ -41,19 +41,6 @@ function App() {
 
           <Route path="/spots/current/:spotId" exact={true}>
             <EditSpotForm />
-
-            <p>
-              {/* Most useful
-              <br>
-              </br>
-               window.location.href gives the current url:
-               <br>
-               </br>
-              {window.location.href} */}
-              Edit form will go here using spotId data from the url (window.location.href)
-            </p>
-            {/* <SpotForm /> */}
-            {/* insert the managSpots */}
           </Route>
 
 

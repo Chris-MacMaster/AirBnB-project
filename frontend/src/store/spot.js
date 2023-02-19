@@ -196,6 +196,8 @@ export const makeSpot = (spotBody, url) => async dispatch => {
         dispatch(makeSpotImage())
         //add spot image as well
         // dispatch(loadOneSpot(spot))
+        // history.push("/spots/current")
+
         return spot
     }
 
