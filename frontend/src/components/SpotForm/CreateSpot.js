@@ -61,13 +61,14 @@ const SpotForm = ({ report, formType }) => {
    
   
         //bug, breaks it
-        // const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
+        const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
+        const spotData = await Promise.resolve(spotResponse)
        
-        // if (spotResponse) {
-            // console.log("SPOT RESPONSE", spotResponse)
-                reset()
-                // history.push(`/spots/current`)
-        // }
+        if (spotResponse) {
+            console.log("SPOT RESPONSE DATA", spotData)
+            reset()
+            history.push(`/spots/${spotData.id}`)
+        }
     };
 
     const reset = () => {

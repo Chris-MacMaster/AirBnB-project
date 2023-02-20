@@ -33,6 +33,20 @@ const SpotIndexItem = ({ spot }) => {
     
     }
 
+    function toDecimal(num) {
+        const convertedNum = `${num}`
+
+        if (convertedNum.length >= 4) {
+            return convertedNum.slice(0, 4)
+        } else {
+            if (!convertedNum.includes("0")) {
+                return convertedNum.concat(".0")
+            }
+        }
+        return convertedNum
+    }
+
+
     // let spotRating = spot.avgRating
 
     // useEffect(() => {
@@ -61,7 +75,7 @@ const SpotIndexItem = ({ spot }) => {
                         <div className='avg-rating' >
                             &#9733; 
                             {/* {spot.avgRating} */}
-                            {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"}
+                            {spot.avgRating !== "no reviews exist for this spot yet" ? toDecimal(spot.avgRating) : "New"}
                         </div>
 
                     </div >

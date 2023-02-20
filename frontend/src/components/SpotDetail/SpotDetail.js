@@ -57,18 +57,22 @@ const SpotDetail = () => {
     const reviewState = useSelector(state => state.reviews.spot)
     const reviews = Object.values(reviewState)
 
-
-    // const userId = reviewState.
-
-
-    // const noReviews = reviewState
-    const checkNoReviews = () => {
+    const yourReviewExists = (reviewState) => {
         for (let key in reviewState){
-            if (reviewState[key].userId === user.id){
-                return false
+            if (key.userId === user.id){
+                return true
             }
         }
-        return true
+        return false
+    }
+
+    const hasReview = yourReviewExists(reviewState)
+  
+    const checkNoReviews = () => {
+        if (!reviewState) {
+            return true
+        }
+        return false
     }
 
     const noReviews = checkNoReviews()
@@ -98,6 +102,11 @@ const SpotDetail = () => {
     if (!spot.Owner) {
         return null
     }
+    if (reviewState === {}) {
+        return null
+    }
+
+
 
     // const spotImages = normalizeArr(spotImagesArr)
 
@@ -113,8 +122,28 @@ const SpotDetail = () => {
     }
 
     const handleReserve = () => {
-        window.alert()
+        window.alert("Feature Coming Soon...")
     }
+
+
+    function toDecimal(num) {
+        const convertedNum = `${num}`
+
+        if (convertedNum.length >= 4) {
+            return convertedNum.slice(0, 4)
+        } else {
+            if (!convertedNum.includes("0")) {
+                return convertedNum.concat(".0")
+            }
+        }
+        return convertedNum
+    }
+
+    if (!reviewState) {
+        return null
+    }
+
+   
 
 
     return (
@@ -150,7 +179,7 @@ const SpotDetail = () => {
 
                         <div id='spot-image-2'>
                             {/* src={(spotImagesArr.length >= 3) && spotImagesArr[2].url} */}
-                            <img id='img2' src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img2' src='https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                                 alt='visual-content-2' />
                         </div>
                     </div>
@@ -158,13 +187,13 @@ const SpotDetail = () => {
                     <div className='images-subdiv-row2'>
                         <div id='spot-image-3'>
                             {/* src={(spotImagesArr.length >= 4) && spotImagesArr[3].url} */}
-                            <img id='img3' src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img3' src='https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg'
                                 alt='visual-content-3' />
                         </div>
 
                         <div className='spot-image-4'>
                             {/* src={(spotImagesArr.length >= 5) && spotImagesArr[4].url} */}
-                            <img id='img4' src='https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350'
+                            <img id='img4' src='https://images.pexels.com/photos/813692/pexels-photo-813692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                                 alt='visual-content-4' />
                         </div>
 
@@ -187,14 +216,17 @@ const SpotDetail = () => {
 
                 <div className='reserve-box'>
                     <div className='reserve-box-row1'>
-                        <p >
+                        <p id='price-night'>
                             ${spot.price} night
                         </p>
 
                         <div className='box-reviewAvg-reviewNum'>
                             <p >
-                                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews" : spot.numReviews + " Review"}
+                                &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}  
                             </p>
+                            {spot.numReviews !== 0 && <div >
+                                &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews" : spot.numReviews + " Review"}
+                            </div>}
                             <p >
                                 {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
                             </p>
@@ -207,7 +239,7 @@ const SpotDetail = () => {
 
                     <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
-                            <button type='button' className='reserve-button modal-button button white-button'>
+                            <button onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
                                 Reserve
                             </button>
                         </div>
@@ -220,7 +252,7 @@ const SpotDetail = () => {
                 </div>
                     <div className='reviewAvg-reviewNum'>
                         <p className='avgRating-text'>
-                    {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"}
+                    {/* {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"} */}
                     {/* &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} */}
                         </p>
                         <p >
@@ -229,20 +261,24 @@ const SpotDetail = () => {
                     </div>
                     {/* needs logic to only display on condition, i think ternary */}
                     <div className='avg-rating' >
-                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"}
-                
-                
-                 &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
+                &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}
+                    
+                    {spot.numReviews !==0 && <div >
+                        &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
+                    </div>}
+
                     </div>
 {/* sdjkafhllkjdfhlask */}
-            {(notOwnerLogged && noReviews) &&
+            {(notOwnerLogged) &&
                     <div className='open-modal-div'>
                         <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={<ReviewForm spotId={spotId}/>} />
+                    </div>
+                    }
+            {((notOwnerLogged) && spot.numReviews === 0) && <div className='first-post-div'>
                         <p >
                             Be the first to post a review!
                         </p>
-                    </div>
-                    }
+                    </div>}
 
                     {/*  */}
                     <div className='review-index'>
@@ -250,6 +286,9 @@ const SpotDetail = () => {
                             <ReviewIndexItem review={review} spotId={spotId} key={review.id} />
                         ))}
                     </div>
+                    {spot.numReviews === 0 && <div >
+                        Please visit a spot to post a review
+                    </div>}
                     {/* <p >
                         reviews should go here
                     </p>
