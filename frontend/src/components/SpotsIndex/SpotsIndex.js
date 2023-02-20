@@ -37,7 +37,7 @@ function SpotsIndex() {
         //jsx uses camel case class names
         <div className="spots-index">
             <h2>
-                Spots Index
+                {/* Spots Index */}
             </h2>
 
             <div className="spotIndex">
