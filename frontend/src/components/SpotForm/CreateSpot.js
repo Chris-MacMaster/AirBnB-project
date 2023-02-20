@@ -58,13 +58,11 @@ const SpotForm = ({ report, formType }) => {
             description,
             price: priceNum
         }
-        // console.log("FORM DATA", newSpot)
-        // console.log("asd")
-        // history.push("/spots/current")
+   
   
-        const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
-        // dispatch(makeSpot(newSpot, previewUrl))
-        // console.log(spotResponse)
+        //bug, breaks it
+        // const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
+       
         // if (spotResponse) {
             // console.log("SPOT RESPONSE", spotResponse)
                 reset()
@@ -236,7 +234,7 @@ const SpotForm = ({ report, formType }) => {
                         Liven up your spot with photos
                     </p>
                     <p>
-                        Submit a link to at least one photo to bublish your spot.
+                        Submit a link to at least one photo to liven up your spot.
                     </p>
                 </div>
 
