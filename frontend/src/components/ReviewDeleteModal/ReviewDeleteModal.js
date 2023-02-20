@@ -24,11 +24,11 @@ const ReviewDeleteModal = ({ review }) => {
     const { closeModal } = useModal()
 
 
-    // useEffect(() => {
-    //     dispatch(fetchReviews(review.id))
-    //     // dispatch(actionResetReviews())
+    useEffect(() => {
+        dispatch(fetchReviews(review.id))
+        // dispatch(actionResetReviews())
 
-    // }, [dispatch])
+    }, [dispatch])
 
 
     const handleDelete = (e) => {

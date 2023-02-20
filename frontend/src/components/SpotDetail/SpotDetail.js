@@ -58,15 +58,26 @@ const SpotDetail = () => {
     const reviews = Object.values(reviewState)
 
     const yourReviewExists = (reviewState) => {
-        for (let key in reviewState){
-            if (key.userId === user.id){
-                return true
+        if (reviewState) {
+            for (const key in reviewState){
+                const reviewAuthorUserID = reviewState[key].userId
+                // console.log("KEY USER ID", key)
+                // console.log("USER.ID", user.id)
+                if (reviewAuthorUserID === user.id){
+                    // console.log('tri')
+                    // console.log("KEY USER ID", key.userId)
+                    // console.log("USER.ID", user.id)
+    
+    
+                    return true
+                }
             }
         }
         return false
     }
+    console.log("YOUR REVIEW HERE?", yourReviewExists(reviewState))
 
-    const hasReview = yourReviewExists(reviewState)
+    // const hasReview = yourReviewExists(reviewState)
   
     const checkNoReviews = () => {
         if (!reviewState) {
@@ -79,7 +90,7 @@ const SpotDetail = () => {
 
     // if ()
 
-    const isOwner = (spot?.Owner?.id === user.id)
+    const isOwner = (spot?.Owner?.id === user?.id)
 
     const notOwnerLogged = !isOwner && user
 
@@ -95,7 +106,7 @@ const SpotDetail = () => {
             dispatch(fetchOneSpot(spotId))
             
         // }
-    }, [dispatch])
+    }, [dispatch, spotId])
 
 
 
@@ -269,7 +280,7 @@ const SpotDetail = () => {
 
                     </div>
 {/* sdjkafhllkjdfhlask */}
-            {(notOwnerLogged) &&
+            {(notOwnerLogged && !yourReviewExists(reviewState)) &&
                     <div className='open-modal-div'>
                         <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={<ReviewForm spotId={spotId}/>} />
                     </div>
