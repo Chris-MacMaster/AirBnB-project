@@ -238,6 +238,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
         let count = 0;
         let sum = 0;
+        console.log("SPOT REVIEWS", spotReviews)
 
         if (spotReviews.length) {
             count = spotReviews.length
@@ -343,6 +344,7 @@ router.get('/:spotId', async (req, res) => {
     spot = spot[0].toJSON() 
 
     spot.numReviews = reviewCount
+    console.log("STAR SUM", starSum, "REVIEW COUNT", reviewCount)
     if (starSum){
         spot.avgStarRating = (starSum / reviewCount)
     } else {

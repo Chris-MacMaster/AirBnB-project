@@ -16,6 +16,8 @@ import { makeReview } from '../../store/review';
 
 import { useParams } from 'react-router-dom';
 
+import { useModal } from "../../context/Modal"
+
 
 import "./CreateReview.css"
 
@@ -25,11 +27,12 @@ const ReviewForm = ({spotId}) => {
     const dispatch = useDispatch()
 
     const params = useParams()
+    const { closeModal } = useModal()
 
     // const {spotId} = params
 
-    console.log("PARAMS", params)
-    console.log("SPOTID", spotId)
+    // console.log("PARAMS", params)
+    // console.log("SPOTID", spotId)
 
 
 
@@ -49,13 +52,23 @@ const ReviewForm = ({spotId}) => {
         //trying to be careful about data types
         const starsNum = parseInt(stars)
 
+
+        if (review.length < 10) {
+            window.alert("Review must be at least 10 characters")
+            return
+        }
+
         const newReview = {
             review,
             stars: starsNum
         }
-        console.log("FORM DATA", newReview)
+        // console.log("FORM DATA", newReview)
 
         dispatch(makeReview(newReview, spotId))
+
+        closeModal()
+
+        // closeModal()
 
         // console.log("asd")
         // history.push("/spots/current")

@@ -43,7 +43,7 @@ const SpotDetail = () => {
 
     
     
-    console.log("USER", user)
+    // console.log("USER", user)
     // console.log("THIS IS THE SPOT STATE", spotState)
     // console.log("SPOT IMAGES", spotState.singleSpot.SpotImages)
     
@@ -52,7 +52,7 @@ const SpotDetail = () => {
 
     
     // console.log("SPOT IMAGES ARRAY FROM STATE", spotImagesArr)//currently an array
-    console.log("SINGLE SPOT FROM STATE", spot)
+    // console.log("SINGLE SPOT FROM STATE", spot)
 
     const reviewState = useSelector(state => state.reviews.spot)
     const reviews = Object.values(reviewState)
@@ -75,7 +75,7 @@ const SpotDetail = () => {
 
     // if ()
 
-    const isOwner = (spot.Owner.id === user.id)
+    const isOwner = (spot?.Owner?.id === user.id)
 
     const notOwnerLogged = !isOwner && user
 
@@ -86,10 +86,9 @@ const SpotDetail = () => {
     // console.log("SPOTID", spotId)
     useEffect(() => {
         // if (spotId) {
-            console.log("SPOT ID", spotId)
-            dispatch(fetchOneSpot(spotId))
-            
+            // console.log("SPOT ID", spotId)
             dispatch(fetchReviews(spotId))
+            dispatch(fetchOneSpot(spotId))
             
         // }
     }, [dispatch])
@@ -230,7 +229,7 @@ const SpotDetail = () => {
                     </div>
                     {/* needs logic to only display on condition, i think ternary */}
                     <div className='avg-rating' >
-                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} 
+                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"}
                 
                 
                  &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 

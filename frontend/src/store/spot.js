@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf"
 import { useHistory } from "react-router-dom"
 
 
+
 const INITIAL_SPOT = "spot/LOAD"
 const LOAD_SPOTS = "spots/LOAD"
 const LOAD_SPOT = "spots/LOAD/ONE"
@@ -287,6 +288,8 @@ export const editSpot = (spotBody) => async dispatch => {
 
     if (response.ok) {
         dispatch(loadSpots(convertedSpots))
+        // history.push(`/api/spots/`)
+        // return true
     }
 
 };

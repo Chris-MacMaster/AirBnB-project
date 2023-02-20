@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import { actionDeleteReport } from '../store/report';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
@@ -21,6 +21,8 @@ import "./SpotIndexItem.css"
 const CurrentSpotItem = ({ spot }) => {
     const history = useHistory()
     const dispatch = useDispatch()
+
+    const user = useSelector(state => state.session.user)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -48,8 +50,10 @@ const CurrentSpotItem = ({ spot }) => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        console.log("update button test")
-        history.push(`/spots/current/${spot.id}`)
+        // console.log("update button test")
+        if (user) {
+            history.push(`/spots/current/${spot.id}`)
+        }
     }
 
     return (

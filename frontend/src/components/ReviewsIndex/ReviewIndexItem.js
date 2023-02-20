@@ -49,7 +49,7 @@ const ReviewIndexItem = ({ review }) => {
     let preFormatted = date.toLocaleDateString()
     
     const postSplit = preFormatted.split("/")
-    console.log("REVIEW", review)
+    // console.log("REVIEW", review)
     
     let dateString = postSplit[2].concat("-", postSplit[0], "-", postSplit[1])
 

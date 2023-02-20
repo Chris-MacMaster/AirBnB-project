@@ -62,14 +62,14 @@ const SpotForm = ({ report, formType }) => {
         // console.log("asd")
         // history.push("/spots/current")
   
-        // const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
         const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
-        
-        if (spotResponse) {
-            console.log("SPOT RESPONSE", spotResponse)
+        // dispatch(makeSpot(newSpot, previewUrl))
+        // console.log(spotResponse)
+        // if (spotResponse) {
+            // console.log("SPOT RESPONSE", spotResponse)
                 reset()
                 // history.push(`/spots/current`)
-        }
+        // }
     };
 
     const reset = () => {

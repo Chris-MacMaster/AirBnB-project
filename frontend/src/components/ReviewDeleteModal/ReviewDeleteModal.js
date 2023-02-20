@@ -11,6 +11,9 @@ import { deleteReview } from '../../store/review';
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
 // import OpenModalButton from '../OpenModalButton';
 
+import { useEffect } from 'react';
+import { fetchReviews } from '../../store/review';
+
 
 import "../SpotsIndex/DeleteSpotModal.css"
 
@@ -21,11 +24,18 @@ const ReviewDeleteModal = ({ review }) => {
     const { closeModal } = useModal()
 
 
+    // useEffect(() => {
+    //     dispatch(fetchReviews(review.id))
+    //     // dispatch(actionResetReviews())
+
+    // }, [dispatch])
+
 
     const handleDelete = (e) => {
         e.preventDefault()
 
         dispatch(deleteReview(review.id))
+        // if (response.ok)
         // history.push(`/spots/${spot.id}`)
         closeModal()
     }
@@ -33,7 +43,6 @@ const ReviewDeleteModal = ({ review }) => {
     const handleNoDelete = (e) => {
         e.preventDefault()
         closeModal()
-
         // history.push(`/spots/current`)
 
     }

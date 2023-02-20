@@ -26,7 +26,7 @@
 
 .preview-image {
     display: inline-block;
-    background-color: chocolate;
+    /* background-color: chocolate; */
     width: 50%;
     height: 412px;
     margin: 2px;

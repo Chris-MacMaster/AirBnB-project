@@ -1,6 +1,6 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import {useHistory} from "react-router-dom"
 import {Link} from "react-router-dom"
@@ -11,6 +11,8 @@ function ProfileButton({ user }) {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
     const history = useHistory()
+
+    // const user = useSelector(state => state.session.user)
 
     const openMenu = () => {
         if (showMenu) return;
@@ -58,7 +60,7 @@ function ProfileButton({ user }) {
             </button>
             <ul  className={ulClassName} ref={ulRef}>
                 {/* <li>{user.username}</li> */}
-                <li id="hello" className="main-dropdown-li">Hello,  </li>
+                <li id="hello" className="main-dropdown-li">Hello, {user.username}  </li>
                 <li id="email" className="main-dropdown-li">{user.email}</li>
                 {/* <li>
                     <button onClick={toCreateSpot}>Create New Spot</button>

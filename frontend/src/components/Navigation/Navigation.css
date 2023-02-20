@@ -121,3 +121,16 @@ li {
 #manage-text:active {
     color: orange;
 }
+
+#hello, #email, #manage-spots {
+    text-align: left;
+    /* margin-left: 15px; */
+}
+
+#hello, #email {
+    padding-bottom: 5px;
+}
+
+#logout {
+    width: 100%;
+}

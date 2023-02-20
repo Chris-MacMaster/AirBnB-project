@@ -37,7 +37,7 @@ export const actionResetReviews = () => {
 // }
 
 export const normalizeArr = (arr) => {
-    console.log("NORMALIZE ARRAY INPUT, FETCH REVIEWS RESPONSE OBJ", arr)
+    // console.log("NORMALIZE ARRAY INPUT, FETCH REVIEWS RESPONSE OBJ", arr)
     const newState = {};
     arr.forEach(spot => {
         newState[spot.id] = spot;
@@ -92,17 +92,17 @@ export const fetchReviews = (id) => async dispatch => {
     // console.log("FETCH REVIEWS RESPONSE", response)
 
     const reviews = await response.json();
-    console.log("FETCH REVIEWS RESPONSE", reviews)
+    // console.log("FETCH REVIEWS RESPONSE", reviews)
     //reviews can come back as an errors object
 
     if (reviews.message === "No spots with that id exist") {
 
     }
     
-    console.log(reviews)
+    // console.log(reviews)
     // console.log(spots)
     // console.log(convertedReviews)
-    console.log(response.ok)
+    // console.log(response.ok)
     if (response.ok){
         let convertedReviews = normalizeArr(reviews)
         dispatch(loadReviews(convertedReviews));
@@ -115,7 +115,7 @@ export const fetchReviews = (id) => async dispatch => {
 
 // CREATE NEW REVIEW
 export const makeReview = (reviewBody, spotId) => async dispatch => {
-    console.log("REVIEW BODY", reviewBody)
+    // console.log("REVIEW BODY", reviewBody)
 
     const { review, stars } = reviewBody
     const method = "POST"
@@ -129,12 +129,12 @@ export const makeReview = (reviewBody, spotId) => async dispatch => {
         // "stars": 5,
     })
 
-    console.log("BODY", body)
+    // console.log("BODY", body)
     const options = { method, headers, body }
     // console.log("POST STRINGIFIED REVIEW BODY", body)
     // console.log("stars", stars)
 
-    console.log("OPTIONS", options)
+    // console.log("OPTIONS", options)
 
     //CHANGE/CUSTOMIZE, need to pull reviews by spot ID
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, options);
@@ -173,6 +173,7 @@ export const deleteReview = (id) => async dispatch => {
 
     if (response.ok) {
         dispatch(loadReviews(convertedReviews))
+        return response.ok
     }
 }
 

@@ -83,9 +83,13 @@ const EditSpotForm = ({ report, formType }) => {
         }
         console.log("FORM DATA", editedSpot)
 
-        dispatch(editSpot(editedSpot))
+        // if (dispatch(editSpot(editedSpot)) === true) {
+            history.push(`/spots/${spotId}`)
+        // }
 
-        history.push("/spots/current")
+        
+
+        // history.push("/spots/current")
 
         //**CHANGE TO EDIT SPOT */
         // console.log("asd")
@@ -118,7 +122,7 @@ const EditSpotForm = ({ report, formType }) => {
         dispatch(editSpot({
             spotId
         }))
-        // history.push(`/spots`);
+        history.push(`/spots`);
     };
 
     return (
