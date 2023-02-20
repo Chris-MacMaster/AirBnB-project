@@ -267,7 +267,7 @@ const EditSpotForm = ({ report, formType }) => {
 
                 </div>
 
-                <input className='submit-button modal-button button edit-button' type="submit" value="Edit Spot" />
+                <input className='submit-button modal-button button edit-button' type="submit" value="Update your Spot" />
             </form>
 
         </div>

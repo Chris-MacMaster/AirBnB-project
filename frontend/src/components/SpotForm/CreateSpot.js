@@ -34,19 +34,11 @@ const SpotForm = ({ report, formType }) => {
 
     useEffect(() => {
         let e = []
-        //insert if (error(s) push to error array e)
-        //get errors from back end for display
-
-
         setErrors(e)
+    }, [address, city, country, state, lat,lng, name, description, price, previewUrl, url1, url2, url3, url4])
 
 
-    }, [address, city, country, state, lat,
-        lng, name, description, price,
-        previewUrl, url1, url2, url3, url4])
-
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         //trying to be careful about data types
@@ -66,15 +58,17 @@ const SpotForm = ({ report, formType }) => {
             description,
             price: priceNum
         }
-        console.log("FORM DATA", newSpot)
+        // console.log("FORM DATA", newSpot)
         // console.log("asd")
         // history.push("/spots/current")
-
+  
+        // const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
         const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
+        
         if (spotResponse) {
-                // console.log("SPOT RESPONSE", spotResponse)
+            console.log("SPOT RESPONSE", spotResponse)
                 reset()
-                history.push(`/spots/current`)
+                // history.push(`/spots/current`)
         }
     };
 

@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf"
+import { useHistory } from "react-router-dom"
 
 
 const INITIAL_SPOT = "spot/LOAD"
@@ -136,6 +137,7 @@ export const fetchOneSpot = (id) => async dispatch => {
 //CREATE NEW SPOT
 export const makeSpot = (spotBody, url) => async dispatch => {
     // console.log("SPOT BODY", spotBody)
+    const history = useHistory()
 
 
     const { address, city, state, country, lat, lng, name, description, price} = spotBody
@@ -196,7 +198,8 @@ export const makeSpot = (spotBody, url) => async dispatch => {
         dispatch(makeSpotImage())
         //add spot image as well
         // dispatch(loadOneSpot(spot))
-        // history.push("/spots/current")
+        history.push(`/spots/${spot.id}`)
+        console.log("SPOT", spot)
 
         return spot
     }

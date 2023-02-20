@@ -39,8 +39,11 @@ const SpotDetail = () => {
     // const history = useHistory()
     const dispatch = useDispatch()
     const spotState = useSelector(state => state.spots)
+    const user = useSelector(state => state.session.user)
+
     
     
+    console.log("USER", user)
     // console.log("THIS IS THE SPOT STATE", spotState)
     // console.log("SPOT IMAGES", spotState.singleSpot.SpotImages)
     
@@ -53,6 +56,28 @@ const SpotDetail = () => {
 
     const reviewState = useSelector(state => state.reviews.spot)
     const reviews = Object.values(reviewState)
+
+
+    // const userId = reviewState.
+
+
+    // const noReviews = reviewState
+    const checkNoReviews = () => {
+        for (let key in reviewState){
+            if (reviewState[key].userId === user.id){
+                return false
+            }
+        }
+        return true
+    }
+
+    const noReviews = checkNoReviews()
+
+    // if ()
+
+    const isOwner = (spot.Owner.id === user.id)
+
+    const notOwnerLogged = !isOwner && user
 
 
     let {spotId} = useParams()
@@ -86,6 +111,10 @@ const SpotDetail = () => {
 
     const getReviewsTest = () => {
         dispatch(fetchReviews(spotId))
+    }
+
+    const handleReserve = () => {
+        window.alert()
     }
 
 
@@ -201,14 +230,20 @@ const SpotDetail = () => {
                     </div>
                     {/* needs logic to only display on condition, i think ternary */}
                     <div className='avg-rating' >
-                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
+                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} 
+                
+                
+                 &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
                     </div>
+{/* sdjkafhllkjdfhlask */}
+            {(notOwnerLogged && noReviews) &&
                     <div className='open-modal-div'>
                         <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={<ReviewForm spotId={spotId}/>} />
                         <p >
                             Be the first to post a review!
                         </p>
                     </div>
+                    }
 
                     {/*  */}
                     <div className='review-index'>

@@ -167,7 +167,7 @@
 .review-index {
     /* height: 10000px; */
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
 
 }
