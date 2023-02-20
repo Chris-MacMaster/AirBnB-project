@@ -94,11 +94,11 @@ const SpotDetail = () => {
         <h1 >
 
         </h1>
-            <p >
+            <p className='spot-name'>
                 {spot.name}
             </p>
             <div >
-                <p >
+                <p className='spot-line2'>
                 {spot.city}, {spot.state}, {spot.country}, 
 
                 </p>
@@ -144,13 +144,6 @@ const SpotDetail = () => {
 
                 </div>
 
-                {/* <p >
-                    {spotImages[0].url}
-                </p> */}
-                {/* careful iterating on this till initial state is done, theres a bug here */}
-                {/* {spotImages.map(image => (
-                    <img src={image.url} alt='no found' key={image.id}/>
-                ))}  */}
             </div>
 
 
@@ -160,7 +153,7 @@ const SpotDetail = () => {
                         Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
                     </p>
                     <p className='hosted-description'>
-                        {spot.description}
+                        {spot.description} awjfhajbfwjahbf ieawugfhiouhfo aiosuha whuf oiwaushfio aushfio usfio asuhfio uahsfo iuhsaio fhauh ioasuhfdio aufsaf
                     </p>
                 </div>
 
@@ -172,7 +165,7 @@ const SpotDetail = () => {
 
                         <div className='box-reviewAvg-reviewNum'>
                             <p >
-                                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} 
+                                &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews" : spot.numReviews + " Review"}
                             </p>
                             <p >
                                 {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
@@ -186,8 +179,8 @@ const SpotDetail = () => {
 
                     <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
-                            <button type='button' className='reserve-button'>
-                                reserve
+                            <button type='button' className='reserve-button modal-button button white-button'>
+                                Reserve
                             </button>
                         </div>
 
@@ -223,10 +216,10 @@ const SpotDetail = () => {
                             <ReviewIndexItem review={review} spotId={spotId} key={review.id} />
                         ))}
                     </div>
-                    <p >
+                    {/* <p >
                         reviews should go here
                     </p>
-                    <button onClick={getReviewsTest} type='button' className=''>LoadReviewState Test</button>
+                    <button onClick={getReviewsTest} type='button' className=''>LoadReviewState Test</button> */}
                 </div>
     );
 };

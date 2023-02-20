@@ -76,39 +76,43 @@ function LoginFormModal() {
 
     return (
         <>
-            
-            <form className="login-form" onSubmit={handleSubmit}>
-                <p className="login-p">
-                    Log In
-                </p>
-                <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
-                <label>
-                    {/* Username or Email */}
-                    <input
-                        type="text"
-                        value={credential}
-                        placeholder="Username or Email"
-                        onChange={(e) => setCredential(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    {/* Password */}
-                    <input
-                        type="password"
-                        value={password}
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <button className="modal-button button modal-login-button" type="submit">Log In</button>
-                <button onClick={becomeDemo} id="demo-button" className="modal-button button modal-login-button modal-login-demo-button" type="button">Demo User</button>
-            </form>
+            <div className="login-modal-div">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <p className="login-p">
+                        Log In
+                    </p>
+                    <ul>
+                        {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                    <label className="login-input">
+                        {/* Username or Email */}
+                        <input
+                            type="text"
+                            value={credential}
+                            placeholder="Username or Email"
+                            onChange={(e) => setCredential(e.target.value)}
+                            required
+                            className="login-input"
+                        />
+                    </label>
+                    <label className="login-input">
+                        {/* Password */}
+                        <input
+                            type="password"
+                            value={password}
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className="login-input"
+                        />
+                    </label>
+                    <button className="modal-button button modal-login-button white-button" type="submit">Log In</button>
+                    <button onClick={becomeDemo} id="demo-button" className="modal-button button modal-login-button modal-login-demo-button" type="button">Demo User</button>
+                </form>
+
+            </div>
         </>
     );
 }

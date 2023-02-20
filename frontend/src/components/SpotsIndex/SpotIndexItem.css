@@ -119,3 +119,12 @@ img :hover {
     transform: rotate(.turn);
     background-color: blueviolet;
 } */
+
+.spot-name {
+    margin-left: 10px;
+}
+
+.card-info {
+    padding-left: 5px;
+    padding-right: 5px;
+}

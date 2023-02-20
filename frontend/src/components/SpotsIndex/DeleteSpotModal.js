@@ -68,7 +68,7 @@ const DeleteSpotModal = ({spot}) => {
             <p className='confirm-delete-text'>
                 Are you sure you want to remove this spot from the listings?
             </p>
-            <button onClick={handleDelete} className='yes-delete-button button' type='button' >Yes (Delete Spot)</button>
+            <button onClick={handleDelete} className='yes-delete-button button white-button' type='button' >Yes (Delete Spot)</button>
             <button onClick={handleNoDelete} className='no-delete-button button' type='button' >No (Keep Spot)</button>
         </div>
                  

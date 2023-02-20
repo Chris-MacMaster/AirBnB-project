@@ -17,6 +17,9 @@ import { makeReview } from '../../store/review';
 import { useParams } from 'react-router-dom';
 
 
+import "./CreateReview.css"
+
+
 const ReviewForm = ({spotId}) => {
     const history = useHistory();
     const dispatch = useDispatch()
@@ -81,10 +84,10 @@ const ReviewForm = ({spotId}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} >
+            <form className='login-form' onSubmit={handleSubmit} >
 
                 <div className='description-label'>
-                    <p>
+                    <p id='how-was-stay'>
                         How was your stay?
                     </p>
                 
@@ -99,13 +102,57 @@ const ReviewForm = ({spotId}) => {
                 </textarea>
 
                 <div className='star-rating' >
+                    
                     <label>
-                        <input
+                        1
+                        <input 
                         type="radio"
                         value={5}
                         onChange={(e) => {
                             setStars(e.target.value)
                         }}
+                        className="input-1"
+                        />
+                        2
+                    
+
+                        <input
+                            type="radio"
+                            value={5}
+                            onChange={(e) => {
+                                setStars(e.target.value)
+                            }}
+                            className="input-2"
+                        />
+                        3
+
+                        <input
+                            type="radio"
+                            value={5}
+                            onChange={(e) => {
+                                setStars(e.target.value)
+                            }}
+                            className="input-3"
+                        />
+                        4
+
+                        <input
+                            type="radio"
+                            value={5}
+                            onChange={(e) => {
+                                setStars(e.target.value)
+                            }}
+                            className="input-4"
+                        />
+                        5
+
+                        <input
+                            type="radio"
+                            value={5}
+                            onChange={(e) => {
+                                setStars(e.target.value)
+                            }}
+                            className="input-5"
                         />
                     </label>
                 </div>
@@ -121,16 +168,9 @@ const ReviewForm = ({spotId}) => {
                 </div > */}
 
 
-                
-                
-
-
-
-                <input className='submit-button' type="submit" value="Create Review" />
+                <input className='submit-button modal-button button white-button create-review-button' type="submit" value="Create Review" />
             </form>
-            {/* <button onClick={CreateTest} type='button'>
-                EditReviewTest
-            </button> */}
+            
 
         </div>
     );

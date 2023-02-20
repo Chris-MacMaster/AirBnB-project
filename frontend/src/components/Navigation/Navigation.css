@@ -110,3 +110,14 @@ li {
 #logout {
     border-bottom: 2px solid black;
 }
+
+#manage-text {
+    color: blue;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /* color: blue; */
+}
+
+#manage-text:active {
+    color: orange;
+}
