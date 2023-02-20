@@ -224,7 +224,7 @@ const SpotDetail = () => {
                             <p >
                                 &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}  
                             </p>
-                            {spot.numReviews !== 0 && <div >
+                            {spot.numReviews !== 0 && <div className='box-dot-reviews'>
                                 &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews" : spot.numReviews + " Review"}
                             </div>}
                             <p >

@@ -190,3 +190,13 @@
 /* .price-night {
     padding-left: 10px;
 } */
+
+
+.box-reviewAvg-reviewNum {
+    display: flex;
+    align-items: center;
+}
+
+.box-dot-reviews {
+    margin-left: 4px;
+}
