@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf"
 
 
 const LOAD_REVIEWS = "reviews/LOAD"
-const RESET_REVIEWS = "reviews/LOAD"
+const RESET_REVIEWS = "reviews/RESET"
 // const LOAD_SPOT = "spots/LOAD/ONE"
 // const DELETE_SPOT = "spots/DELETE"
 // //**ACTIONS */
@@ -62,7 +62,7 @@ export default function reviewReducer(state = initialState, action) {
         case LOAD_REVIEWS: {
             //neccessary to render all, bug to fix
             newState = {
-                ...state, //...action.payload
+                ...state
             }
             newState.spot = action.payload
             // console.log("NEWSTATE", newState)

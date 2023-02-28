@@ -58,7 +58,7 @@ const SpotDetail = () => {
     const reviews = Object.values(reviewState)
 
     const yourReviewExists = (reviewState) => {
-        if (reviewState) {
+        if (reviewState && reviewState.user) {
             for (const key in reviewState){
                 const reviewAuthorUserID = reviewState[key].userId
                 // console.log("KEY USER ID", key)
@@ -116,15 +116,6 @@ const SpotDetail = () => {
     if (reviewState === {}) {
         return null
     }
-
-
-
-    // const spotImages = normalizeArr(spotImagesArr)
-
-    //SPOT BUG, NOT POPULATING 
-    // console.log("SPOT IMAGES ARRAY", spotImagesArr)
-    // console.log("SPOT IMAGES OBJ", spotImages)
-    
 
 
 

@@ -24,11 +24,14 @@ const ReviewDeleteModal = ({ review }) => {
     const { closeModal } = useModal()
 
 
-    useEffect(() => {
-        dispatch(fetchReviews(review.id))
-        // dispatch(actionResetReviews())
 
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(fetchReviews(review.id))
+    //     // dispatch(actionResetReviews())
+
+    // }, [dispatch])
+    //button open itself should not trigger re-render with nothing in state
+
 
 
     const handleDelete = (e) => {
