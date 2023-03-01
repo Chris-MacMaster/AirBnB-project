@@ -174,6 +174,8 @@ export const deleteReview = (id) => async dispatch => {
     if (response.ok) {
         dispatch(loadReviews(convertedReviews))
         return response.ok
+    } else {
+        return null
     }
 }
 
