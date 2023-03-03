@@ -34,21 +34,21 @@ function App() {
 
 
 
-          <Route path="/spots/current" exact={true}>
+          <Route path="/spots/manage" exact={true}>
             <CurrentSpotsIndex />
             {/* insert the managSpots */}
           </Route>
 
-          <Route path="/spots/current/:spotId" exact={true}>
+          <Route path="/spots/manage/:spotId" exact={true}>
             <EditSpotForm />
           </Route>
 
 
-          <Route path="/spots/new" exact={true}>
+          <Route path="/spots/create" exact={true}>
             <SpotForm />
           </Route>
 
-          <Route path="/spots/:spotId" exact={true}>
+          <Route path="/spots/detail/:spotId" exact={true}>
             <SpotDetail />
           </Route>
 

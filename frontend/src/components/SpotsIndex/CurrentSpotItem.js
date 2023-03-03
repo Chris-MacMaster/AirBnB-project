@@ -52,7 +52,7 @@ const CurrentSpotItem = ({ spot }) => {
         e.preventDefault()
         // console.log("update button test")
         if (user) {
-            history.push(`/spots/current/${spot.id}`)
+            history.push(`/spots/manage/${spot.id}`)
         }
     }
 

@@ -168,16 +168,14 @@ export const makeSpot = (spotBody, url) => async dispatch => {
         
     })
     const options = {method, headers, body}
-    // console.log("POST STRINGIFIED SPOT BODY", body)
-    // console.log("address", address)
+    
 
-    //fails here
+    
     const response = await csrfFetch(`/api/spots`, options);
     
     //testing logs
     const spot = await response.json();
     console.log("MAKE SPOT FETCH RESPONSE", spot)
-    // console.log("POST RESPONSE DATA OBJ",spot)
     
     if (response.ok){
         dispatch(loadSpots(spot));
@@ -282,12 +280,12 @@ export const editSpot = (spotBody) => async dispatch => {
     // }
 
     //loadupdated list of spots
-    const getRes = await csrfFetch('/api/spots/current');
-    const spots = await getRes.json();
-    let convertedSpots = normalizeArr(spots.Spots)
+    // const getRes = await csrfFetch('/api/spots/current');
+    // const spots = await getRes.json();
+    // let convertedSpots = normalizeArr(spots.Spots)
 
     if (response.ok) {
-        dispatch(loadSpots(convertedSpots))
+        dispatch(loadOneSpot(spot))
         // history.push(`/api/spots/`)
         // return true
     }

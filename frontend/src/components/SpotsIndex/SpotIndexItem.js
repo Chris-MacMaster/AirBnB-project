@@ -29,7 +29,7 @@ const SpotIndexItem = ({ spot }) => {
         e.preventDefault()
         // console.log("clicked")
         dispatch(fetchOneSpot(spot.id))
-        history.push(`/spots/${spot.id}`)
+        history.push(`/spots/detail/${spot.id}`)
     
     }
 

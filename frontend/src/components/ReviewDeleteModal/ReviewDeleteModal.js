@@ -15,13 +15,17 @@ import { useEffect } from 'react';
 import { fetchReviews } from '../../store/review';
 
 
+// import { useParams } from 'react-router-dom';
+
+
 import "../SpotsIndex/DeleteSpotModal.css"
 
-const ReviewDeleteModal = ({ review }) => {
+const ReviewDeleteModal = ({ review, spotId }) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
     const { closeModal } = useModal()
+    // const spotId = useParams()
 
 
 
@@ -36,8 +40,9 @@ const ReviewDeleteModal = ({ review }) => {
 
     const handleDelete = (e) => {
         e.preventDefault()
+        // console.log("SPOTID", spotId)
 
-        dispatch(deleteReview(review.id))
+        dispatch(deleteReview(review.id, spotId))
         // if (response.ok)
         // history.push(`/spots/${spot.id}`)
         closeModal()
@@ -47,7 +52,6 @@ const ReviewDeleteModal = ({ review }) => {
         e.preventDefault()
         closeModal()
         // history.push(`/spots/current`)
-
     }
 
     return (

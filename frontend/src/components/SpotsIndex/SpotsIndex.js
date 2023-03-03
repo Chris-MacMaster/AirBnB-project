@@ -16,23 +16,14 @@ function SpotsIndex() {
     const dispatch = useDispatch()
 
     const spotState = useSelector(state => state.spots.allSpots)
-    // console.log("spot State", spotState)
-    // console.log(spotState["allSpots"])
-    // console.log("AllSpots", spotState.allSpots)
-    const spots = Object.values(spotState)
-    // console.log(spots)
 
-    //should dispatch on inital render
+    const spots = Object.values(spotState)
     useEffect(() => {
         dispatch(fetchSpots())
-        // dispatch(actionResetReviews())
         
     }, [dispatch])
 
     return (
-
-
-
 
         //jsx uses camel case class names
         <div className="spots-index">

@@ -21,7 +21,7 @@ import ReviewDeleteModal from '../ReviewDeleteModal/ReviewDeleteModal';
 
 
 
-const ReviewIndexItem = ({ review }) => {
+const ReviewIndexItem = ({ review, spotId }) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -81,7 +81,7 @@ const ReviewIndexItem = ({ review }) => {
                 </div>
 
                 <div >
-                    <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} />} />
+                    <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />
                     {/* <button type='button'>Delete Button No Work Yet</button> */}
                 </div>
             </div>

@@ -6,6 +6,8 @@ import { makeSpot } from '../../store/spot';
 
 import "./CreateSpot.css"
 
+import { normalizeArr } from '../../store/spot';
+
 
 const SpotForm = ({ report, formType }) => {
     const history = useHistory();
@@ -31,15 +33,84 @@ const SpotForm = ({ report, formType }) => {
     const [url4, setUrl4] = useState("")
 
     const [errors, setErrors] = useState([])
+    const [errorsObj, setErrorsObj] = useState({})
+    //tracking submission for error validation
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
 
     useEffect(() => {
         let e = []
         setErrors(e)
+        let eObj = {}
+        setErrorsObj(eObj)
+
+        if (!country){
+            e.push("Please enter a country")
+            eObj.country = "Please enter a country"
+        }
+        if (!address){
+            e.push("Please enter an address")
+            eObj.address = "Please enter an address"
+        } 
+        if (!city) {
+            e.push("Please enter a city")
+            eObj.city = "Please enter a city"
+        }
+        if (!state) {
+            e.push("Please enter a state")
+            eObj.state = "Please enter a state"
+        }
+        if (!lat) {
+            e.push("Please enter a latitude value")
+            eObj.lat = "Please enter a latitude value"
+        }
+        if (!lng) {
+            e.push("Please enter a longitude value")
+            eObj.lng = "Please enter a longitude value"
+        }
+        if (!description) {
+            e.push("Please enter a description")
+            eObj.description = "Please enter a description"
+        }
+        if (description.length < 30) {
+            e.push("Description needs 30 or more characters")
+            eObj.descriptionLength = "Description needs 30 or more characters"
+        }
+        if (!name) {
+            e.push("Please enter a title")
+            eObj.name = "Please enter a title"
+        }
+        if (!price) {
+            e.push("Please enter a price")
+            eObj.price = "Please enter a price"
+        }
+
+        // if (!country) e.push("Please enter a country")
+        // if (!address) e.push("Please enter an address")
+        // if (!city) e.push("Please enter a city")
+        // if (!state) e.push("Please enter a state")
+        // if (!lat) e.push("Please enter a latitude value")
+        // if (!lng) e.push("Please enter a longitude value")
+        // if (!description) e.push("Please enter a description")
+        // if (!name) e.push("Please enter a title")
+        // if (!price) e.push("Please enter a price")
+        //FOR TESTING
+        console.log("e", e)
+
+        let errorsObj = normalizeArr(e)
+        
+
     }, [address, city, country, state, lat,lng, name, description, price, previewUrl, url1, url2, url3, url4])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setHasSubmitted(true)
+        if (errors.length > 0) {
+            window.alert("Cannot Submit, See Errors Listed")
+            return
+        }
 
         //trying to be careful about data types
         let latNum = parseInt(lat)
@@ -62,13 +133,15 @@ const SpotForm = ({ report, formType }) => {
   
         //bug, breaks it
         const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
-        const spotData = await Promise.resolve(spotResponse)
+        console.log(spotResponse)
+        // const spotData = await Promise.resolve(spotResponse)
+        // console.log(spotData)
        
-        if (spotResponse) {
-            console.log("SPOT RESPONSE DATA", spotData)
-            reset()
-            history.push(`/spots/${spotData.id}`)
-        }
+        // if (spotResponse) {
+        //     console.log("SPOT RESPONSE DATA", spotData)
+        //     reset()
+        //     history.push(`/spots/detail/${spotData.id}`)
+        // }
     };
 
     const reset = () => {
@@ -94,6 +167,16 @@ const SpotForm = ({ report, formType }) => {
 
     return (
         <div>
+            {/* {hasSubmitted && errors.length > 0 && (
+                <div>
+                    The following errors were found:
+                    <ul>
+                        {errors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )} */}
             <form onSubmit={handleSubmit} >
                 <h2>{formType}</h2>
                 <div className='edit-intro-div'>
@@ -115,6 +198,12 @@ const SpotForm = ({ report, formType }) => {
                         onChange={(e) => setCountry(e.target.value)} 
                         placeholder='Country'/>
                     </label>
+                    {hasSubmitted && errorsObj.country && (
+                        <div className='error'>
+                            * {errorsObj.country}
+                        </div>
+                    )}
+
 
                     <label className='address-label'>
                         Address
@@ -123,6 +212,11 @@ const SpotForm = ({ report, formType }) => {
                             onChange={(e) => setAddress(e.target.value)} 
                             placeholder='Address'/>
                     </label>
+                    {hasSubmitted && errorsObj.address && (
+                        <div className='error'>
+                            * {errorsObj.address}
+                        </div>
+                    )}
                 </div>
 
 
@@ -133,6 +227,11 @@ const SpotForm = ({ report, formType }) => {
                             value={city}
                             onChange={(e) => setCity(e.target.value)} 
                             placeholder='City'/>
+                    {hasSubmitted && errorsObj.city && (
+                        <div className='error'>
+                            * {errorsObj.city}
+                        </div>
+                    )}
                     </label>
 
                     <label>
@@ -141,6 +240,11 @@ const SpotForm = ({ report, formType }) => {
                             value={state}
                             onChange={(e) => setState(e.target.value)} 
                             placeholder='State'/>
+                        {hasSubmitted && errorsObj.state && (
+                            <div className='error'>
+                                * {errorsObj.state}
+                            </div>
+                        )}
                     </label>
 
                 </div>
@@ -153,6 +257,11 @@ const SpotForm = ({ report, formType }) => {
                             value={lat}
                             onChange={(e) => setLat(e.target.value)} 
                             placeholder='Latitude'/>
+                        {hasSubmitted && errorsObj.lat && (
+                            <div className='error'>
+                                * {errorsObj.lat}
+                            </div>
+                        )}
                     </label>
 
                     <label>
@@ -161,6 +270,11 @@ const SpotForm = ({ report, formType }) => {
                             value={lng}
                             onChange={(e) => setLng(e.target.value)} 
                             placeholder='Longitude'/>
+                        {hasSubmitted && errorsObj.lng && (
+                            <div className='error'>
+                                * {errorsObj.lng}
+                            </div>
+                        )}
                     </label>
 
                 </div>
@@ -184,6 +298,17 @@ const SpotForm = ({ report, formType }) => {
                 }}>
 
                 </textarea>
+                {hasSubmitted && errorsObj.description && (
+                    <div className='error'>
+                        * {errorsObj.description}
+                    </div>
+                )}
+
+                {hasSubmitted && errorsObj.descriptionLength && (
+                    <div className='error'>
+                        * {errorsObj.descriptionLength}
+                    </div>
+                )}
 
                 <div className='title-label'>
                     <p >
@@ -201,6 +326,11 @@ const SpotForm = ({ report, formType }) => {
                     onChange={(e) => setName(e.target.value)}
                     placeholder='Name of your spot' />
 
+                {hasSubmitted && errorsObj.name && (
+                    <div className='error'>
+                        * {errorsObj.name}
+                    </div>
+                )}
 
                 <div className='price-label'>
                     <p className='set-base-price'>
@@ -226,6 +356,13 @@ const SpotForm = ({ report, formType }) => {
                         placeholder='Price per night (USD)' />
 
 
+                </div>
+                <div id='price-error-div'>
+                    {hasSubmitted && errorsObj.price && (
+                        <div className='error'>
+                            * {errorsObj.price}
+                        </div>
+                    )}
                 </div>
 
 

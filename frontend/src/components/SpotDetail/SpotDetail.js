@@ -36,23 +36,12 @@ import { normalizeArr } from '../../store/spot';
 //BUILD THIS SPOT DETAIL COMPONENT
 
 const SpotDetail = () => {
-    // const history = useHistory()
     const dispatch = useDispatch()
     const spotState = useSelector(state => state.spots)
     const user = useSelector(state => state.session.user)
 
-    
-    
-    // console.log("USER", user)
-    // console.log("THIS IS THE SPOT STATE", spotState)
-    // console.log("SPOT IMAGES", spotState.singleSpot.SpotImages)
-    
     let spot = spotState.singleSpot
     let spotImagesArr = spot.SpotImages
-
-    
-    // console.log("SPOT IMAGES ARRAY FROM STATE", spotImagesArr)//currently an array
-    // console.log("SINGLE SPOT FROM STATE", spot)
 
     const reviewState = useSelector(state => state.reviews.spot)
     const reviews = Object.values(reviewState)
@@ -75,7 +64,8 @@ const SpotDetail = () => {
         }
         return false
     }
-    console.log("YOUR REVIEW HERE?", yourReviewExists(reviewState))
+    // IS BUGGED, ALWAYS FALSE
+    // console.log("YOUR REVIEW HERE?", yourReviewExists(reviewState))
 
     // const hasReview = yourReviewExists(reviewState)
   
@@ -96,16 +86,11 @@ const SpotDetail = () => {
 
 
     let {spotId} = useParams()
-    // console.log("SPOT")
 
-    // console.log("SPOTID", spotId)
+
     useEffect(() => {
-        // if (spotId) {
-            // console.log("SPOT ID", spotId)
-            dispatch(fetchReviews(spotId))
-            dispatch(fetchOneSpot(spotId))
-            
-        // }
+        dispatch(fetchOneSpot(spotId))
+        dispatch(fetchReviews(spotId))
     }, [dispatch, spotId])
 
 
@@ -113,7 +98,8 @@ const SpotDetail = () => {
     if (!spot.Owner) {
         return null
     }
-    if (reviewState === {}) {
+
+    if (!Object.values(reviewState)) {
         return null
     }
 

@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf"
+import { fetchOneSpot, loadOneSpot } from "./spot"
 
 
 
@@ -60,13 +61,11 @@ export default function reviewReducer(state = initialState, action) {
     switch (action.type) {
 
         case LOAD_REVIEWS: {
-            //neccessary to render all, bug to fix
             newState = {
                 ...state
             }
             newState.spot = action.payload
-            // console.log("NEWSTATE", newState)
-            //creates key error, shouldnt be a problem
+            
             return newState
         }
         case RESET_REVIEWS: {
@@ -88,27 +87,17 @@ export default function reviewReducer(state = initialState, action) {
 export const fetchReviews = (id) => async dispatch => {
 
     const response = await fetch(`/api/spots/${id}/reviews`);
-
-    // console.log("FETCH REVIEWS RESPONSE", response)
-
     const reviews = await response.json();
-    // console.log("FETCH REVIEWS RESPONSE", reviews)
-    //reviews can come back as an errors object
 
-    if (reviews.message === "No spots with that id exist") {
 
-    }
     
-    // console.log(reviews)
-    // console.log(spots)
-    // console.log(convertedReviews)
-    // console.log(response.ok)
     if (response.ok){
         let convertedReviews = normalizeArr(reviews)
         dispatch(loadReviews(convertedReviews));
         return reviews
     }
-    dispatch(loadReviews([]))
+    //this isnt needed right? i think
+    // dispatch(loadReviews([]))
 
 };
 
@@ -143,16 +132,23 @@ export const makeReview = (reviewBody, spotId) => async dispatch => {
     const reviewData = await response.json();
     // console.log("POST RESPONSE DATA OBJ",reviewData)
 
-    if (response.ok) {
-        dispatch(loadReviews(reviewData));
-        return reviewData
-    }
 
+    const getRes = await fetch(`/api/spots/${spotId}/reviews`);
+    const reviewsArr = await getRes.json();
+    console.log("REVIEWS ARR", reviewsArr)
+    let convertedReviews = normalizeArr(reviewsArr)
+    console.log(convertedReviews)
+
+    if (response.ok) {
+        dispatch(loadReviews(convertedReviews));
+        dispatch(fetchOneSpot(spotId))
+        return convertedReviews
+    }
 };
 
 
 //DELETE REVIEW 
-export const deleteReview = (id) => async dispatch => {
+export const deleteReview = (id, spotId) => async dispatch => {
     //extract id
     const method = "DELETE"
     const headers = { "Content-Type": "application/json" }
@@ -164,15 +160,20 @@ export const deleteReview = (id) => async dispatch => {
     const response = await csrfFetch(url, options)
     const deleteData = await response.json()
 
-    console.log("DELETE RESPONSE DATA OBJ", deleteData)
+    // console.log("DELETE RESPONSE DATA OBJ", deleteData)
 
-    //loadupdated list of spots
-    const getRes = await fetch('/api/spots/current');
+    const getRes = await fetch(`/api/spots/${spotId}/reviews`);
     const reviewsArr = await getRes.json();
-    let convertedReviews = normalizeArr(reviewsArr.Spots)
+    console.log("id", id)
+    console.log("REVIEWS ARR", reviewsArr)
+    let convertedReviews = normalizeArr(reviewsArr)
+    console.log(convertedReviews)
 
     if (response.ok) {
+        //when spot is deleted, nothing happens if commentted out
+        //if dispatch is fired, page wipes
         dispatch(loadReviews(convertedReviews))
+        dispatch(fetchOneSpot(spotId))
         return response.ok
     } else {
         return null

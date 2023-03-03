@@ -50,7 +50,7 @@ function ProfileButton({ user }) {
     const handleManage = (e) => {
         e.preventDefault()
 
-        history.push("/spots/current")
+        history.push("/spots/manage")
     }
 
     return (
