@@ -62,7 +62,7 @@ const ReviewForm = ({spotId}) => {
             review,
             stars: starsNum
         }
-        // console.log("FORM DATA", newReview)
+        console.log("REVIEW FORM DATA", newReview)
 
         dispatch(makeReview(newReview, spotId))
 
@@ -120,9 +120,11 @@ const ReviewForm = ({spotId}) => {
                         1
                         <input 
                         type="radio"
-                        value={5}
+                        name='star-radio'
+                        value={1}
                         onChange={(e) => {
                             setStars(e.target.value)
+                            console.log("TRIGGERED 1")
                         }}
                         className="input-1"
                         />
@@ -131,40 +133,46 @@ const ReviewForm = ({spotId}) => {
 
                         <input
                             type="radio"
-                            value={5}
-                            onChange={(e) => {
-                                setStars(e.target.value)
-                            }}
+                            name='star-radio'
+                            value={2}
+                            // onChange={(e) => {
+                            //     setStars(e.target.value)
+                            // }}
                             className="input-2"
                         />
                         3
 
                         <input
                             type="radio"
-                            value={5}
-                            onChange={(e) => {
-                                setStars(e.target.value)
-                            }}
+                            name='star-radio'
+                            value={3}
+                            //maybe isnt needed, check
+                            defaultChecked={true}
+                            // onChange={(e) => {
+                            //     setStars(e.target.value)
+                            // }}
                             className="input-3"
                         />
                         4
 
                         <input
                             type="radio"
-                            value={5}
-                            onChange={(e) => {
-                                setStars(e.target.value)
-                            }}
+                            name='star-radio'
+                            value={4}
+                            // onChange={(e) => {
+                            //     setStars(e.target.value)
+                            // }}
                             className="input-4"
                         />
                         5
 
                         <input
                             type="radio"
+                            name='star-radio'
                             value={5}
-                            onChange={(e) => {
-                                setStars(e.target.value)
-                            }}
+                            // onChange={(e) => {
+                            //     setStars(e.target.value)
+                            // }}
                             className="input-5"
                         />
                     </label>
