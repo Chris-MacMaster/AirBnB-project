@@ -95,9 +95,9 @@ const SpotForm = ({ report, formType }) => {
         // if (!name) e.push("Please enter a title")
         // if (!price) e.push("Please enter a price")
         //FOR TESTING
-        console.log("e", e)
+        // console.log("e", e)
 
-        let errorsObj = normalizeArr(e)
+        // let errorsObj = normalizeArr(e)
         
 
     }, [address, city, country, state, lat,lng, name, description, price, previewUrl, url1, url2, url3, url4])
@@ -131,17 +131,17 @@ const SpotForm = ({ report, formType }) => {
         }
    
   
-        //bug, breaks it
+        
         const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
-        console.log(spotResponse)
-        // const spotData = await Promise.resolve(spotResponse)
-        // console.log(spotData)
+        
+        const spotData = await Promise.resolve(spotResponse)
+        // console.log("SPOT DATA", spotData)
        
-        // if (spotResponse) {
-        //     console.log("SPOT RESPONSE DATA", spotData)
-        //     reset()
-        //     history.push(`/spots/detail/${spotData.id}`)
-        // }
+        if (spotData) {
+            // console.log("SPOT RESPONSE DATA", spotData)
+            reset()
+            history.push(`/spots/detail/${spotData.id}`)
+        }
     };
 
     const reset = () => {

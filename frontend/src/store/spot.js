@@ -114,8 +114,9 @@ export const fetchCurrentSpots = () => async dispatch => {
     // console.log(spots)
     let convertedSpots = normalizeArr(spots.Spots)
     // console.log("CONVERTED SPOTS", convertedSpots)
-
-    dispatch(loadSpots(convertedSpots));
+    if (response.ok) {
+        dispatch(loadSpots(convertedSpots));
+    }
 };
 
 //SPOT DETAIL PAGE
@@ -169,16 +170,14 @@ export const makeSpot = (spotBody, url) => async dispatch => {
     })
     const options = {method, headers, body}
     
-
-    
     const response = await csrfFetch(`/api/spots`, options);
     
     //testing logs
     const spot = await response.json();
-    console.log("MAKE SPOT FETCH RESPONSE", spot)
+    // console.log("MAKE SPOT FETCH RESPONSE", spot)
     
     if (response.ok){
-        dispatch(loadSpots(spot));
+        // dispatch(loadSpots(spot));
 
         const makeSpotImage = () => async dispatch => {
             const method = "POST"
@@ -192,13 +191,13 @@ export const makeSpot = (spotBody, url) => async dispatch => {
 
             //you need to get a spot id here
             let makeImageResponse = await csrfFetch(`/api/spots/${spot.id}/images`, options);
-            console.log("MAKE IMAGE RESPONSE", makeImageResponse)
+            // console.log("MAKE IMAGE RESPONSE", makeImageResponse)
         }
         dispatch(makeSpotImage())
         //add spot image as well
         // dispatch(loadOneSpot(spot))
         // history.push(`/spots/${spot.id}`)
-        console.log("SPOT", spot)
+        // console.log("SPOT", spot)
 
         return spot
     }
@@ -266,8 +265,7 @@ export const editSpot = (spotBody) => async dispatch => {
     })
     const options = { method, headers, body }
 
-    // let spotId;//We need to get the spotId in there 
-    //
+
     // const response = await csrfFetch(`/api/spots/${spotId}`, options);
     const response = await csrfFetch(`/api/spots/${spotId}`, options);
     const spot = await response.json();
@@ -293,3 +291,24 @@ export const editSpot = (spotBody) => async dispatch => {
 };
 
 
+
+
+//NOTES ON STANDARD DISPATCH SIGNATURE
+
+/*
+export const requestToDatabase = (userId) => async (dispatch) => {
+    //thunk makes the db request
+
+    //check for errors and parse data
+
+    if (response.ok) {
+        const data = await response.json()
+
+        //second dispatch sends db info to reducer
+        dispatch(actionCreator(data))
+    } else {
+        return false
+    }
+}
+
+*/

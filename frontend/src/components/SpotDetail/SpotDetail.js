@@ -76,7 +76,7 @@ const SpotDetail = () => {
         return false
     }
 
-    const noReviews = checkNoReviews()
+    // const noReviews = checkNoReviews()
 
     // if ()
 

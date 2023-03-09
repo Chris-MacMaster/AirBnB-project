@@ -36,8 +36,6 @@ const ReviewIndexItem = ({ review, spotId }) => {
         // dispatch(fetchReviews(spotId))
     }, [dispatch])
 
-
-
     // useEffect(() => {
     //     dispatch(fetchReviews(review.id))
     // }, [dispatch])

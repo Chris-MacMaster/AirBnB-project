@@ -33,7 +33,7 @@ function CurrentSpotsIndex() {
 
 
     const toNewSpot = (e) => {
-        history.push("/spots/new")
+        history.push("/spots/create")
     }
 
     return (

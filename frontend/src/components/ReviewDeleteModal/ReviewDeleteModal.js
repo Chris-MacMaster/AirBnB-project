@@ -14,6 +14,8 @@ import { deleteSpot, fetchOneSpot } from "../../store/spot"
 import { useEffect } from 'react';
 import { fetchReviews } from '../../store/review';
 
+import { useSelector } from 'react-redux';
+
 
 // import { useParams } from 'react-router-dom';
 
@@ -26,6 +28,8 @@ const ReviewDeleteModal = ({ review, spotId }) => {
 
     const { closeModal } = useModal()
     // const spotId = useParams()
+
+    const userState = useSelector(state => state.session.user)
 
 
 
@@ -41,7 +45,9 @@ const ReviewDeleteModal = ({ review, spotId }) => {
     const handleDelete = (e) => {
         e.preventDefault()
         // console.log("SPOTID", spotId)
-
+        if (userState.id !== review.userId) {
+            window.alert("You can't delete a review you didn't make")
+        }
         dispatch(deleteReview(review.id, spotId))
         // if (response.ok)
         // history.push(`/spots/${spot.id}`)
