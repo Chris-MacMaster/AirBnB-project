@@ -11,22 +11,10 @@ import { deleteSpot, fetchOneSpot } from "../../store/spot"
 import OpenModalButton from '../OpenModalButton';
 
 
-// import { closeModal } from "../OpenModalButton/index"
-
-// import closeModal from "./"
-
 
 import "./CurrentSpotItem.css"
 
-// import {useHre}
 
-
-// import { useDispatch } from 'react-redux';
-
-// import { useSelector } from "react-redux"
-
-
-// import "./SpotIndexItem.css"
 
 import "./DeleteSpotModal.css"
 
@@ -36,7 +24,6 @@ const DeleteSpotModal = ({spot}) => {
     const dispatch = useDispatch()
 
     const { closeModal } = useModal()
-    
 
 
     const handleDelete = (e) => {
@@ -66,7 +53,7 @@ const DeleteSpotModal = ({spot}) => {
                 Confirm Delete
             </p>
             <p className='confirm-delete-text'>
-                Are you sure you want to remove this spot from the listings?
+                Are you sure you want to remove this spot?
             </p>
             <button onClick={handleDelete} className='yes-delete-button button white-button' type='button' >Yes (Delete Spot)</button>
             <button onClick={handleNoDelete} className='no-delete-button button grey-keep' type='button' >No (Keep Spot)</button>

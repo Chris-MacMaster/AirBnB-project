@@ -6,7 +6,7 @@
 // to do: must make a create review regular form 
 
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 // import { makeSpot } from '../../store/spot';
@@ -28,23 +28,19 @@ const ReviewForm = ({spotId}) => {
 
     const params = useParams()
     const { closeModal } = useModal()
-
-    // const {spotId} = params
-
-    // console.log("PARAMS", params)
-    // console.log("SPOTID", spotId)
-
-
-
-    // let url = window.location.href
-    // let lastInURL = url[url.length - 1]
-
-    // console.log(lastInURL)
-
   
     const [review, setReview] = useState("")
     const [stars, setStars] = useState("")
 
+    const [activeRating, setActiveRating] = useState(stars)
+
+    const onChange = (number) => {
+        setStars(number)
+    }
+
+    useEffect(() => {
+        setActiveRating(stars)
+    }, [stars])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -106,7 +102,7 @@ const ReviewForm = ({spotId}) => {
                 
                 </div>
                 <textarea className='description-textarea'
-                    placeholder='Just a quick review'
+                    placeholder='Leave your review here...'
                     value={review}
                     onChange={(e) => {
                         setReview(e.target.value)
@@ -114,7 +110,7 @@ const ReviewForm = ({spotId}) => {
 
                 </textarea>
 
-                <div className='star-rating' >
+                {/* <div className='star-rating' >
                     
                     <label>
                         1
@@ -178,16 +174,25 @@ const ReviewForm = ({spotId}) => {
                     </label>
                 </div>
 
-                
+                 */}
 
-                {/* <div className=”rating”>
-                    <input type=”radio” name=”rating” value=”5″ id=”5″><label for=”5″>☆</label>
-                    <input type=”radio” name=”rating” value=”4″ id=”4″><label for=”4″>☆</label>
-                    <input type=”radio” name=”rating” value=”3″ id =”3″> <label for=”3″>☆</label >
-                  <input type=” radio” name=” rating” value=”2″ id =”2″> <label for=”2″>☆</label >
-                <input type=” radio” name=” rating” value=”1″ id =”1″> <label for=”1″>☆</label >
-                </div > */}
-
+                <div className="rating-input paw-stars">
+                    <div onClick={() => onChange(1)} onMouseEnter={() => setActiveRating(1)} onMouseLeave={() => setActiveRating(stars)} className={activeRating < 1 ? "empty" : "filled"} >
+                        <i className="fa fa-star"></i>
+                    </div>
+                    <div onClick={() => onChange(2)} onMouseEnter={() => setActiveRating(2)} onMouseLeave={() => setActiveRating(stars)} className={activeRating < 2 ? "empty" : "filled"} >
+                        <i className="fa fa-star"></i>
+                    </div>
+                    <div onClick={() => onChange(3)} onMouseEnter={() => setActiveRating(3)} onMouseLeave={() => setActiveRating(stars)} className={activeRating < 3 ? "empty" : "filled"} >
+                        <i className="fa fa-star"></i>
+                    </div>
+                    <div onClick={() => onChange(4)} onMouseEnter={() => setActiveRating(4)} onMouseLeave={() => setActiveRating(stars)} className={activeRating < 4 ? "empty" : "filled"} >
+                        <i className="fa fa-star"></i>
+                    </div>
+                    <div onClick={() => onChange(5)} onMouseEnter={() => setActiveRating(5)} onMouseLeave={() => setActiveRating(stars)} className={activeRating < 5 ? "empty" : "filled"} >
+                        <i className="fa fa-star"></i>
+                    </div>
+                </div>
 
                 <input className='submit-button modal-button button white-button create-review-button' type="submit" value="Create Review" />
             </form>
