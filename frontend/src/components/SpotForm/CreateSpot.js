@@ -37,6 +37,8 @@ const SpotForm = ({ report, formType }) => {
     //tracking submission for error validation
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
+    const [hasClicked, setHasClicked] = useState(false)
+
 
     useEffect(() => {
         let e = []
@@ -108,7 +110,7 @@ const SpotForm = ({ report, formType }) => {
 
         setHasSubmitted(true)
         if (errors.length > 0) {
-            window.alert("Cannot Submit, See Errors Listed")
+            // window.alert("Cannot Submit, See Errors Listed")
             return
         }
 
@@ -143,6 +145,10 @@ const SpotForm = ({ report, formType }) => {
             history.push(`/spots/detail/${spotData.id}`)
         }
     };
+
+    const handleClick = () => {
+        setHasClicked(true)
+    }
 
     const reset = () => {
         setAddress('');

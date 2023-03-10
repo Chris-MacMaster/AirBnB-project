@@ -33,7 +33,7 @@ function SpotsIndex() {
 
             <div className="spotIndex">
             {spots.map(spot => (
-                <SpotIndexItem spot={spot} key={spot.id} />
+                <SpotIndexItem title={spot.name} spot={spot} key={spot.id} />
             ))}
 
             </div>

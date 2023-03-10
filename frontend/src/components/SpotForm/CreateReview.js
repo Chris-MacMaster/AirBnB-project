@@ -34,6 +34,18 @@ const ReviewForm = ({spotId}) => {
 
     const [activeRating, setActiveRating] = useState(stars)
 
+    //validation
+    const [errors, setErrors] = useState({})
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    const [hasClicked, setHasClicked] = useState(false)
+
+    const handleClick = () => {
+        console.log("HAS CLICKED")
+        setHasClicked(true)
+    }
+
+
     const onChange = (number) => {
         setStars(number)
     }
@@ -42,15 +54,27 @@ const ReviewForm = ({spotId}) => {
         setActiveRating(stars)
     }, [stars])
 
+
+    useEffect(() => {
+        let e = {}
+        setErrors(e)
+        if (!review) e.noReview = "Must submit a review"
+        if (review.length < 10) e.reviewLength = "Review must be at least 10 characters"
+        if (!stars) e.stars = "Must submit a star rating"
+
+    }, [stars, review, hasClicked])
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setHasSubmitted(true)
 
         //trying to be careful about data types
         const starsNum = parseInt(stars)
 
-
-        if (review.length < 10) {
-            window.alert("Review must be at least 10 characters")
+   
+        if (Object.values(errors).length) {
+            // window.alert("Cannot Submit, See Errors Listed")
             return
         }
 
@@ -63,19 +87,6 @@ const ReviewForm = ({spotId}) => {
         dispatch(makeReview(newReview, spotId))
 
         closeModal()
-
-        // closeModal()
-
-        // console.log("asd")
-        // history.push("/spots/current")
-
-
-        // INSERT MAKE REVIEW FIRING ROUTE AND ALL
-        // const reviewResponse = dispatch(makeReview(newReview))
-        // if (reviewResponse) {
-        //     reset()
-        //     history.push("/spots/current") //CHANGE TO SOMEWHERE, mayve nowwhere
-        // }
     };
 
     const reset = () => {
@@ -99,7 +110,21 @@ const ReviewForm = ({spotId}) => {
                     <p id='how-was-stay'>
                         How was your stay?
                     </p>
-                
+                {hasSubmitted && errors.noReview && (
+                    <div className='error'>
+                        * {errors.noReview}
+                    </div>
+                )}
+                {hasSubmitted && errors.reviewLength && (
+                    <div className='error'>
+                        * {errors.reviewLength}
+                    </div>
+                )}
+                {hasSubmitted && errors.stars && (
+                    <div className='error'>
+                        * {errors.stars}
+                    </div>
+                )}
                 </div>
                 <textarea className='description-textarea'
                     placeholder='Leave your review here...'
@@ -192,9 +217,14 @@ const ReviewForm = ({spotId}) => {
                     <div onClick={() => onChange(5)} onMouseEnter={() => setActiveRating(5)} onMouseLeave={() => setActiveRating(stars)} className={activeRating < 5 ? "empty" : "filled"} >
                         <i className="fa fa-star"></i>
                     </div>
+                    <p className='stars'>
+                        Stars
+                    </p>
                 </div>
-
-                <input className='submit-button modal-button button white-button create-review-button' type="submit" value="Create Review" />
+                {/* <div onClick={handleClick}>
+                </div> */}
+                    <input className='submit-button modal-button button white-button create-review-button' type="submit" value="Submit Your Review" />
+                {/* disabled={!!Object.values(errors).length} */}
             </form>
             
 

@@ -10,7 +10,7 @@ import { fetchOneSpot } from "../../store/spot"
 import { fetchReviews } from '../../store/review';
 // import { useDispatch } from 'react-redux';
 
-// import { useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 
 import "./ReviewIndexItem.css"
@@ -47,6 +47,11 @@ const ReviewIndexItem = ({ review, spotId }) => {
     let preFormatted = date.toLocaleDateString()
     
     const postSplit = preFormatted.split("/")
+
+    const userState = useSelector(state => state.session.user)
+    const userId = userState?.id
+    
+    const isReviewUser = (userId === review.userId)
     // console.log("REVIEW", review)
     
     let dateString = postSplit[2].concat("-", postSplit[0], "-", postSplit[1])
@@ -79,7 +84,7 @@ const ReviewIndexItem = ({ review, spotId }) => {
                 </div>
 
                 <div >
-                    <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />
+                    {isReviewUser && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
                     {/* <button type='button'>Delete Button No Work Yet</button> */}
                 </div>
             </div>

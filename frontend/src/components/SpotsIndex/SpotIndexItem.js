@@ -19,6 +19,7 @@ import "./SpotIndexItem.css"
 const SpotIndexItem = ({ spot }) => {
     const history = useHistory()
     const dispatch = useDispatch()
+    // let display = false
 
     //toggle with the import of useSelector
     // const spotState = useSelector(state => state.spots)
@@ -38,13 +39,17 @@ const SpotIndexItem = ({ spot }) => {
 
         if (convertedNum.length >= 4) {
             return convertedNum.slice(0, 4)
-        } else {
+        } else if (convertedNum.length === 3) {
+            return convertedNum
+        }
+        else {
             if (!convertedNum.includes("0")) {
                 return convertedNum.concat(".0")
             }
         }
         return convertedNum
     }
+    
 
 
     // let spotRating = spot.avgRating
@@ -57,7 +62,10 @@ const SpotIndexItem = ({ spot }) => {
         <li onClick={handleClick} className='spotIndexItem'>
             
 
-            <div className='spot-card-div' >
+            <div title={spot.name} className='spot-card-div' >
+                {/* <div  className='tooltip'>
+
+                </div> */}
                 <div className='spot-name'>
                     {spot.name}
                 </div>

@@ -24,6 +24,7 @@ import OpenModalButton from '../OpenModalButton';
 
 
 import { normalizeArr } from '../../store/spot';
+import {useState} from "react"
 // import { fetchOneSpot } from "../../store/spot"
 // import { useDispatch } from 'react-redux';
 
@@ -40,18 +41,57 @@ const SpotDetail = () => {
     const spotState = useSelector(state => state.spots)
     const user = useSelector(state => state.session.user)
 
+    const userId = user?.id
+
     let spot = spotState.singleSpot
     let spotImagesArr = spot.SpotImages
 
     const reviewState = useSelector(state => state.reviews.spot)
+    
     const reviews = Object.values(reviewState)
+
+
+    const [hasReview, setHasReview] = useState(false)
+
+
+    const checkReview = (reviews) => {
+        // console.log("Triggered")
+        for (let i = 0; i < reviews.length; i++) {
+            let review = reviews[i]
+
+            if (review.userId === userId) {
+                return true
+            }
+        }
+        return false
+    }
+
+    useEffect(() => {
+        // console.log("reviews", reviews)
+        // console.log()
+        // console.log("USER ID", userId)
+
+        console.log("CHECK REVIEWS", checkReview(reviews))
+        
+        if (checkReview(reviews) === true) {
+            setHasReview(true)
+        } 
+        else if (checkReview(reviews) === false) {
+            setHasReview(false)
+        }
+
+    }, [reviewState, reviews, userId])
+
+
+
+
 
     const yourReviewExists = (reviewState) => {
         if (reviewState && reviewState.user) {
             for (const key in reviewState){
                 const reviewAuthorUserID = reviewState[key].userId
-                // console.log("KEY USER ID", key)
-                // console.log("USER.ID", user.id)
+                console.log("KEY USER ID", key)
+                console.log("USER.ID", user.id)
                 if (reviewAuthorUserID === user.id){
                     // console.log('tri')
                     // console.log("KEY USER ID", key.userId)
@@ -119,6 +159,8 @@ const SpotDetail = () => {
 
         if (convertedNum.length >= 4) {
             return convertedNum.slice(0, 4)
+        } else if (convertedNum.length === 3) {
+            return convertedNum
         } else {
             if (!convertedNum.includes("0")) {
                 return convertedNum.concat(".0")
@@ -257,7 +299,7 @@ const SpotDetail = () => {
 
                     </div>
 {/* sdjkafhllkjdfhlask */}
-            {(notOwnerLogged && !yourReviewExists(reviewState)) &&
+            {(notOwnerLogged && (hasReview === false)) &&
                     <div className='open-modal-div'>
                         <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={<ReviewForm spotId={spotId}/>} />
                     </div>
