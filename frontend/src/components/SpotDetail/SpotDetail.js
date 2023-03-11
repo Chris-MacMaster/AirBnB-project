@@ -71,7 +71,7 @@ const SpotDetail = () => {
         // console.log()
         // console.log("USER ID", userId)
 
-        console.log("CHECK REVIEWS", checkReview(reviews))
+        // console.log("CHECK REVIEWS", checkReview(reviews))
         
         if (checkReview(reviews) === true) {
             setHasReview(true)
@@ -80,7 +80,7 @@ const SpotDetail = () => {
             setHasReview(false)
         }
 
-    }, [reviewState, reviews, userId])
+    }, [reviewState, reviews])
 
 
 
