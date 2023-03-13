@@ -71,7 +71,7 @@ const SpotIndexItem = ({ spot }) => {
                 </div>
                 <div >
                     {/* <img scr={spot.previewImage} alt="not found" /> */}
-                    <img src={spot.previewImage}
+                    <img id='prev-img' src={spot.previewImage}
                         alt='previewImage' />
                     
                 </div>
