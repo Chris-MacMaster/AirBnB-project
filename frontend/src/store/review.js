@@ -79,7 +79,8 @@ export default function reviewReducer(state = initialState, action) {
 
         case USER_REVIEWS: {
             newState = {
-                ...state
+                spot: {},
+                user: {}
             }
 
             newState.user = action.payload
@@ -235,25 +236,17 @@ export const deleteManagedReview = (id, spotId) => async dispatch => {
     const deleteData = await response.json()
 
     // console.log("DELETE RESPONSE DATA OBJ", deleteData)
-
-    const getRes = await fetch(`/api/reviews/current`);
-    const reviewsArr = await getRes.json();
-    console.log("REVIEWSARR", reviewsArr)
-    // console.log("id", id)
-    // console.log("REVIEWS ARR", reviewsArr)
-    let convertedReviews = normalizeArr(reviewsArr.Reviews)
-
-    console.log("CONVERTED REVIEWS", convertedReviews)
-
     if (response.ok) {
-        //when spot is deleted, nothing happens if commentted out
-        //if dispatch is fired, page wipes
+        const getRes = await fetch(`/api/reviews/current`);
+        const reviewsArr = await getRes.json();
+        console.log("REVIEWSARR", reviewsArr)
+        
+        let convertedReviews = normalizeArr(reviewsArr.Reviews)
+        console.log("CONVERTED REVIEWS", convertedReviews)
         dispatch(loadUserReviews(convertedReviews))
-        // dispatch(fetchOneSpot(spotId))
         return response.ok
-    } else {
-        return null
     }
+   
 }
 
 

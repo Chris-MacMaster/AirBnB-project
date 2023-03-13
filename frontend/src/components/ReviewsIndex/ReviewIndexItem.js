@@ -17,6 +17,7 @@ import "./ReviewIndexItem.css"
 import OpenModalButton from '../OpenModalButton';
 
 import ReviewDeleteModal from '../ReviewDeleteModal/ReviewDeleteModal';
+import ManageReviewDeleteModal from '../ReviewDeleteModal/ManageReviewDeleteModal';
 
 
 
@@ -98,7 +99,7 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
                 </div>
                 <div className='review-buttons'>
                 <div >
-                    {(otherButton === true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal loadUser={true} review={review} spotId={spotId} />} />}
+                        {(otherButton === true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ManageReviewDeleteModal loadUser={true} review={review} spotId={spotId} />} />}
                 </div>
                 <div >
                     {(otherButton === true) &&  <button onClick={handleUpdate} className='button update-button'>Update Review</button>}

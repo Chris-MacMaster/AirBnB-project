@@ -23,7 +23,7 @@ import { useSelector } from 'react-redux';
 
 import "../SpotsIndex/DeleteSpotModal.css"
 
-const ReviewDeleteModal = ({ review, spotId }) => {
+const ManageReviewDeleteModal = ({ review, spotId, loadUser }) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -34,21 +34,9 @@ const ReviewDeleteModal = ({ review, spotId }) => {
 
 
 
-    // useEffect(() => {
-    //     dispatch(fetchReviews(review.id))
-    //     // dispatch(actionResetReviews())
-
-    // }, [dispatch])
-    //button open itself should not trigger re-render with nothing in state
-
-
-
     const handleDelete = (e) => {
         e.preventDefault()
-        // console.log("SPOTID", spotId)
-        if (userState.id !== review.userId) {
-            window.alert("You can't delete a review you didn't make")
-        }
+
         dispatch(deleteManagedReview(review.id, spotId))
         // if (response.ok)
         // history.push(`/spots/${spot.id}`)
@@ -79,4 +67,4 @@ const ReviewDeleteModal = ({ review, spotId }) => {
     );
 };
 
-export default ReviewDeleteModal;
+export default ManageReviewDeleteModal;

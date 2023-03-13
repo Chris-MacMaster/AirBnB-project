@@ -88,6 +88,10 @@ const SpotForm = ({ report, formType }) => {
             eObj.price = "Please enter a price"
         }
 
+        if (!previewUrl) {
+            eObj.previewURL = "Please enter at least a preview image url"
+        }
+
         // if (!country) e.push("Please enter a country")
         // if (!address) e.push("Please enter an address")
         // if (!city) e.push("Please enter a city")
@@ -189,7 +193,7 @@ const SpotForm = ({ report, formType }) => {
                 <h2>{formType}</h2>
                 <div className='edit-intro-div'>
                     <p id='update-your-spot'>
-                        Create your Spot
+                        Create a New Spot
                     </p>
                     <p id='where-place'>
                         Where's your place located?
@@ -214,7 +218,7 @@ const SpotForm = ({ report, formType }) => {
 
 
                     <label className='address-label'>
-                        Address
+                        Street Address
                         <input className='address-input' type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)} 
@@ -385,6 +389,11 @@ const SpotForm = ({ report, formType }) => {
                 </div>
 
                 <div className='urls'>
+                    {hasSubmitted && errorsObj.previewURL && (
+                        <div className='error'>
+                            * {errorsObj.previewURL}
+                        </div>
+                    )}
                     <input className='image-url' type="text" 
                     value={previewUrl}
                     onChange={(e) => {
@@ -392,6 +401,7 @@ const SpotForm = ({ report, formType }) => {
                     }}
                         placeholder='Preview Image URL'
                     />
+     
 
                     <input className='image-url' type="text"
                         value={url1}
