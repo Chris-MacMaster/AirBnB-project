@@ -82,7 +82,7 @@ const ReviewForm = ({spotId}) => {
             review,
             stars: starsNum
         }
-        console.log("REVIEW FORM DATA", newReview)
+        // console.log("REVIEW FORM DATA", newReview)
 
         dispatch(makeReview(newReview, spotId))
 

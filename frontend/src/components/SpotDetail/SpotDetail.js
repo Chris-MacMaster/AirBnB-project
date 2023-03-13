@@ -236,7 +236,7 @@ const SpotDetail = () => {
                         Hosted by {spot.Owner.firstName} {spot.Owner.lastName}
                     </p>
                     <p className='hosted-description'>
-                        {spot.description} awjfhajbfwjahbf ieawugfhiouhfo aiosuha whuf oiwaushfio aushfio usfio asuhfio uahsfo iuhsaio fhauh ioasuhfdio aufsaf
+                        {spot.description}
                     </p>
                 </div>
 

@@ -64,7 +64,7 @@ function ProfileButton({ user }) {
             <button className="dropdown-button" onClick={openMenu}>
                 <i className="fas fa-user-circle" />
             </button>
-            <ul  className={ulClassName} ref={ulRef}>
+            <ul  className={ulClassName} id="dropdown-menu" ref={ulRef}>
                 {/* <li>{user.username}</li> */}
                 <li id="hello" className="main-dropdown-li">Hello, {user.username}  </li>
                 <li id="email" className="main-dropdown-li">{user.email}</li>
