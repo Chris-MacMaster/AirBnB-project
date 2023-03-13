@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import SpotIndexItem from "./SpotIndexItem";
 import { useEffect } from "react";
 import { fetchCurrentSpots } from "../../store/spot";
+import { actionResetReviews } from "../../store/review";
 
 
 import "./SpotIndex.css"
@@ -14,6 +15,8 @@ import SpotIndexItem from "./SpotIndexItem";
 import { useHistory } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton/index"
 import DeleteSpotModal from "./DeleteSpotModal"
+
+import "./CurrentSpotsIndex.css"
 
 
 
@@ -34,6 +37,7 @@ function CurrentSpotsIndex() {
     //should dispatch on inital render
     useEffect(() => {
         dispatch(fetchCurrentSpots())
+        dispatch(actionResetReviews())
     }, [dispatch])
 
 
@@ -44,7 +48,7 @@ function CurrentSpotsIndex() {
     const handleUpdate = (spotId) => {
         // e.preventDefault()
         // console.log("update button test")
-        console.log("SPOT ID", spotId)
+        // console.log("SPOT ID", spotId)
         if (user) {
             history.push(`/spots/manage/${spotId}`)
         }
@@ -65,13 +69,13 @@ function CurrentSpotsIndex() {
             <div className="current-spotIndex">
                 {spots.map(spot => (
 
-                    <div > 
+                    <div className="current-div"> 
                         <SpotIndexItem spot={spot} key={spot.id} />
 
                         {/* onClick={handleUpdate(spot.id)}  */}
                         <div className='div-buttons'>
                                 <button onClick={() => history.push(`/spots/manage/${spot.id}`)} className='update-button button' type='button' >Update</button>
-                                <OpenModalButton buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
+                                <OpenModalButton className="spot-delete-button" buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
                         </div>
 
                     </div>

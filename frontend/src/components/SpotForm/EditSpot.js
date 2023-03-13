@@ -7,6 +7,7 @@ import { fetchOneSpot } from '../../store/spot';
 
 import "./CreateSpot.css"
 import "./EditSpot.css"
+import { actionResetReviews } from '../../store/review';
 
 
 const EditSpotForm = ({ report, formType }) => {
@@ -165,6 +166,7 @@ const EditSpotForm = ({ report, formType }) => {
         
         if (editSpotResponse) {
             console.log("EDIT SPOT RESPONSE", editSpotResponse)
+            dispatch(actionResetReviews())
             history.push(`/spots/detail/${spotId}`)
 
         }

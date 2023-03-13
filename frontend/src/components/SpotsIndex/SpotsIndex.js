@@ -20,7 +20,7 @@ function SpotsIndex() {
     const spots = Object.values(spotState)
     useEffect(() => {
         dispatch(fetchSpots())
-        
+        dispatch(actionResetReviews())
     }, [dispatch])
 
     return (

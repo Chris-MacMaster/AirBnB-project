@@ -7,6 +7,7 @@ import { makeSpot } from '../../store/spot';
 import "./CreateSpot.css"
 
 import { normalizeArr } from '../../store/spot';
+import { actionResetReviews } from '../../store/review';
 
 
 const SpotForm = ({ report, formType }) => {
@@ -142,6 +143,7 @@ const SpotForm = ({ report, formType }) => {
         if (spotData) {
             // console.log("SPOT RESPONSE DATA", spotData)
             reset()
+            dispatch(actionResetReviews())
             history.push(`/spots/detail/${spotData.id}`)
         }
     };

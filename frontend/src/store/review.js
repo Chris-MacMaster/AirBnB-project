@@ -69,7 +69,7 @@ export default function reviewReducer(state = initialState, action) {
             return newState
         }
         case RESET_REVIEWS: {
-            newState = { ...state }
+            newState = { ...state, spot:{} }
             // newState.reviews.spot = {}
             return newState
         }

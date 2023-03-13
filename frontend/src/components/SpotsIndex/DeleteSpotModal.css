@@ -84,3 +84,8 @@
 .grey-keep {
     background-color: grey;
 }
+
+#demo-button {
+    background-color: blue;
+    width: fit-content;
+}
