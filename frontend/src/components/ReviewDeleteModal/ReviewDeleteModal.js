@@ -45,16 +45,19 @@ const ReviewDeleteModal = ({ review, spotId, loadUser }) => {
     const handleDelete = (e) => {
         e.preventDefault()
         // console.log("SPOTID", spotId)
-        if (userState.id !== review.userId) {
-            window.alert("You can't delete a review you didn't make")
-        }
-        dispatch(deleteReview(review.id, spotId))
+        // if (userState.id !== review.userId) {
+        //     window.alert("You can't delete a review you didn't make")
+        // }
+
+
         if (loadUser === true) {
-            dispatch(deleteManagedReview())
-            }
-            
-        // if (response.ok)
-        // history.push(`/spots/${spot.id}`)
+            console.log("FIRED")
+            dispatch(deleteManagedReview(review.id, spotId))
+            closeModal()
+            return
+        }
+        
+        // dispatch(deleteReview(review.id, spotId))
         closeModal()
     }
 

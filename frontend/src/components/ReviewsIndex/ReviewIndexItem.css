@@ -32,3 +32,8 @@
 .user-firstname {
     margin-left: 10px;
 }
+
+.review-buttons {
+    display: flex;
+    justify-content: space-around;
+}

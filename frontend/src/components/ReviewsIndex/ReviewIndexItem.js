@@ -40,6 +40,7 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
     //     dispatch(fetchReviews(review.id))
     // }, [dispatch])
     // console.log("REVIEW UPDATED AT", review.updatedAt)
+    // if ()
     let date = new Date(review.updatedAt)
     // let otherButton
 
@@ -55,11 +56,18 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
     const isReviewUser = (userId === review.userId)
     // console.log("REVIEW", review)
     
-    let dateString = postSplit[2].concat("-", postSplit[0], "-", postSplit[1])
+    let dateString = postSplit[2]?.concat("-", postSplit[0], "-", postSplit[1])
 
 
     if (!review.User) {
         return null
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault()
+
+
+        history.push(`/reviews/manage/${review.id}`)
     }
 
     return (
@@ -83,13 +91,19 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
                         Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
                     </p>
                 </div>
-
+                
                 <div >
                     {(isReviewUser && otherButton !== true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
                     {/* <button type='button'>Delete Button No Work Yet</button> */}
                 </div>
+                <div className='review-buttons'>
                 <div >
                     {(otherButton === true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal loadUser={true} review={review} spotId={spotId} />} />}
+                </div>
+                <div >
+                    {(otherButton === true) &&  <button onClick={handleUpdate} className='button update-button'>Update Review</button>}
+                </div>
+
                 </div>
             </div>
         </li>

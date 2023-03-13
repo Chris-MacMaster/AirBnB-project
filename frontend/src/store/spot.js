@@ -266,26 +266,14 @@ export const editSpot = (spotBody) => async dispatch => {
     const options = { method, headers, body }
 
 
-    // const response = await csrfFetch(`/api/spots/${spotId}`, options);
+    
     const response = await csrfFetch(`/api/spots/${spotId}`, options);
     const spot = await response.json();
-    //testing logs
+    
     console.log("PUT RESPONSE DATA OBJ", spot)
-
-    // if (response.ok) {
-    //     dispatch(loadSpots(spots));
-    //     return spots
-    // }
-
-    //loadupdated list of spots
-    // const getRes = await csrfFetch('/api/spots/current');
-    // const spots = await getRes.json();
-    // let convertedSpots = normalizeArr(spots.Spots)
 
     if (response.ok) {
         dispatch(loadOneSpot(spot))
-        // history.push(`/api/spots/`)
-        // return true
     }
 
 };

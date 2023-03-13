@@ -6,6 +6,7 @@ import { fetchOneSpot, loadOneSpot } from "./spot"
 const LOAD_REVIEWS = "reviews/LOAD"
 const USER_REVIEWS = "reviews/user"
 const RESET_REVIEWS = "reviews/RESET"
+const ONE_REVIEW = "reviews/LOAD/ONE"
 
 // const LOAD_SPOT = "spots/LOAD/ONE"
 // const DELETE_SPOT = "spots/DELETE"
@@ -30,6 +31,13 @@ export const loadUserReviews = (reviews) => {
 export const actionResetReviews = () => {
     return {
         type: RESET_REVIEWS
+    }
+}
+
+export const actionLoadOneReview = (review) => {
+    return {
+        type: ONE_REVIEW,
+        payload: review
     }
 }
 
@@ -84,6 +92,11 @@ export default function reviewReducer(state = initialState, action) {
             return newState
         }
 
+        case ONE_REVIEW: {
+            newState = initialState
+            newState.user = action.payload
+        }
+
         default:
             return state
     }
@@ -103,6 +116,7 @@ export const fetchReviews = (id) => async dispatch => {
     
     if (response.ok){
         let convertedReviews = normalizeArr(reviews)
+        // console.log("CONVERTED REVIEWS", convertedReviews)
         dispatch(loadReviews(convertedReviews));
         return reviews
     }
@@ -148,6 +162,30 @@ export const makeReview = (reviewBody, spotId) => async dispatch => {
         return convertedReviews
     }
 };
+
+export const editReview = (reviewBody, reviewId) => async dispatch => {
+    const { review, stars } = reviewBody
+    const method = "PUT"
+    const headers = { "Content-Type": "application/json" }
+
+    const body = JSON.stringify({
+        review,
+        stars,
+        //...formdata placeholder
+        // "review": "This was an awesome spot!",
+        // "stars": 5,
+    })
+
+    const options = { method, headers, body }
+
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, options)
+    let reviewRes = await response.json()
+
+    if (response.ok) {
+        dispatch(actionLoadOneReview(reviewRes))
+    }
+
+}
 
 
 //DELETE REVIEW 
@@ -200,10 +238,12 @@ export const deleteManagedReview = (id, spotId) => async dispatch => {
 
     const getRes = await fetch(`/api/reviews/current`);
     const reviewsArr = await getRes.json();
+    console.log("REVIEWSARR", reviewsArr)
     // console.log("id", id)
     // console.log("REVIEWS ARR", reviewsArr)
-    let convertedReviews = normalizeArr(reviewsArr)
-    // console.log(convertedReviews)
+    let convertedReviews = normalizeArr(reviewsArr.Reviews)
+
+    console.log("CONVERTED REVIEWS", convertedReviews)
 
     if (response.ok) {
         //when spot is deleted, nothing happens if commentted out
@@ -236,146 +276,42 @@ export const fetchUserReviews = () => async dispatch => {
 };
 
 
+export const fetchOneUserReview = (reviewId) => async dispatch => {
 
+    const response = await fetch(`/api/reviews/current`);
+    console.log("RESPONSE", response)
+    // console.log("RESPONSE", response)
+    const userReview = await response.json();
+    console.log("USER REVIEW", userReview)
+    // const userObjReview = userReview.Reviews.find(review => review.id === reviewId)
+    const userObjReview = findUserReview(userReview.Reviews, parseInt(reviewId))
+    console.log(userReview.Reviews, reviewId)
 
+    console.log("userObjReview", userObjReview)
+    // console.log("USEROBJ REVIEW", userObjReview)
 
-// //SPOT MANAGE PAGE
-// export const fetchCurrentSpots = () => async dispatch => {
-//     // console.log("triggers")
-//     const response = await fetch('/api/spots/current');
-//     const spots = await response.json();
+    if (response.ok) {
+        // let convertedReviews = normalizeArr(reviews.Reviews)
+        // console.log("CONVERTED REVIEWS", convertedReviews)
+        // const review = reviews.Reviews.find(review => review.id === reviewId)
+        dispatch(actionLoadOneReview(userObjReview));
+        // console.log("REVIEW", review)
+        return userObjReview
+    }
 
-
-//     console.log(spots)
-//     let convertedSpots = normalizeArr(spots.Spots)
-//     // console.log(convertedSpots)
-
-//     dispatch(loadSpots(convertedSpots));
-// };
-
-// //SPOT DETAIL PAGE
-// export const fetchOneSpot = (id) => async dispatch => {
-//     // console.log(id)
-//     const response = await fetch(`/api/spots/${id}`);
-//     const spot = await response.json();
-//     // console.log("triggers fetchOneSpot")
-//     // console.log(spot)//the correct object
-//     if (response.ok) {
-//         dispatch(loadOneSpot(spot));
-//         return spot
-//     }
-// };
-// //dispatch works, find where the dispatch is triggered, and load the appropriate data
-
-
-
-// //CREATE NEW SPOT
-// export const makeSpot = (spotBody) => async dispatch => {
-//     // console.log("SPOT BODY", spotBody)
-
-
-//     const { address, city, state, country, lat, lng, name, description, price } = spotBody
-//     const method = "POST"
-//     const headers = { "Content-Type": "application/json" }
-
-//     const body = JSON.stringify({
-//         address,
-//         city,
-//         state,
-//         country,
-//         lat,
-//         lng,
-//         name,
-//         description,
-//         price
-//         //...formdata placeholder
-//         // "address": "123 Disney Lane",
-//         // "city": "San Francisco",
-//         // "state": "California",
-//         // "country": "United States of America",
-//         // "lat": 37.7645358,
-//         // "lng": -122.4730327,
-//         // "name": "App Academy",
-//         // "description": "Place where web developers are created",
-//         // "price": 123
-
-//     })
-//     const options = { method, headers, body }
-//     // console.log("POST STRINGIFIED SPOT BODY", body)
-//     // console.log("address", address)
-
-//     //fails here
-//     const response = await csrfFetch(`/api/spots`, options);
-
-//     //testing logs
-//     const spot = await response.json();
-//     // console.log("POST RESPONSE DATA OBJ",spot)
-
-//     if (response.ok) {
-//         dispatch(loadSpots(spot));
-//         return spot
-//     }
-
-// };
+};
 
 
 
 
+function findUserReview(userReviewArr, reviewId) {
+    for (let i = 0; i < userReviewArr.length; i++) {
+        let review = userReviewArr[i]
+        if (review.id === reviewId){
+            return review
+        }
+    }
+}
 
-
-// //EDIT SPOT
-// export const editSpot = (spotBody) => async dispatch => {
-//     // console.log(id)
-//     const { address, city, state, country, lat, lng, name, description, price, spotId } = spotBody
-
-//     // const spotId = {spotBody}
-//     const method = "PUT"
-//     const headers = { "Content-Type": "application/json" }
-//     const body = JSON.stringify({
-//         address,
-//         city,
-//         state,
-//         country,
-//         lat,
-//         lng,
-//         name,
-//         description,
-//         price
-//         //...formdata placeholder
-//         // "address": "edited",
-//         // "city": "edited",
-//         // "state": "edited",
-//         // "country": "United States of America",
-//         // "lat": 37.7645358,
-//         // "lng": -122.4730327,
-//         // "name": "App Academy",
-//         // "description": "Place where web developers are created",
-//         // "price": 321
-//     })
-//     const options = { method, headers, body }
-
-//     // let spotId;//We need to get the spotId in there 
-//     //
-//     // const response = await csrfFetch(`/api/spots/${spotId}`, options);
-//     const response = await csrfFetch(`/api/spots/${spotId}`, options);
-//     const spot = await response.json();
-//     //testing logs
-//     console.log("PUT RESPONSE DATA OBJ", spot)
-
-//     // if (response.ok) {
-//     //     dispatch(loadSpots(spots));
-//     //     return spots
-//     // }
-
-//     //loadupdated list of spots
-//     const getRes = await fetch('/api/spots/current');
-//     const spots = await getRes.json();
-//     let convertedSpots = normalizeArr(spots.Spots)
-
-//     if (response.ok) {
-//         dispatch(loadSpots(convertedSpots))
-//     }
-
-// };
 
 
