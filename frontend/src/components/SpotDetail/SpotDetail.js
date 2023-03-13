@@ -55,7 +55,7 @@ const SpotDetail = () => {
 
 
     const checkReview = (reviews) => {
-        // console.log("Triggered")
+        
         for (let i = 0; i < reviews.length; i++) {
             let review = reviews[i]
 
@@ -67,11 +67,7 @@ const SpotDetail = () => {
     }
 
     useEffect(() => {
-        // console.log("reviews", reviews)
-        // console.log()
-        // console.log("USER ID", userId)
-
-        // console.log("CHECK REVIEWS", checkReview(reviews))
+        
         
         if (checkReview(reviews) === true) {
             setHasReview(true)

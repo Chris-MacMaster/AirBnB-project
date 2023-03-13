@@ -11,6 +11,7 @@ import CurrentSpotsIndex from "./components/SpotsIndex/CurrentSpotsIndex";
 import SpotDetail from "./components/SpotDetail/SpotDetail"
 import SpotForm from "./components/SpotForm/CreateSpot";
 import EditSpotForm from "./components/SpotForm/EditSpot";
+import CurrentReviewIndex from "./components/ReviewsIndex/CurrentReviewIndex"
 
 
 // import fruits from "./mockData/fruits.json"
@@ -52,6 +53,10 @@ function App() {
             <SpotDetail />
           </Route>
 
+
+          <Route path="/reviews/manage" exact={true}>
+            <CurrentReviewIndex />
+          </Route>
 
 
           <Route path="/">

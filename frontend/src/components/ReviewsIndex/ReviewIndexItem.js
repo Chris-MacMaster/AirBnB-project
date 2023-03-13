@@ -21,7 +21,7 @@ import ReviewDeleteModal from '../ReviewDeleteModal/ReviewDeleteModal';
 
 
 
-const ReviewIndexItem = ({ review, spotId }) => {
+const ReviewIndexItem = ({ review, spotId, otherButton }) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -41,6 +41,7 @@ const ReviewIndexItem = ({ review, spotId }) => {
     // }, [dispatch])
     // console.log("REVIEW UPDATED AT", review.updatedAt)
     let date = new Date(review.updatedAt)
+    // let otherButton
 
     // console.log("PRE FORMATTED DATE", date.toLocaleDateString())
 
@@ -84,8 +85,11 @@ const ReviewIndexItem = ({ review, spotId }) => {
                 </div>
 
                 <div >
-                    {isReviewUser && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
+                    {(isReviewUser && otherButton !== true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
                     {/* <button type='button'>Delete Button No Work Yet</button> */}
+                </div>
+                <div >
+                    {(otherButton === true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal loadUser={true} review={review} spotId={spotId} />} />}
                 </div>
             </div>
         </li>

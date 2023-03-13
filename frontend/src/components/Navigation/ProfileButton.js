@@ -53,6 +53,12 @@ function ProfileButton({ user }) {
         history.push("/spots/manage")
     }
 
+    const handleReviewManage = (e) => {
+        e.preventDefault()
+
+        history.push("/reviews/manage")
+    }
+
     return (
         <>
             <button className="dropdown-button" onClick={openMenu}>
@@ -73,6 +79,13 @@ function ProfileButton({ user }) {
                 <li id="manage-spots" className="main-dropdown-li">
                     <p id="manage-text" onClick={handleManage}>
                         Manage Spots
+                    </p>
+                    {/* <Link to="/spots/current">Manage Spots</Link> */}
+                </li>
+
+                <li id="" className="main-dropdown-li manage-reviews">
+                    <p id="review-text" onClick={handleReviewManage}>
+                        Manage Reviews
                     </p>
                     {/* <Link to="/spots/current">Manage Spots</Link> */}
                 </li>

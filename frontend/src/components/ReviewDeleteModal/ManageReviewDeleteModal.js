@@ -6,13 +6,14 @@ import { useHistory } from 'react-router-dom';
 
 
 import { Modal, useModal } from '../../context/Modal';
-import { deleteManagedReview, deleteReview } from '../../store/review';
+import { deleteReview } from '../../store/review';
 
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
 // import OpenModalButton from '../OpenModalButton';
 
 import { useEffect } from 'react';
 import { fetchReviews } from '../../store/review';
+import { deleteManagedReview } from '../../store/review';
 
 import { useSelector } from 'react-redux';
 
@@ -22,7 +23,7 @@ import { useSelector } from 'react-redux';
 
 import "../SpotsIndex/DeleteSpotModal.css"
 
-const ReviewDeleteModal = ({ review, spotId, loadUser }) => {
+const ReviewDeleteModal = ({ review, spotId }) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -48,11 +49,7 @@ const ReviewDeleteModal = ({ review, spotId, loadUser }) => {
         if (userState.id !== review.userId) {
             window.alert("You can't delete a review you didn't make")
         }
-        dispatch(deleteReview(review.id, spotId))
-        if (loadUser === true) {
-            dispatch(deleteManagedReview())
-            }
-            
+        dispatch(deleteManagedReview(review.id, spotId))
         // if (response.ok)
         // history.push(`/spots/${spot.id}`)
         closeModal()

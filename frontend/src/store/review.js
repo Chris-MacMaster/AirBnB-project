@@ -4,7 +4,9 @@ import { fetchOneSpot, loadOneSpot } from "./spot"
 
 
 const LOAD_REVIEWS = "reviews/LOAD"
+const USER_REVIEWS = "reviews/user"
 const RESET_REVIEWS = "reviews/RESET"
+
 // const LOAD_SPOT = "spots/LOAD/ONE"
 // const DELETE_SPOT = "spots/DELETE"
 // //**ACTIONS */
@@ -18,24 +20,22 @@ export const loadReviews = (reviews) => {
     }
 }
 
+export const loadUserReviews = (reviews) => {
+    return {
+        type: USER_REVIEWS,
+        payload: reviews
+    }
+}
+
 export const actionResetReviews = () => {
     return {
         type: RESET_REVIEWS
     }
 }
 
-// export const loadOneSpot = (spot) => {
-//     return {
-//         type: LOAD_SPOT,
-//         payload: spot
-//     }
-// }
 
-// export const actionDeleteSpot = () => {
-//     return {
-//         type: DELETE_SPOT
-//     }
-// }
+
+
 
 export const normalizeArr = (arr) => {
     // console.log("NORMALIZE ARRAY INPUT, FETCH REVIEWS RESPONSE OBJ", arr)
@@ -68,6 +68,16 @@ export default function reviewReducer(state = initialState, action) {
             
             return newState
         }
+
+        case USER_REVIEWS: {
+            newState = {
+                ...state
+            }
+
+            newState.user = action.payload
+            return newState
+        }
+
         case RESET_REVIEWS: {
             newState = { ...state, spot:{} }
             // newState.reviews.spot = {}
@@ -118,26 +128,19 @@ export const makeReview = (reviewBody, spotId) => async dispatch => {
         // "stars": 5,
     })
 
-    // console.log("BODY", body)
+    
     const options = { method, headers, body }
-    // console.log("POST STRINGIFIED REVIEW BODY", body)
-    // console.log("stars", stars)
-
-    // console.log("OPTIONS", options)
-
-    //CHANGE/CUSTOMIZE, need to pull reviews by spot ID
+    
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, options);
 
     //testing logs
     const reviewData = await response.json();
-    // console.log("POST RESPONSE DATA OBJ",reviewData)
-
 
     const getRes = await fetch(`/api/spots/${spotId}/reviews`);
     const reviewsArr = await getRes.json();
-    console.log("REVIEWS ARR", reviewsArr)
+    // console.log("REVIEWS ARR", reviewsArr)
     let convertedReviews = normalizeArr(reviewsArr)
-    console.log(convertedReviews)
+    // console.log(convertedReviews)
 
     if (response.ok) {
         dispatch(loadReviews(convertedReviews));
@@ -179,6 +182,59 @@ export const deleteReview = (id, spotId) => async dispatch => {
         return null
     }
 }
+
+
+export const deleteManagedReview = (id, spotId) => async dispatch => {
+    //extract id
+    const method = "DELETE"
+    const headers = { "Content-Type": "application/json" }
+    const url = `/api/reviews/${id}`
+    const options = {
+        method,
+        headers
+    }
+    const response = await csrfFetch(url, options)
+    const deleteData = await response.json()
+
+    // console.log("DELETE RESPONSE DATA OBJ", deleteData)
+
+    const getRes = await fetch(`/api/reviews/current`);
+    const reviewsArr = await getRes.json();
+    // console.log("id", id)
+    // console.log("REVIEWS ARR", reviewsArr)
+    let convertedReviews = normalizeArr(reviewsArr)
+    // console.log(convertedReviews)
+
+    if (response.ok) {
+        //when spot is deleted, nothing happens if commentted out
+        //if dispatch is fired, page wipes
+        dispatch(loadUserReviews(convertedReviews))
+        // dispatch(fetchOneSpot(spotId))
+        return response.ok
+    } else {
+        return null
+    }
+}
+
+
+
+export const fetchUserReviews = () => async dispatch => {
+
+    const response = await fetch(`/api/reviews/current`);
+    // console.log("RESPONSE", response)
+    const reviews = await response.json();
+    // console.log("REVIEWS", reviews)
+
+    if (response.ok) {
+        let convertedReviews = normalizeArr(reviews.Reviews)
+        dispatch(loadUserReviews(convertedReviews));
+        return reviews
+    }
+    //this isnt needed right? i think
+    // dispatch(loadReviews([]))
+
+};
+
 
 
 

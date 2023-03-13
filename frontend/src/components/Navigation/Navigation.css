@@ -134,3 +134,16 @@ li {
 #logout {
     width: 100%;
 }
+
+.manage-reviews {
+    border-top: none;
+    border-right: 2px solid black
+}
+
+#review-text {
+    color: blue;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+    /* color: blue; */
+}
