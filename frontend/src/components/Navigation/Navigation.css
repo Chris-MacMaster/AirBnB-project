@@ -147,3 +147,12 @@ li {
     text-align: left;
     /* color: blue; */
 }
+
+#dropdown-menu {
+    position: absolute;
+    /* background-color: white; */
+}
+
+#dropdown-menu > li {
+    background-color: #B8B8B8;
+}
