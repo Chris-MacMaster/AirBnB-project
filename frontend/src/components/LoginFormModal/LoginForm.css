@@ -23,7 +23,7 @@
 
 .login-form {
     /* color: blue; */
-    background-color: #B8B8B8;
+    /* background-color: #B8B8B8; */
     width: 100%;
     height: 100%;
     border-radius: 25px;
@@ -31,7 +31,7 @@
     /* inherits form css from create a spot form */
     justify-content: space-between;
     /* align-items: right; */
-    border: 2px solid black;
+    /* border: 2px solid black; */
 
     padding-top: 10px;
 }
@@ -54,20 +54,32 @@
 
 .modal-login-button {
     width: 90%;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    /* color: blue */
 };
+
 
 .modal-login-demo-button {
     /* background-color: blue;
     color: red; */
 }
 
-#demo-button {
+#top-right-demo-button {
     /* color: red; */
-    background-color: blue;
+    /* background-color: blue; */
     width: fit-content;
-
+    background-color: white;
+    border: none;
+    color: blue;
+    text-decoration: underline;
 }
+
+#top-right-demo-button:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+
 
 
 .login-modal-div {
@@ -87,4 +99,8 @@
     font-size: larger;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+#login-modal-button-id {
+    background-color: #FF5A5F;
 }

@@ -251,7 +251,7 @@ const SpotDetail = () => {
                                 &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}  
                             </p>
                             {spot.numReviews !== 0 && <div className='box-dot-reviews'>
-                                &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews" : spot.numReviews + " Review"}
+                                &#8226; {spot.numReviews !== 1 ? spot.numReviews + " reviews" : spot.numReviews + " review"}
                             </div>}
                             <p >
                                 {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
@@ -265,7 +265,7 @@ const SpotDetail = () => {
 
                     <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
-                            <button onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
+                            <button id='reserve-box-button' onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
                                 Reserve
                             </button>
                         </div>
@@ -290,7 +290,7 @@ const SpotDetail = () => {
                 &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}
                     
                     {spot.numReviews !==0 && <div >
-                        &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
+                        &#8226; {spot.numReviews !== 1 ? spot.numReviews + " reviews"  : spot.numReviews + " review"} 
                     </div>}
 
                     </div>

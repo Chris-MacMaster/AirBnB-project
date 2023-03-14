@@ -72,7 +72,7 @@ const SpotIndexItem = ({ spot }) => {
                 <div >
                     {/* <img scr={spot.previewImage} alt="not found" /> */}
                     <img id='prev-img' src={spot.previewImage}
-                        alt='previewImage' />
+                        alt='Invalid URL' />
                     
                 </div>
                 <div className='card-info' >

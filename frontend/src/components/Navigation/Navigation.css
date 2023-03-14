@@ -12,8 +12,10 @@
     justify-content: space-between;
     padding-left: 3%;
     padding-right: 3%;
+    align-items: center;
     /* position: sticky; */
     /* top: 16px; */
+    /* border: 2px solid red; */
 
 }
 
@@ -28,7 +30,7 @@ li {
 .careBnB {
     display: inline;
     margin-left: 30px;
-    color: blue;
+    color: #FF5A5F;
     font-weight: bold;
     font-size: xx-large;
 }
@@ -57,6 +59,10 @@ li {
     border-radius: 25px;
 }
 
+.dropdown-button:hover {
+    cursor: pointer;
+}
+
 #home-dropdown {
     margin-top: 7px;
     border: 2px solid black;
@@ -71,7 +77,25 @@ li {
     border-bottom: 2px solid black;
     padding-top: 5px;
     padding-bottom: 8px;
+    /* color: black; */
     /* margin-bottom: 5px; */
+}
+
+#manage-spots:hover {
+    cursor: pointer;
+    background-color: #B8B8B8;
+}
+
+#manage-reviews {
+    border-bottom: 2px solid black;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    /* color: black; */
+}
+
+#manage-reviews:hover {
+    cursor: pointer;
+    background-color: #B8B8B8;
 }
 
 .main-logout {
@@ -89,9 +113,11 @@ li {
     /* border-bottom: 2px solid black; */
 }
 
+
 .profile-dropdown {
     margin-top: 8px;
     border: 2px solid black;
+    /* border-radius: 25px; */
     /* padding-left: 0px; */
 }
 
@@ -113,7 +139,7 @@ li {
 }
 
 #manage-text {
-    color: blue;
+    /* color: blue; */
     margin-top: 0px;
     margin-bottom: 0px;
     /* color: blue; */
@@ -142,7 +168,7 @@ li {
 }
 
 #review-text {
-    color: blue;
+    /* color: blue; */
     margin-top: 0px;
     margin-bottom: 0px;
     text-align: left;
@@ -152,10 +178,11 @@ li {
 #dropdown-menu {
     position: absolute;
     /* background-color: white; */
+    /* border-radius: 10px; */
 }
 
 #dropdown-menu > li {
-    background-color: #B8B8B8;
+    background-color: white;
 }
 
 #top-right-bars {
@@ -183,3 +210,4 @@ li {
 i {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+

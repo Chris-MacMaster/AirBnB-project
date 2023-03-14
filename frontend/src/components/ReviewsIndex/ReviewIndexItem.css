@@ -1,10 +1,11 @@
 .review-card {
     /* color: blue; */
     font-weight: bold;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 45%;
-    border-radius: 25px;
-    background-color: #B8B8B8;
+    /* border-radius: 25px; */
+    background-color: white;
+    margin-bottom: 30px;
 }
 
 .review-card:hover {
@@ -13,11 +14,11 @@
 
 .reviewIndexItem {
     width: 97%;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
 }
 
 .date-string-text {
-    color: white;
+    color: grey;
     font-size: small;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .user-firstname {
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 .review-buttons {

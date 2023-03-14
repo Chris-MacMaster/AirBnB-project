@@ -301,15 +301,14 @@ const SpotForm = ({ report, formType }) => {
                     </p>
                 </div>
 
-
                 <textarea className='description-textarea'
                 placeholder='Please write at least 30 characters'
                 value={description}
                 onChange={(e) => {
                     setDescription(e.target.value)
                 }}>
-
                 </textarea>
+
                 {hasSubmitted && errorsObj.description && (
                     <div className='error'>
                         * {errorsObj.description}
@@ -437,7 +436,7 @@ const SpotForm = ({ report, formType }) => {
                 </div>
 
 
-                <input className='submit-button button modal-button form-create-button' type="submit" value="Create Spot" />
+                <input className='submit-button button modal-button form-create-button red-styling' type="submit" value="Create Spot" />
             </form>
         </div>
     );

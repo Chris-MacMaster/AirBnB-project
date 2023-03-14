@@ -97,7 +97,7 @@ const EditSpotForm = ({ report, formType }) => {
         // if (!price) e.push("Please enter a price")
 
         //FOR TESTING
-        console.log("e", e)
+        // console.log("e", e)
 
     }, [address, city, country, state, lat, lng, name, description, price])
 
@@ -132,7 +132,7 @@ const EditSpotForm = ({ report, formType }) => {
 
         setHasSubmitted(true)
         if (errors.length > 0) {
-            window.alert("Cannot Submit, See Errors Listed")
+            // window.alert("Cannot Submit, See Errors Listed")
             return
         }
 
@@ -410,7 +410,7 @@ const EditSpotForm = ({ report, formType }) => {
                     )}
                 </div>
 
-                <input className='submit-button modal-button button edit-button' type="submit" value="Update your Spot" />
+                <input className='submit-button modal-button button red-styling' type="submit" value="Update your Spot" />
             </form>
 
         </div>

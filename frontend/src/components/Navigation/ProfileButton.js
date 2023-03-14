@@ -87,7 +87,7 @@ function ProfileButton({ user }) {
                     {/* <Link to="/spots/current">Manage Spots</Link> */}
                 </li>
 
-                <li id="" className="main-dropdown-li manage-reviews">
+                <li id="manage-reviews" className="main-dropdown-li manage-reviews">
                     <p id="review-text" onClick={handleReviewManage}>
                         Manage Reviews
                     </p>

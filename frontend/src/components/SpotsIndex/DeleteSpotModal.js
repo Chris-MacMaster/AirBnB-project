@@ -30,17 +30,14 @@ const DeleteSpotModal = ({spot}) => {
         e.preventDefault()
 
         dispatch(deleteSpot(spot.id))
-        // history.push(`/spots/${spot.id}`)
+        
         closeModal()
-        // history.push(`/spots/current`)
+        
     }
 
     const handleNoDelete = (e) => {
         e.preventDefault()
         closeModal()
-
-
-        // history.push(`/spots/current`)
 
 
 
@@ -65,24 +62,3 @@ const DeleteSpotModal = ({spot}) => {
 };
 
 export default DeleteSpotModal;
-
-
-
-// {/* <Link to={`/reports/${report.id}`}>Report #{report.id}</Link> */ }
-// {/* <Link to={`/reports/${report.id}/edit`}>Edit</Link> */ }
-
-
-
-
-
-
-
-
-
-/*
-css lecture
-
-
-
-
-*/

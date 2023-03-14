@@ -72,7 +72,7 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
     }
 
     return (
-        <li /*onClick={handleClick}*/ className='spotIndexItem reviewIndexItem'>
+        <li /*onClick={handleClick}*/ className='reviewIndexItem'>
 
             <div className='review-card' >
                 {/* {review.User.lastName} */}
