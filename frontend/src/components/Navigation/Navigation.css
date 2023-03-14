@@ -54,6 +54,7 @@ li {
     margin-left: 10px;
     position: relative;
     top: 3px;
+    border-radius: 25px;
 }
 
 #home-dropdown {
@@ -155,4 +156,30 @@ li {
 
 #dropdown-menu > li {
     background-color: #B8B8B8;
+}
+
+#top-right-bars {
+    margin-right: 10px;
+    font-size: small;
+    padding-left: 5px;
+    
+}
+
+#top-right-user {
+    font-size: x-large;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+
+.top-right {
+}
+
+.top-right-div {
+    /* border-radius: 100px; */
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+i {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }

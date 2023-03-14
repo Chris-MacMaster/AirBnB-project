@@ -80,7 +80,7 @@ const SpotIndexItem = ({ spot }) => {
                         <div className='city-state' >
                     {spot.city}, {spot.state}
                         </div>
-                        <div className='avg-rating' >
+                        <div id='card-display-rating' className='avg-rating' >
                             &#9733; 
                             {/* {spot.avgRating} */}
                             {spot.avgRating !== "no reviews exist for this spot yet" ? toDecimal(spot.avgRating) : "New"}
@@ -89,7 +89,7 @@ const SpotIndexItem = ({ spot }) => {
                     </div >
 
                     <div className='card-row2' >
-                        <p className='price'>${spot.price} night</p>
+                        <p className='price'>${spot.price} <span id='night'>night</span></p>
                        
                         {/* &#9733; {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"} */}
 

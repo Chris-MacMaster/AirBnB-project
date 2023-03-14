@@ -62,7 +62,11 @@ function ProfileButton({ user }) {
     return (
         <>
             <button className="dropdown-button" onClick={openMenu}>
-                <i className="fas fa-user-circle" />
+                <div className="top-right-div">
+                    <i id="top-right-bars" class="fa fa-bars top-right"></i>
+                    <i id="top-right-user" className="fas fa-user-circle top-right" />
+
+                </div>
             </button>
             <ul  className={ulClassName} id="dropdown-menu" ref={ulRef}>
                 {/* <li>{user.username}</li> */}
