@@ -4,18 +4,11 @@ import React from 'react';
 import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
-
 import { useModal } from '../../context/Modal';
-
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
 import OpenModalButton from '../OpenModalButton';
 
-
-
 import "./CurrentSpotItem.css"
-
-
-
 import "./DeleteSpotModal.css"
 
 
