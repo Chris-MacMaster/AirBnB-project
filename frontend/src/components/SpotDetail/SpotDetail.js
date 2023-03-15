@@ -191,7 +191,7 @@ const SpotDetail = () => {
                 <div className='preview-image'>
                     {/* src={spotImagesArr.length && spotImagesArr[0].url} */}
                     
-                    <img className="preview-image-url" src={spotImagesArr.length && spotImagesArr[0].url}
+                    <img className="preview-image-url detail-img" src={spotImagesArr.length && spotImagesArr[0].url}
                     alt='previewImage' />
                 </div>
 
@@ -199,13 +199,13 @@ const SpotDetail = () => {
                     <div className='images-subdiv-row1'>
                         <div id='spot-image-1'>
                             {/* src={(spotImagesArr.length >= 2) && spotImagesArr[1].url} */}
-                            <img id='img1' src='https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=800'
+                            <img className='detail-img' id='img1' src='https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=800'
                             alt='visual-content-1' />
                         </div>
 
                         <div id='spot-image-2'>
                             {/* src={(spotImagesArr.length >= 3) && spotImagesArr[2].url} */}
-                            <img id='img2' src='https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                            <img className='detail-img' id='img2' src='https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                                 alt='visual-content-2' />
                         </div>
                     </div>
@@ -213,13 +213,13 @@ const SpotDetail = () => {
                     <div className='images-subdiv-row2'>
                         <div id='spot-image-3'>
                             {/* src={(spotImagesArr.length >= 4) && spotImagesArr[3].url} */}
-                            <img id='img3' src='https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg'
+                            <img className='detail-img' id='img3' src='https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg'
                                 alt='visual-content-3' />
                         </div>
 
-                        <div className='spot-image-4'>
+                        <div id='spot-image-4'>
                             {/* src={(spotImagesArr.length >= 5) && spotImagesArr[4].url} */}
-                            <img id='img4' src='https://images.pexels.com/photos/813692/pexels-photo-813692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                            <img className='detail-img' id='img4' src='https://images.pexels.com/photos/813692/pexels-photo-813692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                                 alt='visual-content-4' />
                         </div>
 
@@ -251,7 +251,7 @@ const SpotDetail = () => {
                                 &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}  
                             </p>
                             {spot.numReviews !== 0 && <div className='box-dot-reviews'>
-                                &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews" : spot.numReviews + " Review"}
+                                &#8226; {spot.numReviews !== 1 ? spot.numReviews + " reviews" : spot.numReviews + " review"}
                             </div>}
                             <p >
                                 {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
@@ -265,7 +265,7 @@ const SpotDetail = () => {
 
                     <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
-                            <button onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
+                            <button id='reserve-box-button' onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
                                 Reserve
                             </button>
                         </div>
@@ -290,7 +290,7 @@ const SpotDetail = () => {
                 &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}
                     
                     {spot.numReviews !==0 && <div >
-                        &#8226; {spot.numReviews !== 1 ? spot.numReviews + " Reviews"  : spot.numReviews + " Review"} 
+                        &#8226; {spot.numReviews !== 1 ? spot.numReviews + " reviews"  : spot.numReviews + " review"} 
                     </div>}
 
                     </div>

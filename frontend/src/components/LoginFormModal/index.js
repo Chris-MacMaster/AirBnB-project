@@ -1,5 +1,5 @@
 // frontend/src/components/LoginFormModal/index.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -12,7 +12,20 @@ function LoginFormModal() {
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
+    // const [isBlank, setIsBlank] = useState(true)
+
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    // const [errorsObj, setErrorsObj] = useState({})
+
+    // useEffect(() => {
+    //     let e = {}
+    //     setErrorsObj(e)
+
+    //     if (!credential) e.credential = "Please enter a username or email"
+    //     if (!password) e.password = "Please enter a password"
+
+    // }, [credential, password])
 
 
     const demoLogin = (e) => {
@@ -20,8 +33,8 @@ function LoginFormModal() {
         // setErrors([]);
         // console.log('triggered')
         return dispatch(sessionActions.login({
-            credential: "DemoUser",
-            password: "jjjjjj"
+            credential: "Demo-lition",
+            password: "password"
         }))
             .then(closeModal)
             .catch(
@@ -56,10 +69,15 @@ function LoginFormModal() {
         }
     }
 
+    // useEffect(() => {
+    //     setIsBlank(false)
+    // }, [credential, password])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
+        // if (Object.values(errorsObj).length) return
         
         console.log(credential)
         console.log(password)
@@ -81,11 +99,12 @@ function LoginFormModal() {
                     <p className="login-p">
                         Log In
                     </p>
-                    <ul>
+                    <ul className="error-ul">
                         {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
                         ))}
                     </ul>
+                    
                     <label className="login-input">
                         {/* Username or Email */}
                         <input
@@ -108,8 +127,8 @@ function LoginFormModal() {
                             className="login-input"
                         />
                     </label>
-                    <button className="modal-button button modal-login-button white-button" type="submit">Log In</button>
-                    <button onClick={becomeDemo} id="demo-button" className="modal-button button modal-login-button modal-login-demo-button" type="button">Demo User</button>
+                    <button id="login-modal-button-id" className="modal-button button modal-login-button white-button" type="submit">Log In</button>
+                    <button onClick={becomeDemo} id="top-right-demo-button" className="modal-login-button modal-login-demo-button" type="button">Demo User</button>
                 </form>
 
             </div>

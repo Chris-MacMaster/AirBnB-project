@@ -182,7 +182,7 @@ function SignupFormModal() {
                         />
                     </label>
 
-                    <button className="modal-button button white-button signup-button signup-input" type="submit">Sign Up</button>
+                    <button id="signup-button" className="modal-button button white-button signup-button signup-input red-styling" type="submit">Sign Up</button>
                 </form>
 
             </div>
