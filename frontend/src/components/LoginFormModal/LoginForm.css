@@ -60,6 +60,7 @@
 
 
 .modal-login-demo-button {
+    /* border: 2px solid red; */
     /* background-color: blue;
     color: red; */
 }
@@ -68,10 +69,10 @@
     /* color: red; */
     /* background-color: blue; */
     width: fit-content;
-    background-color: white;
+    /* background-color: white;
     border: none;
     color: blue;
-    text-decoration: underline;
+    text-decoration: underline; */
 }
 
 #top-right-demo-button:hover {
@@ -103,4 +104,11 @@
 
 #login-modal-button-id {
     background-color: #FF5A5F;
+}
+
+.modal-login-button {
+    background-color: white;
+    border: none;
+    color: blue;
+    text-decoration: underline;
 }

@@ -31,7 +31,7 @@ module.exports = {
         lat: 2.1,
         lng: 2.2,
         name: "name1",
-        description: "description1",
+        description: "description1 This is seed data as a description. oaspifjdpasjiojafdpq jfopjipjwiwjipeijafj wfpasdjfpsjfpajodpjfopwjfwep wjeopfeowaj fpwiaoa[pf kep[afkeawfe fjafw",
         price: 2.3
       },
 
@@ -44,7 +44,7 @@ module.exports = {
         lat: 2.4,
         lng: 2.5,
         name: "name2",
-        description: "description2",
+        description: "description2 This is seed data as a description. oaspifjdpasjiojafdpq jfopjipjwiwjipeijafj wfpasdjfpsjfpajodpjfopwjfwep wjeopfeowaj fpwiaoa[pf kep[afkeawfe fjafw",
         price: 2.9
       },
 
@@ -57,7 +57,7 @@ module.exports = {
         lat: 3.4,
         lng: 3.5,
         name: "name3",
-        description: "description3",
+        description: "description3 This is seed data as a description. oaspifjdpasjiojafdpq jfopjipjwiwjipeijafj wfpasdjfpsjfpajodpjfopwjfwep wjeopfeowaj fpwiaoa[pf kep[afkeawfe fjafw",
         price: 3.9
       },
 
