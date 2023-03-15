@@ -33,8 +33,8 @@ function LoginFormModal() {
         // setErrors([]);
         // console.log('triggered')
         return dispatch(sessionActions.login({
-            credential: "DemoUser",
-            password: "jjjjjj"
+            credential: "Demo-lition",
+            password: "password"
         }))
             .then(closeModal)
             .catch(
