@@ -54,9 +54,9 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
     // console.log("POST SPLIT", postSplit)
     //postSplit[0] === date as number
    let splitMonthNum = postSplit[0]
-   console.log("SPLIT MONTH NUM", splitMonthNum)
+//    console.log("SPLIT MONTH NUM", splitMonthNum)
    let monthName = monthToName(parseInt(splitMonthNum))
-   console.log("MONTH NAME", monthName)
+//    console.log("MONTH NAME", monthName)
 
    
 
@@ -67,6 +67,10 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
     // console.log("REVIEW", review)
     
     let dateString = postSplit[2]?.concat("-", postSplit[0], "-", postSplit[1])
+    if (!postSplit) {
+        return null
+    }
+    // let year = postSplit?[2]
     let dateStringMonth = monthName?.concat(" ", postSplit[2])
 
 

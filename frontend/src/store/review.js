@@ -192,6 +192,7 @@ export const editReview = (reviewBody, reviewId) => async dispatch => {
 //DELETE REVIEW 
 export const deleteReview = (id, spotId) => async dispatch => {
     //extract id
+    console.log("SPOTID", spotId)
     const method = "DELETE"
     const headers = { "Content-Type": "application/json" }
     const url = `/api/reviews/${id}`
@@ -208,18 +209,21 @@ export const deleteReview = (id, spotId) => async dispatch => {
     const reviewsArr = await getRes.json();
     console.log("id", id)
     console.log("REVIEWS ARR", reviewsArr)
-    let convertedReviews = normalizeArr(reviewsArr)
-    console.log(convertedReviews)
-
-    if (response.ok) {
+    // console.log(convertedReviews)
+    
+    if (response.ok && reviewsArr.length)  {
+        let convertedReviews = normalizeArr(reviewsArr)
         //when spot is deleted, nothing happens if commentted out
         //if dispatch is fired, page wipes
         dispatch(loadReviews(convertedReviews))
         dispatch(fetchOneSpot(spotId))
         return response.ok
     } else {
-        return null
+        dispatch(loadReviews([]))
+        dispatch(fetchOneSpot(spotId))
+        return response.ok
     }
+    // return null
 }
 
 

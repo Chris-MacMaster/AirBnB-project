@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { fetchReviews } from '../../store/review';
 
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 
 // import { useParams } from 'react-router-dom';
@@ -25,12 +26,13 @@ import "../SpotsIndex/DeleteSpotModal.css"
 const ReviewDeleteModal = ({ review, spotId }) => {
     const history = useHistory()
     const dispatch = useDispatch()
+    // console.log("SPOTID", spotId)
 
     const { closeModal } = useModal()
     // const spotId = useParams()
 
     const userState = useSelector(state => state.session.user)
-
+    // const {}
 
 
     const handleDelete = (e) => {
