@@ -64,10 +64,22 @@ const EditSpotForm = ({ report, formType }) => {
             e.push("Please enter a latitude value")
             eObj.lat = "Please enter a latitude value"
         }
+        let latNum = parseInt(lat)
+        if (latNum < -90 || latNum > 90) {
+            e.push("Latitude must be between -90 and 90")
+            eObj.latNum = "Latitude must be between -90 and 90"
+        }
+
         if (!lng) {
             e.push("Please enter a longitude value")
             eObj.lng = "Please enter a longitude value"
         }
+        let lngNum = parseInt(lng)
+        if (lngNum < -180 || lngNum > 180) {
+            e.push("Longitude must be between -180 and 180")
+            eObj.lngNum = "Longitude must be between -180 and 180"
+        }
+
         if (!description) {
             e.push("Please enter a description")
             eObj.description = "Please enter a description"
@@ -297,6 +309,11 @@ const EditSpotForm = ({ report, formType }) => {
                                 * {errorsObj.lat}
                             </div>
                         )}
+                        {hasSubmitted && errorsObj.latNum && (
+                            <div className='error'>
+                                * {errorsObj.latNum}
+                            </div>
+                        )}
                     </label>
 
                     <p className='comma'>
@@ -314,6 +331,11 @@ const EditSpotForm = ({ report, formType }) => {
                         {hasSubmitted && errorsObj.lng && (
                             <div className='error'>
                                 * {errorsObj.lng}
+                            </div>
+                        )}
+                        {hasSubmitted && errorsObj.lngNum && (
+                            <div className='error'>
+                                * {errorsObj.lngNum}
                             </div>
                         )}
                     </label>
