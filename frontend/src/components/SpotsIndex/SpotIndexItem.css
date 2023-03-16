@@ -64,6 +64,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding-top: 5px;
+    height: fit-content;
     /* padding-bottom: 8px; */
 }
 
@@ -78,9 +79,7 @@ img {
     width: 270px;
     min-width: 270px;
     border-top: 2px solid blue;
-    /* border: 2px solid blue; */
-    /* transition: transform .7s, background-color .7s */
-    /* transition: background-color .7s; */
+    border-bottom: 2px solid blue;
 }
 
 
@@ -134,12 +133,14 @@ img {
 #card-display-rating {
     /* font-size: 15px; */
     /* margin-top: 2px; */
+    margin-bottom: 0px;
 }
 
 .price {
     /* font-size: 14px; */
     font-weight: bold;
-    
+    display: relative;
+    /* bottom: 5px; */
 }
 
 #night {

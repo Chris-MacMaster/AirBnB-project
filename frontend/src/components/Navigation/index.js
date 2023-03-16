@@ -83,7 +83,7 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <li>
-                <button onClick={toNewSpot} className='create-spot-top-right' type='button' >Create New Spot</button>
+                <button onClick={toNewSpot} className='create-spot-top-right button blue-styling' type='button' >Create New Spot</button>
                 <ProfileButton user={sessionUser} />
             </li>
         );

@@ -178,12 +178,12 @@ li {
 
 #dropdown-menu {
     position: absolute;
-    /* background-color: white; */
     /* border-radius: 10px; */
 }
 
 #dropdown-menu > li {
-    background-color: white;
+    /* background-color: white; */
+    background-color: #B8B8B8;
 }
 
 #top-right-bars {
