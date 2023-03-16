@@ -30,7 +30,8 @@ li {
 .careBnB {
     display: inline;
     margin-left: 30px;
-    color: #FF5A5F;
+    /* color: #FF5A5F; */
+    color: blue;
     font-weight: bold;
     font-size: xx-large;
 }

@@ -2,16 +2,16 @@
 
 
 * {
-    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
     /* Is closer to AirBnB but for now breaks all the icons */
     /* font-family:-apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
 }
 div {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    /* font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
 }
 
 textarea {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    /* font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
 }
 
 i {
@@ -21,7 +21,7 @@ i {
 
 
 body {
-    /* background-color: teal; */
+    background-color: teal;
     
 }
 
