@@ -62,7 +62,7 @@ module.exports = {
       },
 
       {
-        ownerId: 4,
+        ownerId: 1,
         address: 'address4',
         city: "city4",
         state: "state4",
@@ -75,7 +75,7 @@ module.exports = {
       },
 
       {
-        ownerId: 5,
+        ownerId: 1,
         address: 'address5',
         city: "city5",
         state: "state5",
@@ -88,7 +88,7 @@ module.exports = {
       },
 
       {
-        ownerId: 6,
+        ownerId: 1,
         address: 'address6',
         city: "city6",
         state: "state6",
