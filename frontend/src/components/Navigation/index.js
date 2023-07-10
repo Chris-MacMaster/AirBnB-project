@@ -91,12 +91,12 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <li>
                 <OpenModalButton
-                    buttonText="Log In"
-                    modalComponent={<LoginFormModal />}
-                />
-                <OpenModalButton
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
+                />
+                <OpenModalButton
+                    buttonText="Log In"
+                    modalComponent={<LoginFormModal />}
                 />
                 {/* make react component? */}
                 {/* <button onClick={becomeDemo} type='button' >

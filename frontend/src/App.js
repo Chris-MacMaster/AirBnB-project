@@ -13,6 +13,7 @@ import SpotForm from "./components/SpotForm/CreateSpot";
 import EditSpotForm from "./components/SpotForm/EditSpot";
 import CurrentReviewIndex from "./components/ReviewsIndex/CurrentReviewIndex"
 import EditReviewForm from "./components/SpotForm/EditReview";
+import Landing from "./components/Landing/Landing";
 
 
 // import fruits from "./mockData/fruits.json"
@@ -31,6 +32,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/" exact={true}>
+            <Landing show={true}/>
             <SpotsIndex  />
           </Route>
 
