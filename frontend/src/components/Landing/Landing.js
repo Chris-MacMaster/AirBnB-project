@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Landing.css"
 
 const Landing = ({ show }) => {
   
@@ -9,11 +10,9 @@ const Landing = ({ show }) => {
                 <p className='landing-p landing-p-top'>
                     Join registered users who trust CareBnB
                 </p>
-            <div className='landing-bottom'>
                 <p className='landing-p landing-p-bottom'>
                     CareBnB is the choice for all your fake booking needs. 
                 </p>
-            </div>
             </div>
           }
         </div>

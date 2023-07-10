@@ -1,0 +1,17 @@
+.landing {
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.landing-top, .landing-bottom {
+    text-align: center;
+}
+
+.landing-p-top {
+    font-size: 42px;
+}
+
+.landing-p-bottom {
+    font-size: 18px;
+}
