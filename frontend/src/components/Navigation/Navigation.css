@@ -10,7 +10,7 @@
     /* flex directio */
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 3%;
+    /* padding-left: 3%; */
     padding-right: 3%;
     align-items: center;
     background-color: white;
@@ -36,14 +36,14 @@ li {
     display: inline;
     margin-left: 30px;
     /* color: #FF5A5F; */
-    color: blue;
+    color: black;
     font-weight: bold;
     font-size: xx-large;
 }
 
 
 .fa-home {
-    color: black;
+    color: white;
     position: relative;
     bottom: 4px;
     /* border: 2px solid blue */
@@ -217,3 +217,26 @@ i {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.nav-button {
+    height: 50px;
+    background-color: white;
+}
+
+.nav-button:hover {
+    background-color: lightgrey;
+}
+
+.icon-li {
+    display: flex;
+    align-items: center;
+
+}
+
+.home-div {
+    background-color: #0061FE;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

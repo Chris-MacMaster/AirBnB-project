@@ -111,8 +111,10 @@ function Navigation({ isLoaded }) {
 
     return (
         <ul id='nav-ul'>
-            <li className='iconWithCare'>
-                <NavLink exact to="/"><i className="fas fa-home" /></NavLink> 
+            <li className='iconWithCare icon-li'>
+                <div className='home-div'>
+                    <NavLink exact to="/"><i className="fas fa-home" /></NavLink> 
+                </div>
                 <p className='careBnB'>
                     CareBnB
                 </p>
