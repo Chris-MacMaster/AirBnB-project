@@ -15,6 +15,8 @@ import CurrentReviewIndex from "./components/ReviewsIndex/CurrentReviewIndex"
 import EditReviewForm from "./components/SpotForm/EditReview";
 import Landing from "./components/Landing/Landing";
 
+import Footer from "./components/Footer/Footer";
+
 
 // import fruits from "./mockData/fruits.json"
 
@@ -78,6 +80,7 @@ function App() {
           
         </Switch>
       )}
+      <Footer show={true} />
     </>
   );
 }
