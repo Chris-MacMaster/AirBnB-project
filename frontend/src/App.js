@@ -14,6 +14,7 @@ import EditSpotForm from "./components/SpotForm/EditSpot";
 import CurrentReviewIndex from "./components/ReviewsIndex/CurrentReviewIndex"
 import EditReviewForm from "./components/SpotForm/EditReview";
 import Landing from "./components/Landing/Landing";
+import LandingBottom from "./components/Landing/LandingBottom";
 
 import Footer from "./components/Footer/Footer";
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" exact={true}>
             <Landing show={true}/>
             <SpotsIndex  />
+            <LandingBottom />
             <Footer show={true} />
           </Route>
 
@@ -43,7 +45,7 @@ function App() {
 
           <Route path="/spots/manage" exact={true}>
             <CurrentSpotsIndex />
-            {/* insert the managSpots */}
+            
           </Route>
 
           <Route path="/spots/manage/:spotId" exact={true}>

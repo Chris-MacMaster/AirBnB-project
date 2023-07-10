@@ -11,7 +11,7 @@ const Landing = ({ show }) => {
                     Join registered users who trust CareBnB
                 </p>
                 <p className='landing-p landing-p-bottom'>
-                    CareBnB is the choice for all your fake booking needs. 
+                    CareBnB is the choice for all your fake booking needs 
                 </p>
             </div>
           }
