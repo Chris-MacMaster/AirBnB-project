@@ -7,35 +7,27 @@
 #nav-ul { 
     display: flex;
     padding: 0;
-    /* flex directio */
     flex-direction: row;
     justify-content: space-between;
-    /* padding-left: 3%; */
     padding-right: 3%;
     align-items: center;
     background-color: white;
     margin-top: 0px;
     height: 50px;
-    /* position: absolute; */
-    /* top: 0px; */
-    /* position: sticky; */
-    /* top: 16px; */
-    /* border: 2px solid red; */
-
+    margin-bottom: 0px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
 }
 
 li {
     list-style: none
 }
 
-/* ul > li {
-    display: inline;
-} */
-
 .careBnB {
     display: inline;
     margin-left: 30px;
-    /* color: #FF5A5F; */
     color: black;
     font-weight: bold;
     font-size: xx-large;

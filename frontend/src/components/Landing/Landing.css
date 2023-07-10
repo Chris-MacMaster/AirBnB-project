@@ -2,6 +2,10 @@
     color: white;
     display: flex;
     justify-content: center;
+    background-color: black;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .landing-top, .landing-bottom {
