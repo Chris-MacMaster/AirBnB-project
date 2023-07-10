@@ -36,6 +36,7 @@ function App() {
           <Route path="/" exact={true}>
             <Landing show={true}/>
             <SpotsIndex  />
+            <Footer show={true} />
           </Route>
 
 
@@ -80,7 +81,6 @@ function App() {
           
         </Switch>
       )}
-      <Footer show={true} />
     </>
   );
 }

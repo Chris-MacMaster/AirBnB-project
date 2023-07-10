@@ -2,7 +2,11 @@
     margin-top: 2rem;
     /* margin-left: 2rem; */
     /* margin-right: 2rem; */
-    background-color: rgb(220, 94, 28);
+    background-color: black;
+    color: white;
+    /* position: fixed; */
+    bottom: 0px;
+    width: 100%;
 }
 
 .footer-title {
@@ -82,3 +86,23 @@
     /* width: fit-content; */
     height: fit-content;
 }
+
+.footer-title, .footer-person {
+    color: white;
+}
+
+.footer-title {
+    padding-top: 20px;
+}
+
+.footer-person {
+    display: flex;
+    align-items: center;
+}
+
+.dev-name, .footer-link {
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
