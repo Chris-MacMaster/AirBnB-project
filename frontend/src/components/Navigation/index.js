@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom"
 
 
 
+
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
@@ -126,5 +127,7 @@ function Navigation({ isLoaded }) {
 
 export default Navigation;
 
+
+// className="fas fa-home"
 
 //<i class="fa-solid fa-bed-front"></i>
