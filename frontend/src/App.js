@@ -17,6 +17,7 @@ import Landing from "./components/Landing/Landing";
 import LandingBottom from "./components/Landing/LandingBottom";
 
 import Footer from "./components/Footer/Footer";
+import SearchResults from "./components/SearchBar/SearchResults";
 
 
 // import fruits from "./mockData/fruits.json"
@@ -50,6 +51,11 @@ function App() {
 
           <Route path="/spots/manage/:spotId" exact={true}>
             <EditSpotForm />
+          </Route>
+
+          {/* insert component */}
+          <Route path='/search/:parameters' exact={true}>
+            <SearchResults />
           </Route>
 
 
