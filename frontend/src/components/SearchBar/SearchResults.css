@@ -72,3 +72,13 @@
 .header-search:focus {
     outline: none;
 }
+
+.search-div {
+    margin-bottom: 10px;
+    padding-bottom: 0px;
+}
+
+.search-groups-div {
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -24,11 +24,21 @@ const SearchResults = () => {
 
     return (
         <div className='groups-index search-component'>
-            <div className='g-detail-top-background search-top'>
-                "
+          
+            <div className='landing search-div'>
+                <div className='landing-top'>
+                    <p className='landing-p landing-p-top'>
+                        Results for "{parameters}""
+                    </p>
+                    <p className='landing-p landing-p-bottom'>
+                        {!Object.values(spots).filter(spot => spot.name.toLowerCase().includes(parameters.toLowerCase())).length &&
+                            "No results matching that query"}
+                    </p>
+                </div>
+
             </div>
 
-            <div className="groupIndex search-groups-div">
+            <div className="spotIndex">
                 {Object.values(spots).filter(spot => spot.name.toLowerCase().includes(parameters.toLowerCase())).map(spot => (
                     <SpotIndexItem title={spot.name} spot={spot} key={spot.id} />
                 ))}
