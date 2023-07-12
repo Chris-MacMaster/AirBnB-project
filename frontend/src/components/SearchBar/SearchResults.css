@@ -50,7 +50,7 @@
     height: min(4.5vmin, 2.5rem);
     /* font-size: min(3vmin, 1rem); */
     /* margin-left: .5rem; */
-    margin-right: 7rem;
+    /* margin-right: 7rem; */
     transition: .6s;
     z-index: 1;
     align-self: center;

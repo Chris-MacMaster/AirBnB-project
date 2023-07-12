@@ -120,6 +120,8 @@ function Navigation({ isLoaded }) {
                 <p className='careBnB'>
                     CareBnB
                 </p>
+            </li>
+            <li className='iconWithCare icon-li'>
                 <div className='home-redirect-div'>
                     <SearchBar />
                 </div>
