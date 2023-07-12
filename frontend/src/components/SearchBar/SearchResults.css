@@ -14,7 +14,7 @@
     border: none;
 }
 
-.search-events-h1 {
+.search-events-h1 { 
     border: none;
 }
 
@@ -67,4 +67,8 @@
     border-radius: 5rem;
     padding-left: 1rem;
     font-size: min(1.5vmin, 1.5rem);
+}
+
+.header-search:focus {
+    outline: none;
 }

@@ -24,7 +24,7 @@ const SearchBar = () => {
                 <form onSubmit={handleSubmit} className='search-bar-form'>
                     <input className='header-search' id='header-search' type='text' value={parameters}
                         onChange={(e) => setParameters(e.target.value)}
-                        placeholder='Search for groups and events'></input>
+                        placeholder='Search for spots'></input>
                 </form>
             </div>
 
