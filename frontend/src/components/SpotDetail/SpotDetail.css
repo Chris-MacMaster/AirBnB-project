@@ -213,3 +213,11 @@
 .detail-img {
     object-fit: fill;
 }
+
+.spot-name, .spot-line2, .hosted-title, .hosted-description, .avg-rating, .review-card, .visit-spot {
+    padding-left: 1%;
+}
+
+.review-card {
+    background-color: #F7F5F3;
+}

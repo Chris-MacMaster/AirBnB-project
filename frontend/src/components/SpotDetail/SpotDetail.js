@@ -307,12 +307,12 @@ const SpotDetail = () => {
                     </div>}
 
                     {/*  */}
-                    <div className='review-index'>
+                    <div className='review-index r-i-background'>
                         {reviews.map(review => (
                             <ReviewIndexItem review={review} spotId={spotId} key={review.id} />
                         ))}
                     </div>
-                    {spot.numReviews === 0 && <div >
+                    {spot.numReviews === 0 && <div className='visit-spot'>
                         Please visit a spot to post a review
                     </div>}
                     {/* <p >

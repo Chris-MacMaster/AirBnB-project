@@ -107,7 +107,6 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
                 
                 <div >
                     {(isReviewUser && otherButton !== true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
-                    {/* <button type='button'>Delete Button No Work Yet</button> */}
                 </div>
                 <div className='review-buttons'>
                 <div >
