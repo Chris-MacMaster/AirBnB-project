@@ -63,14 +63,14 @@ const SpotForm = ({ report, formType }) => {
             e.push("Please enter a state")
             eObj.state = "Please enter a state"
         }
-        if (!lat) {
-            e.push("Please enter a latitude value")
-            eObj.lat = "Please enter a latitude value"
-        }
-        if (!lng) {
-            e.push("Please enter a longitude value")
-            eObj.lng = "Please enter a longitude value"
-        }
+        // if (!lat) {
+        //     e.push("Please enter a latitude value")
+        //     eObj.lat = "Please enter a latitude value"
+        // }
+        // if (!lng) {
+        //     e.push("Please enter a longitude value")
+        //     eObj.lng = "Please enter a longitude value"
+        // }
         if (!description) {
             e.push("Please enter a description")
             eObj.description = "Please enter a description"
@@ -91,21 +91,6 @@ const SpotForm = ({ report, formType }) => {
         if (!previewUrl) {
             eObj.previewURL = "Please enter at least a preview image url"
         }
-
-        // if (!country) e.push("Please enter a country")
-        // if (!address) e.push("Please enter an address")
-        // if (!city) e.push("Please enter a city")
-        // if (!state) e.push("Please enter a state")
-        // if (!lat) e.push("Please enter a latitude value")
-        // if (!lng) e.push("Please enter a longitude value")
-        // if (!description) e.push("Please enter a description")
-        // if (!name) e.push("Please enter a title")
-        // if (!price) e.push("Please enter a price")
-        //FOR TESTING
-        // console.log("e", e)
-
-        // let errorsObj = normalizeArr(e)
-        
 
     }, [address, city, country, state, lat,lng, name, description, price, previewUrl, url1, url2, url3, url4])
 
@@ -130,8 +115,8 @@ const SpotForm = ({ report, formType }) => {
             city,
             country,
             state,
-            lat: latNum,
-            lng: lngNum,
+            lat: 0,
+            lng: 0,
             name,
             description,
             price: priceNum
@@ -139,7 +124,7 @@ const SpotForm = ({ report, formType }) => {
    
   
         
-        const spotResponse = dispatch(makeSpot(newSpot, previewUrl))
+        const spotResponse = dispatch(makeSpot(newSpot, "https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
         
         const spotData = await Promise.resolve(spotResponse)
         // console.log("SPOT DATA", spotData)
@@ -170,25 +155,9 @@ const SpotForm = ({ report, formType }) => {
     };
 
 
-    // const CreateTest = (e) => {
-    //     e.preventDefault();
-
-    //     dispatch(makeSpot("sse"))
-    //     // history.push(`/spots`);
-    // };
-
+   
     return (
         <div>
-            {/* {hasSubmitted && errors.length > 0 && (
-                <div>
-                    The following errors were found:
-                    <ul>
-                        {errors.map(error => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
-                </div>
-            )} */}
             <form onSubmit={handleSubmit} >
                 <h2>{formType}</h2>
                 <div className='edit-intro-div'>
@@ -262,7 +231,7 @@ const SpotForm = ({ report, formType }) => {
                 </div>
 
 
-                <div className='lat-lng-div'>
+                {/* <div className='lat-lng-div'>
                     <label>
                         Latitude
                         <input className='lat-input' type="number"
@@ -289,7 +258,7 @@ const SpotForm = ({ report, formType }) => {
                         )}
                     </label>
 
-                </div>
+                </div> */}
 
                 <div className='description-label'>
                     <p id='describe-to-guests'>
@@ -378,7 +347,7 @@ const SpotForm = ({ report, formType }) => {
 
 
 
-                <div className='urls-label'>
+                {/* <div className='urls-label'>
                     <p>
                         Liven up your spot with photos
                     </p>
@@ -433,7 +402,7 @@ const SpotForm = ({ report, formType }) => {
                         }}
                         placeholder='Image URL'
                     />
-                </div>
+                </div> */}
 
 
                 <input className='submit-button button modal-button form-create-button red-styling' type="submit" value="Create Spot" />

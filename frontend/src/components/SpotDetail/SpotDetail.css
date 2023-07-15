@@ -172,6 +172,7 @@
 .avg-rating {
     font-size: large;
     margin-bottom: 27px;
+    margin-top: 10px;
 }
 
 .review-index {
@@ -192,6 +193,7 @@
 
 .avg-rating {
     display: flex;
+    align-items: center;
 }
 
 .box-reviewAvg-reviewNum {
@@ -220,4 +222,8 @@
 
 .review-card {
     background-color: #F7F5F3;
+}
+
+.x-reviews {
+    margin-left: 5px;
 }

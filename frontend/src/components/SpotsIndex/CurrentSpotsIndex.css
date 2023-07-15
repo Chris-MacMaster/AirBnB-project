@@ -14,3 +14,13 @@
 }
 
 
+.update-styled {
+        font-weight: normal;
+        font-size: large;
+        border-width: 2px;
+        margin-right: 5px;
+}
+
+.update-styled:hover {
+        background-color: orange;
+}
