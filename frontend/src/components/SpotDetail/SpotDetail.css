@@ -111,13 +111,11 @@
 
 
 .reserve-button {
-    /* display: inline; */
     background-color: red;
-    font-weight: bold;
-    color: white;
     width: 90%;
-    /* background-color: #FF5A5F; */
     height: 38px;
+    font-size: large;
+    font-weight: normal;
 }
 
 /* .img {
