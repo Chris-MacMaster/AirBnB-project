@@ -60,14 +60,14 @@ const EditSpotForm = ({ report, formType }) => {
             e.push("Please enter a state")
             eObj.state = "Please enter a state"
         }
-        if (!lat) {
-            e.push("Please enter a latitude value")
-            eObj.lat = "Please enter a latitude value"
-        }
-        if (!lng) {
-            e.push("Please enter a longitude value")
-            eObj.lng = "Please enter a longitude value"
-        }
+        // if (!lat) {
+        //     e.push("Please enter a latitude value")
+        //     eObj.lat = "Please enter a latitude value"
+        // }
+        // if (!lng) {
+        //     e.push("Please enter a longitude value")
+        //     eObj.lng = "Please enter a longitude value"
+        // }
         if (!description) {
             e.push("Please enter a description")
             eObj.description = "Please enter a description"
@@ -152,8 +152,8 @@ const EditSpotForm = ({ report, formType }) => {
             city,
             country,
             state,
-            lat: latNum,
-            lng: lngNum,
+            lat: 0,
+            lng: 0,
             name,
             description,
             price: priceNum
@@ -285,7 +285,7 @@ const EditSpotForm = ({ report, formType }) => {
                 </div>
 
 
-                <div className='lat-lng-div'>
+                {/* <div className='lat-lng-div'>
                     <label>
                         Latitude
                         <input className='lat-input' type="text"
@@ -298,13 +298,9 @@ const EditSpotForm = ({ report, formType }) => {
                             </div>
                         )}
                     </label>
-
                     <p className='comma'>
                         ,
                     </p>
-
-
-
                     <label>
                         Longitude
                         <input className='lng-input' type="text"
@@ -317,8 +313,9 @@ const EditSpotForm = ({ report, formType }) => {
                             </div>
                         )}
                     </label>
+                </div> */}
 
-                </div>
+
 
                 <div className='description-label'>
                     <p id='describe-to-guests'>

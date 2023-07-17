@@ -58,9 +58,11 @@ li {
 
 .dropdown-button {
     margin-left: 10px;
+    margin-right: 10px;
     position: relative;
     top: 3px;
     border-radius: 25px;
+    /* margin-right: 1%; */
 }
 
 .dropdown-button:hover {
