@@ -1,13 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 // import { Link } from "react-router-dom"
 
-import SpotIndexItem from "./SpotIndexItem";
 import { useEffect } from "react";
-import { fetchSpots } from "../../store/spot";
 import { actionResetReviews } from "../../store/review";
 
 
-import "./SpotIndex.css"
+import { fetchBookings } from "../../store/booking";
+import BookingIndexItem from "./BookingIndexItem";
 
 
 
@@ -15,13 +14,15 @@ import "./SpotIndex.css"
 function BookingsIndex() {
     const dispatch = useDispatch()
 
-    const spotState = useSelector(state => state.spots.allSpots)
+    const bookingState = useSelector(state => state.bookings.allBookings)
 
-    const spots = Object.values(spotState)
+    const bookings = Object.values(bookingState)
     useEffect(() => {
-        dispatch(fetchSpots())
+        dispatch(fetchBookings())
         dispatch(actionResetReviews())
     }, [dispatch])
+
+
 
     return (
 
@@ -31,8 +32,8 @@ function BookingsIndex() {
             </h2>
 
             <div className="spotIndex">
-                {spots.map(spot => (
-                    <SpotIndexItem title={spot.name} spot={spot} key={spot.id} />
+                {bookings.map(booking => (
+                    <BookingIndexItem booking={booking} key={booking.id} />
                 ))}
 
             </div>

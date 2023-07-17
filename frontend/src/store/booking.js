@@ -24,10 +24,9 @@ export const normalizeArr = (arr) => {
 export const fetchBookings = () => async dispatch => {
     const response = await csrfFetch('/api/bookings');
     const bookings = await response.json();
+    console.log("BOOKINGS", bookings)
     let convertedBookings = normalizeArr(bookings.Bookings)
-    // console.log(spots)
-    // console.log(convertedSpots)
-    // console.log("CONVERTED SPOTS", convertedSpots)
+   
     if (response.ok) {
         dispatch(actionLoadBookings(convertedBookings));
     }

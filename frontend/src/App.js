@@ -18,6 +18,7 @@ import LandingBottom from "./components/Landing/LandingBottom";
 
 import Footer from "./components/Footer/Footer";
 import SearchResults from "./components/SearchBar/SearchResults";
+import BookingsIndex from "./components/BookingsIndex/BookingsIndex";
 
 
 // import fruits from "./mockData/fruits.json"
@@ -74,6 +75,10 @@ function App() {
 
           <Route path="/reviews/manage/:reviewId" exact={true}>
             <EditReviewForm />
+          </Route>
+
+          <Route path="/bookings/all" exact={true}>
+            <BookingsIndex />
           </Route>
 
 
