@@ -9,6 +9,7 @@ const bookingRouter = require('./booking.js')
 
 const spotImageRouter = require('./spot-images.js')
 const reviewImageRouter = require('./review-images.js')
+const searchRouter = require('./search-results.js')
 
 
 const { restoreUser } = require("../../utils/auth.js");
@@ -59,6 +60,8 @@ router.use('/bookings', bookingRouter)
 router.use('/review-images', reviewImageRouter)
 
 router.use('/spot-images', spotImageRouter)
+
+router.use('/search-results', searchRouter)
 
 
 

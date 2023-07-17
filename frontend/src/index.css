@@ -3,26 +3,30 @@
 
 * {
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
     /* Is closer to AirBnB but for now breaks all the icons */
     /* font-family:-apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
 }
 div {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    /* font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
 }
 
 textarea {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    /* font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important; */
 }
 
 i {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 
 body {
-    /* background-color: teal; */
-    
+    background-color: #F7F5F3;
+   margin: 0px;
 }
 
 img {
@@ -38,4 +42,14 @@ img {
     background-color: orange;
     /* color: blue; */
     /* border: 2px solid orange; */
+}
+
+#root {
+    margin-top: 50px;
+}
+
+.fa-home {
+    z-index: 3;
+    width: 10px;
+    height: 10px;
 }

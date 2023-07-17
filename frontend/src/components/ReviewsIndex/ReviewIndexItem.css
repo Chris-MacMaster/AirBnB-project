@@ -6,6 +6,7 @@
     /* border-radius: 25px; */
     background-color: white;
     margin-bottom: 30px;
+    
 }
 
 .review-card:hover {
@@ -14,7 +15,9 @@
 
 .reviewIndexItem {
     width: 97%;
+    /* background-color: black; */
     /* margin-bottom: 40px; */
+    /* background-color: #F7F5F3; */
 }
 
 .date-string-text {

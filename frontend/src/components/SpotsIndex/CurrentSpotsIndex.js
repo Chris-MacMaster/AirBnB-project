@@ -17,6 +17,7 @@ import OpenModalButton from "../OpenModalButton/index"
 import DeleteSpotModal from "./DeleteSpotModal"
 
 import "./CurrentSpotsIndex.css"
+import OpenModalStyled from "../OpenModalButton/OpenModalStyled";
 
 
 
@@ -74,8 +75,8 @@ function CurrentSpotsIndex() {
 
                         {/* onClick={handleUpdate(spot.id)}  */}
                         <div className='div-buttons'>
-                                <button onClick={() => history.push(`/spots/manage/${spot.id}`)} className='update-button button' type='button' >Update</button>
-                                <OpenModalButton className="spot-delete-button" buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
+                                <button onClick={() => history.push(`/spots/manage/${spot.id}`)} className='update-button button update-styled' type='button' >Update</button>
+                                <OpenModalStyled className="spot-delete-button" buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
                         </div>
 
                     </div>

@@ -276,25 +276,14 @@ const SpotDetail = () => {
 
 
                 </div>
-                    <div className='reviewAvg-reviewNum'>
-                        <p className='avgRating-text'>
-                    {/* {spot.avgRating !== "no reviews exist for this spot yet" ? spot.avgRating : "New"} */}
-                    {/* &#9733; {spot.avgStarRating !== "No reviews found" ? spot.avgStarRating : "New"} */}
-                        </p>
-                        <p >
-                            {/* {spot.avgStarRating !== "No reviews found" ? spot.numReviews : ""} */}
-                        </p> 
-                    </div>
-                    {/* needs logic to only display on condition, i think ternary */}
                     <div className='avg-rating' >
                 &#9733; {spot.avgStarRating !== "No reviews found" ? toDecimal(spot.avgStarRating) : "New"}
                     
-                    {spot.numReviews !==0 && <div >
+                    {spot.numReviews !==0 && <div className='x-reviews'>
                         &#8226; {spot.numReviews !== 1 ? spot.numReviews + " reviews"  : spot.numReviews + " review"} 
                     </div>}
 
                     </div>
-{/* sdjkafhllkjdfhlask */}
             {(notOwnerLogged && (hasReview === false)) &&
                     <div className='open-modal-div'>
                         <OpenModalButton className="post-review-modal-button" buttonText="Post Your Review" modalComponent={<ReviewForm spotId={spotId}/>} />
@@ -306,19 +295,14 @@ const SpotDetail = () => {
                         </p>
                     </div>}
 
-                    {/*  */}
-                    <div className='review-index'>
+                    <div className='review-index r-i-background'>
                         {reviews.map(review => (
                             <ReviewIndexItem review={review} spotId={spotId} key={review.id} />
                         ))}
                     </div>
-                    {spot.numReviews === 0 && <div >
+                    {spot.numReviews === 0 && <div className='visit-spot'>
                         Please visit a spot to post a review
                     </div>}
-                    {/* <p >
-                        reviews should go here
-                    </p>
-                    <button onClick={getReviewsTest} type='button' className=''>LoadReviewState Test</button> */}
                 </div>
     );
 };

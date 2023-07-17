@@ -14,6 +14,7 @@ import DeleteSpotModal from "./DeleteSpotModal.js"
 // import 
 
 import "./SpotIndexItem.css"
+import OpenModalStyled from '../OpenModalButton/OpenModalStyled';
 
 
 
@@ -97,7 +98,7 @@ const CurrentSpotItem = ({ spot }) => {
                         <p className='price'>${spot.price} night</p>
                         <div className='div-buttons'>
                             <button onClick={handleUpdate} className='update-button button' type='button' >Update</button>
-                            <OpenModalButton buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
+                            <OpenModalStyled buttonText="Delete" modalComponent={<DeleteSpotModal spot={spot} />}/>
                         </div>
                     </div>
                 </div>

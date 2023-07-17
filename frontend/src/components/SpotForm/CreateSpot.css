@@ -156,3 +156,7 @@ form {
     position: relative;
     bottom: 25px;
 }
+
+.city-state-div {
+    width: 300px;
+}

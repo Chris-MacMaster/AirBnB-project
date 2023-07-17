@@ -13,6 +13,11 @@ import SpotForm from "./components/SpotForm/CreateSpot";
 import EditSpotForm from "./components/SpotForm/EditSpot";
 import CurrentReviewIndex from "./components/ReviewsIndex/CurrentReviewIndex"
 import EditReviewForm from "./components/SpotForm/EditReview";
+import Landing from "./components/Landing/Landing";
+import LandingBottom from "./components/Landing/LandingBottom";
+
+import Footer from "./components/Footer/Footer";
+import SearchResults from "./components/SearchBar/SearchResults";
 
 
 // import fruits from "./mockData/fruits.json"
@@ -31,18 +36,26 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/" exact={true}>
+            <Landing show={true}/>
             <SpotsIndex  />
+            <LandingBottom />
+            <Footer show={true} />
           </Route>
 
 
 
           <Route path="/spots/manage" exact={true}>
             <CurrentSpotsIndex />
-            {/* insert the managSpots */}
+            
           </Route>
 
           <Route path="/spots/manage/:spotId" exact={true}>
             <EditSpotForm />
+          </Route>
+
+          {/* insert component */}
+          <Route path='/search/:parameters' exact={true}>
+            <SearchResults />
           </Route>
 
 

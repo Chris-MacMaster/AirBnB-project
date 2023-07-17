@@ -46,7 +46,7 @@ img {
     height: 250px;
     /* border: 2px solid blue; */
     width: 270px;
-    min-width: 270px;
+    /* min-width: 270px; */
     /* transition: transform .7s, background-color .7s */
     /* transition: background-color .7s; */
 }

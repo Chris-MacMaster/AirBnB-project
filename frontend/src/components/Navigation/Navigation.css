@@ -7,39 +7,43 @@
 #nav-ul { 
     display: flex;
     padding: 0;
-    /* flex directio */
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 3%;
     padding-right: 3%;
     align-items: center;
-    /* position: sticky; */
-    /* top: 16px; */
-    /* border: 2px solid red; */
-
+    background-color: white;
+    margin-top: 0px;
+    height: 50px;
+    /* margin-bottom: 50px; */
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
 }
 
 li {
     list-style: none
 }
 
-/* ul > li {
-    display: inline;
-} */
-
 .careBnB {
     display: inline;
     margin-left: 30px;
-    color: #FF5A5F;
+    color: black;
     font-weight: bold;
     font-size: xx-large;
 }
 
 
 .fa-home {
-    color: black;
+    color: white;
     position: relative;
-    bottom: 4px;
+    right: 5px;
+    /* margin-right: 10%; */
+    /* bottom: 4px; */
+    /* width: 100px; */
+    /* height: 100px; */
+
+
     /* border: 2px solid blue */
     /* background-color: blue; */
     /* transition: color 2s; */
@@ -177,12 +181,12 @@ li {
 
 #dropdown-menu {
     position: absolute;
-    /* background-color: white; */
     /* border-radius: 10px; */
 }
 
 #dropdown-menu > li {
-    background-color: white;
+    /* background-color: white; */
+    background-color: #B8B8B8;
 }
 
 #top-right-bars {
@@ -211,3 +215,30 @@ i {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.nav-button {
+    height: 50px;
+    background-color: white;
+    border: none;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: lightgrey;
+}
+
+.icon-li {
+    display: flex;
+    align-items: center;
+
+}
+
+.home-div {
+    background-color: #0061FE;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
+import SearchBar from "../SearchBar/SearchBar"
 
 
 
@@ -15,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useState } from "react";
 import { useHistory } from "react-router-dom"
+
 
 
 
@@ -83,7 +85,7 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <li>
-                <button onClick={toNewSpot} className='create-spot-top-right' type='button' >Create New Spot</button>
+                <button onClick={toNewSpot} className='create-spot-top-right button blue-styling' type='button' >Create New Spot</button>
                 <ProfileButton user={sessionUser} />
             </li>
         );
@@ -91,12 +93,12 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <li>
                 <OpenModalButton
-                    buttonText="Log In"
-                    modalComponent={<LoginFormModal />}
-                />
-                <OpenModalButton
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
+                />
+                <OpenModalButton
+                    buttonText="Log In"
+                    modalComponent={<LoginFormModal />}
                 />
                 {/* make react component? */}
                 {/* <button onClick={becomeDemo} type='button' >
@@ -111,11 +113,18 @@ function Navigation({ isLoaded }) {
 
     return (
         <ul id='nav-ul'>
-            <li className='iconWithCare'>
-                <NavLink exact to="/"><i className="fas fa-home" /></NavLink> 
+            <li className='iconWithCare icon-li'>
+                <div className='home-div'>
+                    <NavLink exact to="/"><i className="fas fa-home" /></NavLink> 
+                </div>
                 <p className='careBnB'>
                     CareBnB
                 </p>
+            </li>
+            <li className='iconWithCare icon-li'>
+                <div className='home-redirect-div'>
+                    <SearchBar />
+                </div>
             </li>
             {isLoaded && sessionLinks}
         </ul>
@@ -124,5 +133,7 @@ function Navigation({ isLoaded }) {
 
 export default Navigation;
 
+
+// className="fas fa-home"
 
 //<i class="fa-solid fa-bed-front"></i>

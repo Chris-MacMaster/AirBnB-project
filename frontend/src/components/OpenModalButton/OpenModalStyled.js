@@ -2,7 +2,7 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 
-function OpenModalButton({
+function OpenModalStyled({
     modalComponent, // component to render inside the modal
     buttonText, // text of the button that opens the modal
     onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
@@ -17,8 +17,8 @@ function OpenModalButton({
     };
 
     return (
-        <button className='nav-button' onClick={onClick}>{buttonText}</button>
+        <button className='update-button button update-styled' onClick={onClick}>{buttonText}</button>
     );
 }
 
-export default OpenModalButton;
+export default OpenModalStyled;

@@ -18,6 +18,7 @@ import OpenModalButton from '../OpenModalButton';
 
 import ReviewDeleteModal from '../ReviewDeleteModal/ReviewDeleteModal';
 import ManageReviewDeleteModal from '../ReviewDeleteModal/ManageReviewDeleteModal';
+import OpenModalStyled from '../OpenModalButton/OpenModalStyled';
 
 
 
@@ -106,15 +107,14 @@ const ReviewIndexItem = ({ review, spotId, otherButton }) => {
                 </div>
                 
                 <div >
-                    {(isReviewUser && otherButton !== true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
-                    {/* <button type='button'>Delete Button No Work Yet</button> */}
+                    {(isReviewUser && otherButton !== true) && <OpenModalStyled review={review} buttonText="Delete Review" modalComponent={<ReviewDeleteModal review={review} spotId={spotId} />} />}
                 </div>
                 <div className='review-buttons'>
                 <div >
-                        {(otherButton === true) && <OpenModalButton review={review} buttonText="Delete Review" modalComponent={<ManageReviewDeleteModal loadUser={true} review={review} spotId={spotId} />} />}
+                        {(otherButton === true) && <OpenModalStyled review={review} buttonText="Delete Review" modalComponent={<ManageReviewDeleteModal loadUser={true} review={review} spotId={spotId} />} />}
                 </div>
                 <div >
-                    {(otherButton === true) &&  <button onClick={handleUpdate} className='button update-button'>Update Review</button>}
+                        {(otherButton === true) && <button onClick={handleUpdate} className='update-button button update-styled'>Update Review</button>}
                 </div>
 
                 </div>
