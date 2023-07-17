@@ -405,7 +405,7 @@ const SpotForm = ({ report, formType }) => {
                 </div> */}
 
 
-                <input className='submit-button button modal-button form-create-button red-styling' type="submit" value="Create Spot" />
+                <input className='create-spot-top-right button blue-styling' type="submit" value="Create Spot" />
             </form>
         </div>
     );
