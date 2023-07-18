@@ -2,39 +2,19 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { fetchOneSpot } from '../../store/spot';
 import { useDispatch } from 'react-redux';
-
 import { fetchReviews } from "../../store/review"
-
 import { useEffect } from 'react';
-
 import  ReviewForm  from "../SpotForm/CreateReview"
-// import SpotForm from '../SpotForm/CreateSpot'
-
 import ReviewIndexItem from '../ReviewsIndex/ReviewIndexItem';
-
-// import { useModal } from '../../context/Modal';
-
 import { useParams } from 'react-router-dom';
-// import { actionDeleteReport } from '../store/report';
-// import { useDispatch } from "react-redux"
-// import { useHistory } from 'react-router-dom';
-
 import "./SpotDetail.css"
 import OpenModalButton from '../OpenModalButton';
-
-
 import { normalizeArr } from '../../store/spot';
 import {useState} from "react"
-// import { fetchOneSpot } from "../../store/spot"
-// import { useDispatch } from 'react-redux';
 
-// import { useSelector } from "react-redux"
-
-
-// import "./SpotIndexItem.css"
-
-
-//BUILD THIS SPOT DETAIL COMPONENT
+// testing datepicker
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 const SpotDetail = () => {
     const dispatch = useDispatch()
@@ -47,12 +27,10 @@ const SpotDetail = () => {
     let spotImagesArr = spot.SpotImages
 
     const reviewState = useSelector(state => state.reviews.spot)
-    
     const reviews = Object.values(reviewState)
 
-
     const [hasReview, setHasReview] = useState(false)
-
+    // const [startDate, setStartDate] = useState(new Date());
 
     const checkReview = (reviews) => {
         
@@ -78,10 +56,6 @@ const SpotDetail = () => {
 
     }, [reviewState, reviews])
 
-
-
-
-
     const yourReviewExists = (reviewState) => {
         if (reviewState && reviewState.user) {
             for (const key in reviewState){
@@ -89,22 +63,13 @@ const SpotDetail = () => {
                 console.log("KEY USER ID", key)
                 console.log("USER.ID", user.id)
                 if (reviewAuthorUserID === user.id){
-                    // console.log('tri')
-                    // console.log("KEY USER ID", key.userId)
-                    // console.log("USER.ID", user.id)
-    
-    
                     return true
                 }
             }
         }
         return false
     }
-    // IS BUGGED, ALWAYS FALSE
-    // console.log("YOUR REVIEW HERE?", yourReviewExists(reviewState))
 
-    // const hasReview = yourReviewExists(reviewState)
-  
     const checkNoReviews = () => {
         if (!reviewState) {
             return true
@@ -112,24 +77,15 @@ const SpotDetail = () => {
         return false
     }
 
-    // const noReviews = checkNoReviews()
-
-    // if ()
-
     const isOwner = (spot?.Owner?.id === user?.id)
-
     const notOwnerLogged = !isOwner && user
 
-
     let {spotId} = useParams()
-
 
     useEffect(() => {
         dispatch(fetchOneSpot(spotId))
         dispatch(fetchReviews(spotId))
     }, [dispatch, spotId])
-
-
 
     if (!spot.Owner) {
         return null
@@ -139,8 +95,6 @@ const SpotDetail = () => {
         return null
     }
 
-
-
     const getReviewsTest = () => {
         dispatch(fetchReviews(spotId))
     }
@@ -148,7 +102,6 @@ const SpotDetail = () => {
     const handleReserve = () => {
         window.alert("Feature Coming Soon...")
     }
-
 
     function toDecimal(num) {
         const convertedNum = `${num}`
@@ -168,8 +121,6 @@ const SpotDetail = () => {
     if (!reviewState) {
         return null
     }
-
-   
 
 
     return (
@@ -268,6 +219,7 @@ const SpotDetail = () => {
                             <button id='reserve-box-button' onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
                                 Reserve
                             </button>
+                            {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
                         </div>
 
 
@@ -308,8 +260,3 @@ const SpotDetail = () => {
 };
 
 export default SpotDetail;
-
-
-
-// {/* <Link to={`/reports/${report.id}`}>Report #{report.id}</Link> */ }
-// {/* <Link to={`/reports/${report.id}/edit`}>Edit</Link> */ }
