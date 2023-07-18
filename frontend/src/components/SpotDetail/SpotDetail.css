@@ -152,6 +152,7 @@
     height: fit-content;
     border: 2px solid black;
     background-color: #B8B8B8;
+    margin-left: 1%;
     /* border-bottom: 2px solid black; */
     /* border-left: 2px solid black; */
     /* border-right: 2px solid black; */
@@ -214,7 +215,7 @@
     object-fit: fill;
 }
 
-.spot-name, .spot-line2, .hosted-title, .hosted-description, .avg-rating, .review-card, .visit-spot {
+.spot-name, .spot-line2, .hosted-title, .avg-rating, .review-card, .visit-spot {
     padding-left: 1%;
 }
 
