@@ -1,5 +1,7 @@
 .booking-dates {
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
+    padding-top: 5px;
+    font-weight: bold;
 }
 
 .update-booking {
@@ -7,6 +9,10 @@
     font-size: large;
 }
 
-.bookings.buttons.div {
-    margin-top: 20px;
+.bookings-buttons-div {
+    margin-top: 10px;
+}
+
+.booking-card-div {
+    height: 380px;
 }

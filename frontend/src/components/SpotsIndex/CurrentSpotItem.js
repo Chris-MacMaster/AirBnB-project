@@ -72,7 +72,7 @@ const CurrentSpotItem = ({ spot }) => {
     }
 
     return (
-        <li  className='spotIndexItem'>
+        <li className='spotIndexItem current-card-div'>
 
             <div  className='spot-card-div current-card-div' >
                 <div className='spot-name'>

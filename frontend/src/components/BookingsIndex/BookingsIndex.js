@@ -24,6 +24,8 @@ function BookingsIndex() {
 
 
 
+
+
     return (
 
         <div className="spots-index">

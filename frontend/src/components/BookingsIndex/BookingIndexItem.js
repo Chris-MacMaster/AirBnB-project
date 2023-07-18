@@ -6,6 +6,7 @@ import "./BookingIndexItem.css"
 import { useSelector } from 'react-redux';
 import DeleteBookingModal from './DeleteBookingModal';
 import OpenModalStyled from '../OpenModalButton/OpenModalStyled';
+import { fetchOneSpot } from '../../store/spot';
 
 
 
@@ -18,11 +19,26 @@ const BookingIndexItem = ({ booking }) => {
         // history.push(`/bookings/manage/${booking.id}`)
     }
 
+    const convertDate = (dateStr) => {
+        return dateStr.slice(5)
+    }
+
+    const dateYear = (dateStr) => {
+        return dateStr.slice(0, 4)
+    }
+
+    const handleClickBooking = (e) => {
+        e.preventDefault()
+        // console.log("clicked")
+        dispatch(fetchOneSpot(booking.Spot.id))
+        history.push(`/spots/detail/${booking.Spot.id}`)
+
+    }
 
     return (
         <li  className='spotIndexItem'>
 
-            <div  className='spot-card-div' >
+            <div onClick={handleClickBooking} className='spot-card-div' >
                 <div className='spot-name'>
                     {booking.Spot.name}
                 </div>
@@ -32,15 +48,12 @@ const BookingIndexItem = ({ booking }) => {
                 <div className='card-info' >
                     <div className='card-row1'>
                         <div className='city-state' >
-                            {booking.Spot.city}, {booking.Spot.state}
+                            {booking.Spot.city}, {booking.Spot.state} 
                         </div>
                     </div >
-                    <div className='card-row2' >
-                        <p className='price'>${booking.Spot.price} <span id='night'>night</span></p>
+                    <div className='booking-dates'>
+                        {dateYear(booking.startDate)} {convertDate(booking.startDate)} - {convertDate(booking.endDate)}
                     </div>
-                </div>
-                <div className='booking-dates'>
-                    {booking.startDate} - {booking.endDate}
                 </div>
 
             </div>
