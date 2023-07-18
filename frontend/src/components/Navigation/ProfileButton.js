@@ -100,9 +100,9 @@ function ProfileButton({ user }) {
                     {/* <Link to="/spots/current">Manage Spots</Link> */}
                 </li>
 
-                <li id="manage-bookings" className="main-dropdown-li manage-reviews">
+                <li id="manage-bookings" className="main-dropdown-li manage-reviews manage-bookings">
                     <p id="review-text" onClick={handleBookings}>
-                        All Bookings
+                        Manage Bookings
                     </p>
                     {/* <Link to="/spots/current">Manage Spots</Link> */}
                 </li>

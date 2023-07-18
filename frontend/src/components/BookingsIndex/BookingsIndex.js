@@ -28,7 +28,7 @@ function BookingsIndex() {
 
         <div className="spots-index">
             <h2>
-                {/* Spots Index */}
+                Manage Bookings
             </h2>
 
             <div className="spotIndex">

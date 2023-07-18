@@ -244,3 +244,10 @@ i {
     align-items: center;
     justify-content: center;
 }
+
+.manage-bookings {
+    border-bottom: 2px solid black;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    cursor: pointer;
+}
