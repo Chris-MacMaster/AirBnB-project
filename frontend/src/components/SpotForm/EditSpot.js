@@ -84,21 +84,6 @@ const EditSpotForm = ({ report, formType }) => {
             e.push("Please enter a price")
             eObj.price = "Please enter a price"
         }
-
-
-        // if (!country) e.push("Please enter a country")
-        // if (!address) e.push("Please enter an address")
-        // if (!city) e.push("Please enter a city")
-        // if (!state) e.push("Please enter a state")
-        // if (!lat) e.push("Please enter a latitude value")
-        // if (!lng) e.push("Please enter a longitude value")
-        // if (!description) e.push("Please enter a description")
-        // if (!name) e.push("Please enter a title")
-        // if (!price) e.push("Please enter a price")
-
-        //FOR TESTING
-        // console.log("e", e)
-
     }, [address, city, country, state, lat, lng, name, description, price])
 
 
@@ -119,9 +104,6 @@ const EditSpotForm = ({ report, formType }) => {
             setName(spotInfo.name)
             setDescription(spotInfo.description)
             setPrice(spotInfo.price)
-
-            // setCountry(spotInfo.country)
-            // setTitle(spotInfo.name)
         }
         fillFeilds()
     }, [dispatch]);
@@ -132,19 +114,12 @@ const EditSpotForm = ({ report, formType }) => {
 
         setHasSubmitted(true)
         if (errors.length > 0) {
-            // window.alert("Cannot Submit, See Errors Listed")
             return
         }
 
-        //trying to be careful about data types
         let latNum = parseInt(lat)
         let lngNum = parseInt(lng)
         let priceNum = parseInt(price)
-
-
-
-        // const id = window
-
 
         const editedSpot = {
             spotId,
@@ -158,20 +133,13 @@ const EditSpotForm = ({ report, formType }) => {
             description,
             price: priceNum
         }
-        console.log("FORM DATA", editedSpot)
 
         const editSpotResponse = dispatch(editSpot(editedSpot))
-        // could test, maybe needs to be async
-        // const editSpotData = await Promise.resolve(editSpotResponse)
-        
+                
         if (editSpotResponse) {
-            console.log("EDIT SPOT RESPONSE", editSpotResponse)
             dispatch(actionResetReviews())
             history.push(`/spots/detail/${spotId}`)
-
         }
-
-       
     };
 
     const reset = () => {

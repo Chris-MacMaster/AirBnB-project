@@ -1,19 +1,9 @@
 // backend/routes/api/session.js
 const express = require('express');
-// const { where } = require('sequelize');
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-// const { User } = require('../../db/models');
 const { Review, User, Spot, ReviewImage, SpotImage } = require('../../db/models');
-// const { User } = require('../../db/models');
-
-
-
 const router = express.Router();
-
-
-
-
 
 router.get('/current', requireAuth, async (req, res) => {
     const userReviews = await Review.findAll({
@@ -29,9 +19,6 @@ router.get('/current', requireAuth, async (req, res) => {
 
     for (let i = 0; i < newReviews.length; i++){
         let review = newReviews[i]
-
-        // review = review.toJSON()
-
         let user = await User.findByPk(newReviews[i].userId,
             // {
             //     attributes: [['id'], ['firstName'], ['lastName']]
@@ -99,8 +86,6 @@ router.get('/current', requireAuth, async (req, res) => {
             review.Spot.previewImage = "No spot image found"
         }
 
-        // review.Spot.previewImage = image.url
-
         newReviews[i] = review
     }
 
@@ -131,8 +116,6 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         err.status = 400
         throw err
     }
-
-
 
     res.json(target)
 })

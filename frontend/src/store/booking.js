@@ -1,10 +1,19 @@
 import { csrfFetch } from "./csrf"
 const LOAD_BOOKINGS = "bookings/LOAD"
+const DELETE_BOOKING = "bookings/DELETE"
+
 //**ACTIONS */
 export const actionLoadBookings = (bookings) => {
     return {
         type: LOAD_BOOKINGS,
         payload: bookings
+    }
+}
+
+export const actionDeleteBooking = (id) => {
+    return {
+        type: DELETE_BOOKING,
+        payload: id
     }
 }
 
@@ -32,6 +41,26 @@ export const fetchBookings = () => async dispatch => {
     }
 };
 
+export const editBooking = (bookingBody, bookingId) => async dispatch => {
+    // need booking id
+    const { startDate, endDate } = bookingBody
+
+    const method = "PUT"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify({
+        startDate,
+        endDate
+    })
+    const options = { method, headers, body }
+    console.log("OPTIONS", options)
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, options)
+    const booking = await response.json()
+    if (response.ok) {
+        return booking
+    }
+
+}
+
 
 const initialState = {
     allBookings: {},
@@ -45,6 +74,12 @@ export default function bookingReducer(state = initialState, action) {
         case LOAD_BOOKINGS: {
             const newState = { allBookings: { ...state.allBookings } } 
             newState.allBookings = action.payload
+            return newState
+        }
+
+        case DELETE_BOOKING: {
+            const newState = { allBookings: { ...state.allBookings } }
+            delete newState.allBookings[action.payload]
             return newState
         }
 

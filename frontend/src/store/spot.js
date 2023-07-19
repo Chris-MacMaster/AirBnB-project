@@ -156,28 +156,14 @@ export const makeSpot = (spotBody, url) => async dispatch => {
         name,
         description,
         price
-        //...formdata placeholder
-        // "address": "123 Disney Lane",
-        // "city": "San Francisco",
-        // "state": "California",
-        // "country": "United States of America",
-        // "lat": 37.7645358,
-        // "lng": -122.4730327,
-        // "name": "App Academy",
-        // "description": "Place where web developers are created",
-        // "price": 123
-        
     })
     const options = {method, headers, body}
     
     const response = await csrfFetch(`/api/spots`, options);
     
-    //testing logs
     const spot = await response.json();
-    // console.log("MAKE SPOT FETCH RESPONSE", spot)
     
     if (response.ok){
-        // dispatch(loadSpots(spot));
 
         const makeSpotImage = () => async dispatch => {
             const method = "POST"
@@ -185,7 +171,6 @@ export const makeSpot = (spotBody, url) => async dispatch => {
             const body = JSON.stringify({
                 url: url, 
                 preview: true
-                 //...formdata placeholder
             })
             const options = { method, headers, body }
 
@@ -194,10 +179,6 @@ export const makeSpot = (spotBody, url) => async dispatch => {
             // console.log("MAKE IMAGE RESPONSE", makeImageResponse)
         }
         dispatch(makeSpotImage())
-        //add spot image as well
-        // dispatch(loadOneSpot(spot))
-        // history.push(`/spots/${spot.id}`)
-        // console.log("SPOT", spot)
 
         return spot
     }
@@ -252,26 +233,12 @@ export const editSpot = (spotBody) => async dispatch => {
         name,
         description,
         price
-        //...formdata placeholder
-        // "address": "edited",
-        // "city": "edited",
-        // "state": "edited",
-        // "country": "United States of America",
-        // "lat": 37.7645358,
-        // "lng": -122.4730327,
-        // "name": "App Academy",
-        // "description": "Place where web developers are created",
-        // "price": 321
     })
     const options = { method, headers, body }
-
-
-    
+    // console.log("SPOT OPTIONS", options)
     const response = await csrfFetch(`/api/spots/${spotId}`, options);
     const spot = await response.json();
     
-    console.log("PUT RESPONSE DATA OBJ", spot)
-
     if (response.ok) {
         dispatch(loadOneSpot(spot))
     }

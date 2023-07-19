@@ -115,11 +115,11 @@ router.post('/', async (req, res) => {
 })
 
 
-//            "endDate": "2021-11-20",
 
 //edit a booking
 router.put('/:bookingId', requireAuth, async (req, res) => {
     let booking = await Booking.findByPk(req.params.bookingId)
+    // console.log("BOOKINGID", req.params.bookingId)
     let originalBooking = booking
     if (!booking) {
         let err = new Error("Booking couldn't be found")

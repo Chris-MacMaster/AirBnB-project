@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import DeleteBookingModal from './DeleteBookingModal';
 import OpenModalStyled from '../OpenModalButton/OpenModalStyled';
 import { fetchOneSpot } from '../../store/spot';
+import EditBookingModal from './EditBookingModal';
 
 
 
@@ -59,8 +60,8 @@ const BookingIndexItem = ({ booking }) => {
             </div>
 
             <div className='bookings-buttons-div'>
-                    <button onClick={handleUpdate} className='button update-booking' type='button' >Update</button>
-                    <OpenModalStyled buttonText="Delete" modalComponent={<DeleteBookingModal booking={booking} />} />
+                <OpenModalStyled buttonText="Update" modalComponent={<EditBookingModal booking={booking} />} />
+                <OpenModalStyled buttonText="Delete" modalComponent={<DeleteBookingModal booking={booking} />} />
             </div>
         </li>
     );
