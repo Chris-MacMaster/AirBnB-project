@@ -1,15 +1,11 @@
 import { csrfFetch } from "./csrf"
 import { fetchOneSpot, loadOneSpot } from "./spot"
 
-
-
 const LOAD_REVIEWS = "reviews/LOAD"
 const USER_REVIEWS = "reviews/user"
 const RESET_REVIEWS = "reviews/RESET"
 const ONE_REVIEW = "reviews/LOAD/ONE"
 
-// const LOAD_SPOT = "spots/LOAD/ONE"
-// const DELETE_SPOT = "spots/DELETE"
 // //**ACTIONS */
 
 
