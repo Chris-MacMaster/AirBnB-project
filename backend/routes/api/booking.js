@@ -82,21 +82,13 @@ router.get('/current', requireAuth, async (req, res) => {
 })
 
 
-
+// POST A BOOKING
 router.post('/', async (req, res) => {
-
-
     const { spotId, userId, startDate, endDate } = req.body
+    // let bookedDays = []
 
-
-    let bookedDays = []
-
-    let bookings = await Booking.findAll({
-        attributes: ['startDate', 'endDate'],
-    })
-
-    // bookings.forEach(booking => {
-
+    // let bookings = await Booking.findAll({
+    //     attributes: ['startDate', 'endDate'],
     // })
 
     let newBooking = await Booking.create({
@@ -107,11 +99,7 @@ router.post('/', async (req, res) => {
     })
 
     await newBooking.save()
-
     res.json(newBooking)
-
-    // res.status(200)
-    // res.json(bookings)
 })
 
 
@@ -208,7 +196,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 router.delete('/:bookingId', requireAuth, async (req, res) => {
 
     let booking = await Booking.findByPk(req.params.bookingId)
-
     if (!booking) {
         let err = new Error('No booking found with that id')
         err.status = 404

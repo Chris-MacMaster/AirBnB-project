@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
 import { useModal } from '../../context/Modal';
@@ -9,11 +9,15 @@ import OpenModalButton from '../OpenModalButton';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./PostBookingModal.css"
+import { postBooking } from '../../store/booking';
 
 
 const PostBookingModal = ({ spot }) => {
     const history = useHistory()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
+
+    const userId = user?.id
 
     const { closeModal } = useModal()
     const [startDate, setStartDate] = useState(new Date());
@@ -22,7 +26,13 @@ const PostBookingModal = ({ spot }) => {
 
     const handlePost = (e) => {
         e.preventDefault()
-        // dispatch post booking
+        const newBooking = {
+            spotId: spot.id,
+            userId,
+            startDate,
+            endDate
+        }
+        dispatch(postBooking(newBooking))
         closeModal()
     }
 

@@ -1,12 +1,21 @@
 import { csrfFetch } from "./csrf"
 const LOAD_BOOKINGS = "bookings/LOAD"
 const DELETE_BOOKING = "bookings/DELETE"
+const POST_BOOKING = "bookings/DELETE"
+
 
 //**ACTIONS */
 export const actionLoadBookings = (bookings) => {
     return {
         type: LOAD_BOOKINGS,
         payload: bookings
+    }
+}
+
+export const actionPostBooking = (booking) => {
+    return {
+        type: POST_BOOKING,
+        payload: booking
     }
 }
 
@@ -41,6 +50,27 @@ export const fetchBookings = () => async dispatch => {
     }
 };
 
+
+export const postBooking = (bookingBody) => async dispatch => {
+    const { spotId, userId, startDate, endDate } = bookingBody
+    const method = "POST"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify({
+        spotId,
+        userId,
+        startDate, 
+        endDate
+    })
+    const options = { method, headers, body }
+    const response = await csrfFetch('/api/bookings', options)
+
+    if (response.ok) {
+        const booking = await response.json()
+        dispatch(actionPostBooking(booking))
+        return booking
+    }
+}
+
 export const editBooking = (bookingBody, bookingId) => async dispatch => {
     // need booking id
     const { startDate, endDate } = bookingBody
@@ -68,12 +98,17 @@ const initialState = {
 
 //**REDUCER AND CASES */
 export default function bookingReducer(state = initialState, action) {
-    //converted fruits shape is from previous practice mock data, not the right store shape
     switch (action.type) {
 
         case LOAD_BOOKINGS: {
             const newState = { allBookings: { ...state.allBookings } } 
             newState.allBookings = action.payload
+            return newState
+        }
+
+        case POST_BOOKING: {
+            const newState = { allBookings: { ...state.allBookings } } 
+            newState.allBookings[action.payload.id] = action.payload
             return newState
         }
 
