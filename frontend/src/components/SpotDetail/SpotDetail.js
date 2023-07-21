@@ -13,6 +13,7 @@ import { normalizeArr } from '../../store/spot';
 import {useState} from "react"
 import OpenModalStyled from '../OpenModalButton/OpenModalStyled';
 import PostBookingModal from '../BookingsIndex/PostBookingModal';
+import OpenModalReserve from '../OpenModalButton/OpenModalReserve';
 
 // testing datepicker
 // import DatePicker from "react-datepicker";
@@ -218,12 +219,13 @@ const SpotDetail = () => {
 
                     <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
-                            <button id='reserve-box-button' onClick={handleReserve} type='button' className='reserve-button modal-button button white-button'>
-                                Reserve
-                            </button>
-                            <OpenModalStyled buttonText="Reserve" modalComponent={<PostBookingModal booking={spot} />} />
-
-                            {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
+                            {user && 
+                            <OpenModalReserve buttonText="Reserve" modalComponent={<PostBookingModal booking={spot} />} />
+                            }
+                            {!user &&
+                            <p className='login-reserve'>
+                                Login to Reserve
+                            </p>}
                         </div>
 
 
