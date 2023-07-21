@@ -16,15 +16,14 @@ function BookingsIndex() {
 
     const bookingState = useSelector(state => state.bookings.allBookings)
 
-    const bookings = Object.values(bookingState)
     useEffect(() => {
         dispatch(fetchBookings())
-        dispatch(actionResetReviews())
     }, [dispatch])
 
 
-
-
+    const bookings = Object.values(bookingState)
+    if (!bookings.length) return null
+    
 
     return (
 
@@ -34,10 +33,10 @@ function BookingsIndex() {
             </h2>
 
             <div className="spotIndex">
-                {bookings.map(booking => (
+                {bookings.length && bookings.map(booking => (
                     <BookingIndexItem booking={booking} key={booking.id} />
                 ))}
-
+                
             </div>
         </div>
 

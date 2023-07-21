@@ -57,10 +57,6 @@ function CurrentSpotsIndex() {
 
     return (
 
-
-
-
-        //jsx uses camel case class names
         <div className="current-spots-index">
             <h2>
                 Manage Spots
@@ -82,9 +78,7 @@ function CurrentSpotsIndex() {
                     </div>
 
                     
-                    // <Link to={`/fruits/${fruit.id}`} key={fruit.id}>
-                    //     {fruit.name}
-                    // </Link>
+                   
                 ))}
 
             </div>

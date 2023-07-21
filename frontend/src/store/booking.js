@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf"
 const LOAD_BOOKINGS = "bookings/LOAD"
 const DELETE_BOOKING = "bookings/DELETE"
-const POST_BOOKING = "bookings/DELETE"
+const POST_BOOKING = "bookings/POST"
 
 
 //**ACTIONS */
@@ -42,7 +42,7 @@ export const normalizeArr = (arr) => {
 export const fetchBookings = () => async dispatch => {
     const response = await csrfFetch('/api/bookings/current');
     const bookings = await response.json();
-    console.log("BOOKINGS", bookings)
+    // console.log("BOOKINGS", bookings)
     let convertedBookings = normalizeArr(bookings.Bookings)
    
     if (response.ok) {

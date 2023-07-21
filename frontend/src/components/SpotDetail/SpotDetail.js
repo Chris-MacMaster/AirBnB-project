@@ -220,7 +220,7 @@ const SpotDetail = () => {
                     <div className='reserve-box-row2'> 
                         <div className='reserve-box-2'>
                             {user && 
-                            <OpenModalReserve buttonText="Reserve" modalComponent={<PostBookingModal booking={spot} />} />
+                            <OpenModalReserve buttonText="Reserve" modalComponent={<PostBookingModal spot={spot} />} />
                             }
                             {!user &&
                             <p className='login-reserve'>

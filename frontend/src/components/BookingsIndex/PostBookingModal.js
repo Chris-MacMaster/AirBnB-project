@@ -9,7 +9,7 @@ import OpenModalButton from '../OpenModalButton';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./PostBookingModal.css"
-import { postBooking } from '../../store/booking';
+import { fetchBookings, postBooking } from '../../store/booking';
 
 
 const PostBookingModal = ({ spot }) => {
@@ -33,6 +33,7 @@ const PostBookingModal = ({ spot }) => {
             endDate
         }
         dispatch(postBooking(newBooking))
+        dispatch(fetchBookings())
         closeModal()
     }
 
