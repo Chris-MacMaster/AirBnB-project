@@ -42,7 +42,6 @@ export const actionLoadOneReview = (review) => {
 
 
 export const normalizeArr = (arr) => {
-    // console.log("NORMALIZE ARRAY INPUT, FETCH REVIEWS RESPONSE OBJ", arr)
     const newState = {};
     arr.forEach(spot => {
         newState[spot.id] = spot;
@@ -60,7 +59,6 @@ const initialState = {
 
 //**REDUCER AND CASES */
 export default function reviewReducer(state = initialState, action) {
-    //converted fruits shape is from previous practice mock data, not the right store shape
     let newState
     switch (action.type) {
 
@@ -85,7 +83,6 @@ export default function reviewReducer(state = initialState, action) {
 
         case RESET_REVIEWS: {
             newState = { ...state, spot:{} }
-            // newState.reviews.spot = {}
             return newState
         }
 
