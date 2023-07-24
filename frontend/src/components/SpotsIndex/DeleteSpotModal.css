@@ -2,11 +2,9 @@
 
 
 .delete-modal-div {
-    /* color: blue; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space; */
     height: 100%;
 
     border: 2px solid black;
@@ -20,7 +18,6 @@
 
 
 .update-button {
-    /* display: inline; */
     background-color: #666666;
     font-weight: bold;
 }
@@ -35,7 +32,6 @@
 .no-delete-button {
     background-color: blue;
     font-weight: bold;
-    /* margin-left: 4px; */
 }
 
 .modal-button {
@@ -55,7 +51,6 @@
 
 .button {
     box-shadow: 4px 5px black;
-    /* transition: box-shadow, 2s; */
     height: 30px;
     color: black;
     background-color: red;
@@ -65,7 +60,6 @@
 }
 
 .button:hover {
-    /* border: 2px solid orange; */
     color: white;
 }
 
@@ -77,7 +71,6 @@
 }
 
 #modal-content {
-    /* border: none; */
     height: fit-content;
 }
 
@@ -98,12 +91,10 @@
 
 .create-spot-top-right {
     width: fit-content;
-    /* background-color: white; */
     border: none;
     color: #00525E;
     position: relative;
     top: 3px;
-    /* text-decoration: underline; */
 }
 
 .create-spot-top-right:hover {
