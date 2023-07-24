@@ -1,11 +1,7 @@
 /* Insert SpotIndexItem styling here */
 
 .spot-card-div {
-    /* transition: transform 1.4s, background-color .7s; bottom: 1s; left: 1s; */
 
-    /* transition: background-color .7s; bottom: 1s; left: 1s; */
-
-    /* transition: \ bottom: 1s; left: 1s; */
 
     transition: background-color .7s; transform: .7s;
     background-color: #B8B8B8;
@@ -15,11 +11,7 @@
 }
 
 .spot-card-div:hover {
-    /* transform: rotate(1turn); */
-    /* background-color: green; */
-    /* transform: translate(7px, 7px); */
-    /* background-color: none; */
-
+  
 
     position: relative;
     bottom: 7px;
@@ -36,10 +28,8 @@
 
 .spotIndexItem {
     color: black;
-    /* background-color: red; */
-    /* border: 2px solid black; */
+
     box-sizing: border-box;
-    /* width: 270px; */
     min-width: 270px;
     height: 315px;
     min-height: 315px;
@@ -56,7 +46,6 @@
 .card-info{
     display: block;
     height: 65px;
-    /* transition: transform .7s, background-color .7s */
 }
 
 .card-row1 {
@@ -65,7 +54,6 @@
     justify-content: space-between;
     padding-top: 5px;
     height: fit-content;
-    /* padding-bottom: 8px; */
 }
 
 .price {
@@ -77,17 +65,12 @@ img {
     display: block;
     height: 250px;
     width: 270px;
-    /* min-width: 270px; */
     border-top: 2px solid blue;
     border-bottom: 2px solid blue;
 }
 
 
 
-
-/* .spot-card {
-
-} */
 .avg-rating {
     display: inline-block;
     position: relative;
@@ -107,13 +90,9 @@ img {
     font-weight: bold;
     font-size: x-large;
     margin-bottom: 4px;
-    /* margin-left: 10px; */
 }
 
-.card-info {
-    /* padding-left: 5px; */
-    /* padding-right: 5px; */
-}
+
 
 #prev-img {
     border-left: none;
@@ -124,23 +103,16 @@ img {
 
 .city-state {
     font-weight: bold;
-    /* font-size: 14px; */
     position: relative;
-    /* bottom: 2px; */
-    /* margin-bottom: 5px; */
 }
 
 #card-display-rating {
-    /* font-size: 15px; */
-    /* margin-top: 2px; */
     margin-bottom: 0px;
 }
 
 .price {
-    /* font-size: 14px; */
     font-weight: bold;
     display: relative;
-    /* bottom: 5px; */
 }
 
 #night {
