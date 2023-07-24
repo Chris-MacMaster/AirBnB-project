@@ -9,16 +9,13 @@
 
 
 .spotIndexItem {
-    /* height: fit-content; */
     height: 370px;
     width: 270px;
-    /* margin-bottom: 0px */
 }
 
 .card-info {
     display: block;
     height: 65px;
-    /* transition: transform .7s, background-color .7s */
 }
 
 .card-row1 {
@@ -26,14 +23,9 @@
     flex-direction: row;
     justify-content: space-between;
     padding-top: 17px;
-    /* padding-bottom: 8px; */
 }
 
-/* .current-card-div:hover {
-    position: relative;
-    bottom: 7px;
-    left: 7px;
-} */
+
 
 
 .price {
@@ -44,20 +36,14 @@
 img {
     display: block;
     height: 250px;
-    /* border: 2px solid blue; */
     width: 270px;
-    /* min-width: 270px; */
-    /* transition: transform .7s, background-color .7s */
-    /* transition: background-color .7s; */
 }
 
 .spot-card {
     transition: transform 1.4s, background-color .7s
 }
 
-/* .spot-card {
 
-} */
 .avg-rating {
     display: inline-block;
     position: relative;
@@ -82,19 +68,13 @@ img {
 
 
 .update-button {
-    /* display: inline; */
     background-color: blue;
     font-weight: bold;
 }
 
-/* .delete-button {
-    background-color: red;
-    font-weight: bold;
-    margin-left: 4px;
-} */
+
 
 .button:hover {
-    /* border: 2px solid orange; */
     color: white;
 }
 
@@ -102,7 +82,6 @@ img {
 
 .button {
     box-shadow: 4px 5px black;
-    /* transition: box-shadow, 2s; */
     height: 30px;
 }
 
@@ -119,7 +98,6 @@ img {
 
 
 
-/* enable current card movement on select */
 .current-card-div:hover {
     /* position: static; */
 }
