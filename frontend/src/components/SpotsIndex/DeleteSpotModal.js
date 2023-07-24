@@ -1,12 +1,9 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { actionDeleteReport } from '../store/report';
 import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
 import { useModal } from '../../context/Modal';
-import { deleteSpot, fetchOneSpot } from "../../store/spot"
-import OpenModalButton from '../OpenModalButton';
+import { deleteSpot } from "../../store/spot"
 
 import "./CurrentSpotItem.css"
 import "./DeleteSpotModal.css"
