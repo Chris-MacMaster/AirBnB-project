@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
 import { useModal } from '../../context/Modal';
-import { deleteSpot, fetchOneSpot } from "../../store/spot"
-import OpenModalButton from '../OpenModalButton';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
