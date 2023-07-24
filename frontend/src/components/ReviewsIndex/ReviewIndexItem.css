@@ -1,23 +1,15 @@
 .review-card {
-    /* color: blue; */
     font-weight: bold;
-    /* border: 2px solid black; */
     width: 45%;
-    /* border-radius: 25px; */
     background-color: white;
     margin-bottom: 30px;
     
 }
 
-.review-card:hover {
-    /* border: 2px solid orange; */
-}
+
 
 .reviewIndexItem {
     width: 97%;
-    /* background-color: black; */
-    /* margin-bottom: 40px; */
-    /* background-color: #F7F5F3; */
 }
 
 .date-string-text {
@@ -33,9 +25,7 @@
     font-weight: normal;
 }
 
-.user-firstname {
-    /* margin-left: 10px; */
-}
+
 
 .review-buttons {
     display: flex;
