@@ -1,17 +1,12 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { actionDeleteReport } from '../store/report';
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom';
 
 import { deleteSpot, fetchOneSpot } from "../../store/spot"
 import OpenModalButton from '../OpenModalButton';
 import "./CurrentSpotItem.css"
-// import { useDispatch } from 'react-redux';
 
-// import { useSelector } from "react-redux"
 import DeleteSpotModal from "./DeleteSpotModal.js"
-// import 
 
 import "./SpotIndexItem.css"
 import OpenModalStyled from '../OpenModalButton/OpenModalStyled';
@@ -27,31 +22,13 @@ const CurrentSpotItem = ({ spot }) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        // console.log("clicked")
         dispatch(fetchOneSpot(spot.id))
         history.push(`/spots/${spot.id}`)
 
     }
-    // to go when the tile needs to redirect
-    // onClick = { handleClick }
-
-
-    
-    const handleDelete = (e) => {
-        e.preventDefault()
-
-        
-
-        // <OpenModalButton />
-        // console.log("delete button test")
-        dispatch(deleteSpot(spot.id))
-        // history.push(`/spots/${spot.id}`)
-        history.push(`/spots/current`)
-    }
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        // console.log("update button test")
         if (user) {
             history.push(`/spots/manage/${spot.id}`)
         }
@@ -112,21 +89,5 @@ export default CurrentSpotItem;
 
 
 
-// {/* <Link to={`/reports/${report.id}`}>Report #{report.id}</Link> */ }
-// {/* <Link to={`/reports/${report.id}/edit`}>Edit</Link> */ }
 
 
-
-
-
-
-
-
-
-/*
-css lecture
-
-
-
-
-*/
