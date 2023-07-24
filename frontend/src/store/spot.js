@@ -1,5 +1,4 @@
 import { csrfFetch } from "./csrf"
-// import { useHistory } from "react-router-dom"
 
 
 
@@ -30,11 +29,7 @@ export const actionDeleteSpot = () => {
     }
 }
 
-// export const actionLoadSpotImages = (spotImages) => {
-//     return {
 
-//     }
-// }
 
 export const normalizeArr = (arr) => {
     const newState = {};
@@ -54,7 +49,6 @@ const initialState = {
 
 //**REDUCER AND CASES */
 export default function spotReducer(state = initialState, action) {
-    //converted fruits shape is from previous practice mock data, not the right store shape
     let newState
     switch (action.type) {
         case INITIAL_SPOT: {
@@ -62,12 +56,10 @@ export default function spotReducer(state = initialState, action) {
             return newState
         }
         case LOAD_SPOTS: {
-            //neccessary to render all, bug to fix
-            newState = { ...state, //...action.payload
+            newState = { ...state, 
             }
             newState.allSpots = action.payload
             newState.singleSpot = {}
-            //creates key error, shouldnt be a problem
             return newState
         }
         case LOAD_SPOT: {
@@ -78,7 +70,6 @@ export default function spotReducer(state = initialState, action) {
 
         case DELETE_SPOT: {
             newState = { ...state }
-            // newState.singleSpot = action.payload
             return newState
         }
 
@@ -217,10 +208,8 @@ export const deleteSpot = (id) => async dispatch => {
 
 //EDIT SPOT
 export const editSpot = (spotBody) => async dispatch => {
-    // console.log(id)
     const { address, city, state, country, lat, lng, name, description, price, spotId } = spotBody
 
-    // const spotId = {spotBody}
     const method = "PUT"
     const headers = { "Content-Type": "application/json" }
     const body = JSON.stringify({
@@ -235,7 +224,6 @@ export const editSpot = (spotBody) => async dispatch => {
         price
     })
     const options = { method, headers, body }
-    // console.log("SPOT OPTIONS", options)
     const response = await csrfFetch(`/api/spots/${spotId}`, options);
     const spot = await response.json();
     
