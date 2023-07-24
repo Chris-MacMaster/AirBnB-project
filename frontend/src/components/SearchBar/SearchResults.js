@@ -6,7 +6,6 @@ import './SearchResults.css'
 import SpotIndexItem from "../SpotsIndex/SpotIndexItem"
 
 const SearchResults = () => {
-    // const dispatch = useDispatch(
     const { parameters } = useParams()
 
 

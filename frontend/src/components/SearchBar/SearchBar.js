@@ -6,7 +6,6 @@ import { fetchSpotsSearch } from '../../store/search';
 
 
 const SearchBar = () => {
-    // const dispatch = useDispatch(
     const history = useHistory()
     const dispatch = useDispatch()
     const [parameters, setParameters] = useState('')
