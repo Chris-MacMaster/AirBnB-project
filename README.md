@@ -1,5 +1,14 @@
 # AirBnB Clone
 
+# How to Start
+
+## In One Terminal
+* In AUTHENTICATE-ME folder, run npm start
+
+## In Second Terminal
+* In frontend folder, run npm start
+
+<!-- # To Reset DB -->
 ## Database Schema Design
 
 ![airbnb-dbdiagram]
@@ -7,6 +16,7 @@
 [airbnb-dbdiagram]: ../assets/airbnb_dbdiagram.png
 
 ## API Documentation
+
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
