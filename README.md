@@ -3,10 +3,27 @@
 # How to Start
 
 ## In One Terminal
-* In AUTHENTICATE-ME folder, run npm start
+* In AUTHENTICATE-ME folder, run npm start to run backend
 
 ## In Second Terminal
-* In frontend folder, run npm start
+* In frontend folder, run npm start to run react app frontend
+
+### Optional: In Third Terminal
+* Utilize git commmands as you make changes
+
+### Reminder: Common Git Commands To Utilize
+* git status: checks the branch and status of your commits 
+* git checkout [branch name] and git -b checkout [new branch name]: navigate to new existing branch or navigate to a new branch 
+* git add .: add changes
+* git commit -m "[name of commit]": commit changes
+* git push: push committed change to github. If you're on a new branch that hasn't pushed to github yet, push, then copy and enter the modified push command git gives you so you * can simply use git push from then on.
+
+# To Shut Down Locally:
+* ctrl + c in both the backend and frontend terminals
+
+## In Both Frontend and Backend 
+
+## In Both 
 
 <!-- # To Reset DB -->
 ## Database Schema Design
