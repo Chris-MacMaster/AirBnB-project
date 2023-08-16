@@ -3,7 +3,7 @@
 # How to Start
 
 ## In One Terminal
-* In AUTHENTICATE-ME folder, run npm start to run backend
+* In AUTHENTICATE-ME folder or backend folder, run npm start to run backend
 
 ## In Second Terminal
 * In frontend folder, run npm start to run react app frontend
