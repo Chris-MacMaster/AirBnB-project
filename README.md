@@ -25,7 +25,13 @@
 
 ## In Both 
 
-<!-- # To Reset DB -->
+# To Reset DB
+* delete dev.db in db folder in backend foldter
+
+## In Backend Terminal
+* Run npx dotenv sequelize-cli db:migrate to run migrations
+* Run npx dotenv sequelize-cli db:seed:all to run seeders
+
 ## Database Schema Design
 
 ![airbnb-dbdiagram]
