@@ -1,78 +1,39 @@
 /* To Do: Add site wide styling */
 
-/* body {
-    background-color: aqua;
-} */
-
-
-
 #modal-content {
     width: 350px;
     height: 250px;
     border-radius: 25px;
-    /* border: 2px solid black */
-    /* border: 2px solid red; */
-    /* color: red; */
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 }
 
 
 
 .login-form {
-    /* color: blue; */
-    /* background-color: #B8B8B8; */
     width: 100%;
     height: 100%;
     border-radius: 25px;
-    /* height: fit-content; */
-    /* inherits form css from create a spot form */
     justify-content: space-between;
-    /* align-items: right; */
-    /* border: 2px solid black; */
-
     padding-top: 10px;
 }
 
 .login-p {
-    /* align-items: center; */
     display: flex;
     justify-content: center;
     color: black;
     font-size: larger;
-
-
     font-weight: bolder;
     margin-top: 0px;
-
-
-    
-    /* color: blue; */
 }
 
 .modal-login-button {
     width: 90%;
     margin-bottom: 20px;
-    /* color: blue */
 };
 
 
-.modal-login-demo-button {
-    /* border: 2px solid red; */
-    /* background-color: blue;
-    color: red; */
-}
 
 #top-right-demo-button {
-    /* color: red; */
-    /* background-color: blue; */
     width: fit-content;
-    /* background-color: white;
-    border: none;
-    color: blue;
-    text-decoration: underline; */
 }
 
 #top-right-demo-button:hover {
@@ -86,8 +47,6 @@
 .login-modal-div {
     height: 100%;
     border-radius: 25px;
-
-    /* border: 2px solid black */
 }
 
 .login-input {
