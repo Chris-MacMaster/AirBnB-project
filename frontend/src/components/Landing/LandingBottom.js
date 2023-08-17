@@ -11,7 +11,7 @@ const LandingBottom = () => {
                         About CareBnB
                     </p>
                     <div className='about-div'>
-                        <div className='about-spots'>
+                        <div className='about about-spots'>
                             <h1 className='landing-h1'>
                                 Spots
                             </h1>
@@ -20,7 +20,7 @@ const LandingBottom = () => {
                             </p>
                         </div>
 
-                        <div className='about-bookings'>
+                        <div className='about about-bookings'>
                             <h1 className='landing-h1'>
                                 Bookings and Reviews
                             </h1>
@@ -29,14 +29,13 @@ const LandingBottom = () => {
                             </p>
                         </div>
 
-                        <div className='about-reviews'>
+                        <div className='about about-reviews'>
                             <h1 className='landing-h1'>
                                 Login and Guests
                             </h1>
-                            <p className='landing-p landing-p-bottom'>
+                            <p className='landing-p landing-p-bottom landing-bottom-text'>
                                 Sign up is free, but anyone can still browse spots
                             </p>
-                            {/* "SEARCH AND browse spots?" search feature perhaps */}
                         </div>
 
 

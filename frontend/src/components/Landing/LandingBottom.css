@@ -3,14 +3,31 @@
     display: flex;
     justify-content: center;
     background-color: #1E1919;
-    width: 100%;
+    /* width: 1000px; */
 }
 
 .about-div {
     display: flex;
     padding-bottom: 30px;
+    
+    /* flex-wrap: wrap; */
+    /* width: 100%; */
 }
 
 .landing-h1 {
     font-weight: normal;
+}
+
+
+.landing-bottom-text {
+    /* max-width: 400px; */
+}
+
+.about-bookings {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.about {
+    max-width: 400px;
 }
