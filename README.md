@@ -21,24 +21,20 @@
 # To Shut Down Locally:
 * ctrl + c in both the backend and frontend terminals
 
-## In Both Frontend and Backend 
-
-## In Both 
-
 # To Reset DB
 * delete dev.db in db folder in backend foldter
 
-## In Backend Terminal
+## In Backend Terminal or AuthMe folder
 * Run npx dotenv sequelize-cli db:migrate to run migrations
 * Run npx dotenv sequelize-cli db:seed:all to run seeders
 
-## Database Schema Design
+# Database Schema Design
 
 ![airbnb-dbdiagram]
 
 [airbnb-dbdiagram]: ../assets/airbnb_dbdiagram.png
 
-## API Documentation
+# API Documentation
 
 
 ## USER AUTHENTICATION/AUTHORIZATION
