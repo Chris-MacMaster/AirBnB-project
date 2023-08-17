@@ -29,5 +29,8 @@
 }
 
 .about {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     max-width: 400px;
 }
