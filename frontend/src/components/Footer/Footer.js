@@ -21,22 +21,24 @@ const Footer = ({ show }) => {
                                 <p className='dev-name'
                                     key={`footerpersonname${i}`}>{devs[i][0]}</p>
 
-                                <Link className='footer-link' to={{ pathname: `${d[1]}` }}
-                                    target='_blank'>
-                                    <img src='https://i.imgur.com/RqO5mlh.png'
-                                        id='linked-icon'
-                                        alt='linkedinlogo'
-                                        className='linkedin-icon'
-                                        key={`linkedin${i}`}></img>
-                                </Link>
-                                <Link className='footer-link' to={{ pathname: `${d[2]}` }}
-                                    target='_blank'>
-                                    <img src='https://i.imgur.com/KTjeA0w.png'
-                                        id='git-icon'
-                                        alt='githubicon'
-                                        className='github-icon'
-                                        key={`github${i}`}></img>
-                                </Link>
+                                <div className='footer-links-div'>
+                                    <Link className='footer-link' to={{ pathname: `${d[1]}` }}
+                                        target='_blank'>
+                                        <img src={process.env.PUBLIC_URL + "/linked-icon.png"}
+                                            id='linked-icon'
+                                            alt='linkedinlogo'
+                                            className='linkedin-icon'
+                                            key={`linkedin${i}`}></img>
+                                    </Link>
+                                    <Link className='footer-link' to={{ pathname: `${d[2]}` }}
+                                        target='_blank'>
+                                        <img src={process.env.PUBLIC_URL + "/orange-git-icon.png"}
+                                            id='git-icon'
+                                            alt='githubicon'
+                                            className='github-icon'
+                                            key={`github${i}`}></img>
+                                    </Link>
+                                </div>
 
 
                             </div>

@@ -96,3 +96,21 @@
     padding-bottom: 10px;
 }
 
+.footer-links-div {
+    display: flex;
+    justify-content: center;
+}
+
+#dev-name {
+    display: block;
+}
+
+.footer-person {
+    display: block;
+}
+
+#git-icon {
+    color: orange;
+    margin-top: 2px;
+}
+
