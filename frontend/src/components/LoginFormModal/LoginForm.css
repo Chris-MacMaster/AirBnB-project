@@ -1,12 +1,8 @@
-/* To Do: Add site wide styling */
-
 #modal-content {
     width: 350px;
     height: 250px;
     border-radius: 25px;
 }
-
-
 
 .login-form {
     width: 100%;
@@ -30,8 +26,6 @@
     margin-bottom: 20px;
 };
 
-
-
 #top-right-demo-button {
     width: fit-content;
 }
@@ -40,9 +34,6 @@
     color: orange;
     cursor: pointer;
 }
-
-
-
 
 .login-modal-div {
     height: 100%;

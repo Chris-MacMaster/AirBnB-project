@@ -3,15 +3,12 @@
     display: flex;
     justify-content: center;
     background-color: #1E1919;
-    /* width: 1000px; */
 }
 
 .about-div {
     display: flex;
     padding-bottom: 30px;
     
-    /* flex-wrap: wrap; */
-    /* width: 100%; */
 }
 
 .landing-h1 {
@@ -19,9 +16,7 @@
 }
 
 
-.landing-bottom-text {
-    /* max-width: 400px; */
-}
+
 
 .about-bookings {
     margin-left: 50px;
